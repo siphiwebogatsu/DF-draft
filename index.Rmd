@@ -1,9 +1,28 @@
---- 
-title: "Introduction to R using ICAN-ICAR 2025 Survey Data"
-author: "AFLEARN"
-date: "`r Sys.Date()`"
+---
+title: |
+  AFLEARN 
+  Introduction to R using ICAN-ICAR 2025 Survey Data
+author: 'Siphiwe M. Bogatsu'
+date: 'February 2026'
 site: bookdown::bookdown_site
+
 ---
 
-# Down the rabbit-hole
+```{r, setup1, include=FALSE}
+knitr::opts_chunk$set(
+  warnings = FALSE,
+  fig.path = 'figs/', 
+  message = F
+)
+
+library(knitr)
+library(cowplot) #Gives more control for figures
+```
+
+# Introduction
+
+```{js, echo = FALSE}
+title=document.getElementById('header');
+title.innerHTML = '<img src="files/20260205-df-header.png" alt="">' + title.innerHTML
+```
 
