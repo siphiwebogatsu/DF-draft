@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Introduction to R using ICAN-ICAR 2025 Survey Data"
+author: "AFLEARN"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
