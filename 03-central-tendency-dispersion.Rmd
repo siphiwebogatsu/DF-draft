@@ -1,0 +1,202 @@
+# Central Tendency and Dispersion
+
+Descriptive statistics summarise data in ways that support interpretation and comparison. In household surveys such as PAL Network’s ICAN-ICAR study, you should compute these summaries with survey weights and design variables when your goal is population inference.
+
+After this chapter, you should be able to (i) compute and interpret measures of central tendency (mean, median, and mode), (ii) compute and interpret measures of dispersion (variance, standard deviation, and interquartile range), and (iii) produce weighted, design-correct summaries in R.
+
+```{r}
+#| label: setup-central-tendency
+#| echo: false
+#| warning: false
+#| message: false
+
+# Load packages 
+library(tidyverse)
+library(survey)
+library(knitr)
+
+# load the data
+dat = read_csv("data/2025_PAL_ICAN-ICAR_data.csv", show_col_types = FALSE)
+
+# keep observations with valid weights (so weighted and unweighted use the same sample)
+dat = dat |>
+  filter(!is.na(HH_Weight_Provided))
+
+# create simple labels used in examples
+dat = dat |>
+  mutate(
+    sex = factor(ch03, levels = c(1, 2), labels = c("Female", "Male")),
+    residence = Location |> str_trim() |> factor(levels = c("Rural", "Urban"))
+  )
+
+# survey design object (consistent with the logistic regression chapter)
+options(
+  survey.lonely.psu = "adjust",
+  survey.adjust.domain.lonely = TRUE
+)
+
+des = svydesign(
+  ids     = ~interaction(CountryName, VillageID) + HHID,
+  strata  = ~interaction(CountryName, Tier_One_Unit),
+  weights = ~HH_Weight_Provided,
+  nest    = TRUE,
+  data    = dat
+)
+```
+
+## Central tendency
+
+Measures of central tendency describe a “typical” value.
+
+**Mean.** The mean is the arithmetic average. It uses all observations and is sensitive to extreme values.
+
+**Median.** The median is the 50th percentile. It remains stable when a small number of observations are very large or very small, so it is often more informative for skewed distributions.
+
+**Mode.** The mode is the most common value. It is most useful for categorical variables.
+
+The next example uses ICAR assessment time as a continuous variable. If your dataset stores this variable under a different name (for example, `ican_assess_time`), replace it in the code.
+
+```{r}
+#| label: summary-assessment-time
+#| message: false
+#| warning: false
+
+summary(dat$icar_assess_time)
+
+tibble(
+  statistic = c("mean", "median"),
+  value = c(
+    mean(dat$icar_assess_time, na.rm = TRUE),
+    median(dat$icar_assess_time, na.rm = TRUE)
+  )
+) 
+```
+
+A distribution plot helps you interpret the difference between the mean and the median. When the distribution is right-skewed, a small number of large values typically pulls the mean above the median.
+
+```{r}
+#| label: fig-hist-assessment-time
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Histogram of ICAR assessment time."
+#| fig-height: 3.6
+
+dat |>
+  filter(!is.na(icar_assess_time)) |>
+  ggplot(aes(x = icar_assess_time)) +
+  geom_histogram(binwidth = 20, fill = "magenta") +
+  labs(x = "ICAR assessment time", y = "Count") + 
+  theme_bw()
+```
+
+To compute a mode for a categorical variable, count frequencies and select the largest count.
+
+```{r}
+#| label: mode-example
+#| message: false
+#| warning: false
+
+dat |>
+  filter(!is.na(residence)) |>
+  count(residence, name = "n") |>
+  arrange(desc(n)) |>
+  slice(1) 
+```
+
+## Dispersion
+
+Measures of dispersion describe how much values vary.
+
+**Variance and standard deviation.** The variance is the average squared deviation from the mean. The standard deviation is the square root of the variance, so it is measured on the original scale.
+
+**Interquartile range (IQR).** The IQR is the distance between the 75th and 25th percentiles. It summarises spread in the middle of the distribution and is less sensitive to outliers than the standard deviation.
+
+```{r}
+#| label: dispersion-unweighted
+#| message: false
+#| warning: false
+
+tibble(
+  statistic = c("sd", "IQR"),
+  value = c(
+    sd(dat$icar_assess_time, na.rm = TRUE),
+    IQR(dat$icar_assess_time, na.rm = TRUE)
+  )
+)
+```
+
+## Weighted, design-correct summaries
+
+Unweighted summaries describe the sample. Weighted, design-correct summaries target the population and use appropriate standard errors for a stratified, clustered design.
+
+The code below estimates the population mean of ICAR assessment time for one country using the survey design object. It also computes the median through a weighted quantile.
+
+```{r}
+#| label: weighted-mean-and-median
+#| message: false
+#| warning: false
+
+des_country = subset(des, CountryName == "Senegal" & !is.na(icar_assess_time))
+
+m = svymean(~icar_assess_time, design = des_country, na.rm = TRUE)
+q50 = svyquantile(~icar_assess_time, design = des_country, quantiles = 0.5, na.rm = TRUE)
+
+tibble(
+  quantity = c("mean (weighted)", "median (weighted)"),
+  estimate = c(coef(m)[["icar_assess_time"]], coef(q50))
+)
+
+```
+
+To compare groups, use `svyby()` so that estimates and standard errors respect the design.
+
+```{r}
+#| label: weighted-by-sex
+#| eval: false
+
+svyby(
+  ~icar_assess_time,
+  ~sex,
+  design = subset(des, CountryName == "Senegal" & !is.na(icar_assess_time) & !is.na(sex)),
+  FUN = svymean,
+  na.rm = TRUE
+)
+```
+
+## Outliers and the unit of analysis
+
+In PAL data, some variables are defined at the household level (for example, household size). When the dataset includes multiple children per household, household-level quantities appear repeatedly. A household summary should therefore use one row per household.
+
+The code below constructs a household-level dataset by keeping the first observation in each household. It then shows how an outlier can affect the mean more than the median.
+
+```{r}
+#| label: household-size-example
+#| message: false
+#| warning: false
+
+dat_hh = dat |>
+  group_by(HHID) |>
+  slice(1) |>
+  ungroup() |>
+  mutate(
+    hh_size = ifelse(hh06a > 0 & hh06a <= 50, hh06a, NA_real_)  # simple, transparent cutoff
+  )
+
+tibble(
+  statistic = c("mean", "median"),
+  value = c(
+    mean(dat_hh$hh_size, na.rm = TRUE),
+    median(dat_hh$hh_size, na.rm = TRUE)
+  )
+)
+```
+
+If a small number of extreme values drives the mean away from the typical household size, the median or the IQR usually provides a clearer summary of the distribution.
+
+## Practice exercises
+
+1. For a country of your choice, compute the unweighted mean and median of `icar_assess_time`. Then compute the weighted mean and weighted median using `svymean()` and `svyquantile()`.
+2. Use `svyby()` to estimate the weighted mean ICAR assessment time by `residence` for one country. Interpret the difference.
+3. For household size (`hh06a`), compare the mean and median using the household-level dataset created in this chapter. Explain which measure better represents a “typical” household size and why.
+4. Choose one additional continuous variable (for example, child age `ch02`). Compute its mean, median, standard deviation, and IQR, and then describe the distribution in two to three sentences.
