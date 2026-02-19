@@ -31,7 +31,6 @@ Start by checking the size of the dataset and inspecting the variables.
 
 dim(dat)       # rows and columns
 names(dat)[1:25]  # first 25 variable names
-glimpse(dat)   # structure + variable types
 ```
 
 A useful next step is to focus on a small set of variables. In this course we frequently use child age (`ch02`), child sex (`ch03`), enrolment status (`enr_status`), and assessment timing variables.
@@ -56,7 +55,7 @@ The summary tools you use depend on the type of variable.
 
 **Categorical variables** group observations into distinct categories. Examples include `CountryName`, `Location`, and child sex (`ch03`). For categorical variables, counts and proportions are more informative than averages.
 
-The PAL data are stored at the child level: each row is a child. Some variables therefore repeat across children in the same household (for example, household size). When you analyse household-level variables, you must avoid counting the same household multiple times.
+The ICAN-ICAR data are stored at the child level: each row is a child. Some variables therefore repeat across children in the same household (for example, household size). When you analyse household-level variables, you must avoid counting the same household multiple times.
 
 ## Distributions of continuous variables
 
@@ -263,7 +262,7 @@ tibble(
 
 ## Missing data and skip patterns
 
-Missing values are common in survey data. In PAL, missingness often reflects skip patterns. For example, grade (`ch06a`) is usually recorded only for learners who are currently enrolled.
+Missing values are common in survey data. In ICAN-ICAR, missingness often reflects skip patterns. For example, grade (`ch06a`) is usually recorded only for learners who are currently enrolled.
 
 Start by checking how much is missing.
 
@@ -315,7 +314,7 @@ svyby(
 
 ## Exercises
 
-Use the PAL data and the tools in this chapter to answer the questions below.
+Use the ICAN-ICAR data and the tools in this chapter to answer the questions below.
 
 1. What proportion of the sample is rural (`Location == "Rural"`)? Compute both the unweighted and weighted estimate.
 2. What is the unweighted and weighted mean child age (`ch02`) for enrolled learners (`enr_status == "Currently Enrolled"`)?

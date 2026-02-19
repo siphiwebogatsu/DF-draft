@@ -215,21 +215,12 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
 <span id="cb1-2"><a href="survey-design-sampling-and-weighting.html#cb1-2" tabindex="-1"></a><span class="co">#| warning: false</span></span>
 <span id="cb1-3"><a href="survey-design-sampling-and-weighting.html#cb1-3" tabindex="-1"></a><span class="co">#| message: false</span></span>
 <span id="cb1-4"><a href="survey-design-sampling-and-weighting.html#cb1-4" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="survey-design-sampling-and-weighting.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.5.2</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.5.1</code></pre>
-<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.5.2</code></pre>
-<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.5.1</code></pre>
-<pre><code>## Warning: package &#39;purrr&#39; was built under R version 4.5.2</code></pre>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.5.1</code></pre>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.5.1</code></pre>
-<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.5.1</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="survey-design-sampling-and-weighting.html#cb10-1" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code></pre></div>
-<pre><code>## Warning: package &#39;survey&#39; was built under R version 4.5.1</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="survey-design-sampling-and-weighting.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb12-2"><a href="survey-design-sampling-and-weighting.html#cb12-2" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="survey-design-sampling-and-weighting.html#cb12-3" tabindex="-1"></a><span class="co"># load the data</span></span>
-<span id="cb12-4"><a href="survey-design-sampling-and-weighting.html#cb12-4" tabindex="-1"></a>dat <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2025_PAL_ICAN-ICAR_data.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb1-5"><a href="survey-design-sampling-and-weighting.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-6"><a href="survey-design-sampling-and-weighting.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(survey)</span>
+<span id="cb1-7"><a href="survey-design-sampling-and-weighting.html#cb1-7" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-8"><a href="survey-design-sampling-and-weighting.html#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="survey-design-sampling-and-weighting.html#cb1-9" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb1-10"><a href="survey-design-sampling-and-weighting.html#cb1-10" tabindex="-1"></a>dat <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2025_PAL_ICAN-ICAR_data.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
 ##   dat &lt;- vroom(...)
 ##   problems(dat)</code></pre>
@@ -254,18 +245,18 @@ Figure 2.1: Illustration of the ICAN-ICAR multi-stage sampling process.
 that certain known totals (e.g. population by region, or by urban/rural) align with census figures. These adjustments reduce bias from non-response and any sampling frame imperfections.</p>
 <p>Ignoring survey weights or clustering can make your analysis misrepresent both the population estimate and its uncertainty. If selection probabilities vary, unweighted summaries describe the sample rather than the population, whereas weighting targets the population by rebalancing each observation’s contribution. Clustering also induces correlation within PSUs, thus treating the data as a random sample typically understates standard errors and produces confidence intervals that are too narrow. Survey-aware methods incorporates the design to estimate uncertainty correctly.</p>
 <p>The <code>svydesign()</code> from the <code>survey</code> package represents the sampling design through a design object. After you create that object, you pass it to survey-aware estimators such as <code>svymean()</code> and <code>svyglm()</code>. In multi-country analysis, cluster and strata identifiers can repeat across countries. The safest approach is to use <code>interaction()</code> so that identifiers become unique across the pooled data.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="survey-design-sampling-and-weighting.html#cb14-1" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb14-2"><a href="survey-design-sampling-and-weighting.html#cb14-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
-<span id="cb14-3"><a href="survey-design-sampling-and-weighting.html#cb14-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-4"><a href="survey-design-sampling-and-weighting.html#cb14-4" tabindex="-1"></a>)</span>
-<span id="cb14-5"><a href="survey-design-sampling-and-weighting.html#cb14-5" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="survey-design-sampling-and-weighting.html#cb14-6" tabindex="-1"></a>des <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
-<span id="cb14-7"><a href="survey-design-sampling-and-weighting.html#cb14-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
-<span id="cb14-8"><a href="survey-design-sampling-and-weighting.html#cb14-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
-<span id="cb14-9"><a href="survey-design-sampling-and-weighting.html#cb14-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
-<span id="cb14-10"><a href="survey-design-sampling-and-weighting.html#cb14-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
-<span id="cb14-11"><a href="survey-design-sampling-and-weighting.html#cb14-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-12"><a href="survey-design-sampling-and-weighting.html#cb14-12" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="survey-design-sampling-and-weighting.html#cb3-1" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb3-2"><a href="survey-design-sampling-and-weighting.html#cb3-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb3-3"><a href="survey-design-sampling-and-weighting.html#cb3-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-4"><a href="survey-design-sampling-and-weighting.html#cb3-4" tabindex="-1"></a>)</span>
+<span id="cb3-5"><a href="survey-design-sampling-and-weighting.html#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="survey-design-sampling-and-weighting.html#cb3-6" tabindex="-1"></a>des <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb3-7"><a href="survey-design-sampling-and-weighting.html#cb3-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb3-8"><a href="survey-design-sampling-and-weighting.html#cb3-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb3-9"><a href="survey-design-sampling-and-weighting.html#cb3-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb3-10"><a href="survey-design-sampling-and-weighting.html#cb3-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
+<span id="cb3-11"><a href="survey-design-sampling-and-weighting.html#cb3-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-12"><a href="survey-design-sampling-and-weighting.html#cb3-12" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s break down each component:</p>
 <p><strong>1. <code>ids = ~interaction(CountryName, VillageID) + HHID</code></strong></p>
 <p>This specifies the <strong>two-stage cluster structure</strong>:</p>
@@ -281,31 +272,31 @@ that certain known totals (e.g. population by region, or by urban/rural) align 
 <p><strong>4. <code>nest = TRUE</code></strong></p>
 <p>This is essential when cluster IDs are only unique within strata. It tells R that <code>VillageID</code> values can repeat across different strata/countries, and prevents R from treating EAs with the same ID in different countries as the same cluster.</p>
 <p>The example below compares an unweighted and weighted estimate of the proportion of enrolled learners who meet minimum proficiency in both maths and reading in Senegal.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="survey-design-sampling-and-weighting.html#cb15-1" tabindex="-1"></a><span class="co"># filter to enrolled learners in Senegal</span></span>
-<span id="cb15-2"><a href="survey-design-sampling-and-weighting.html#cb15-2" tabindex="-1"></a>one_country <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="survey-design-sampling-and-weighting.html#cb15-3" tabindex="-1"></a>  <span class="fu">filter</span>(CountryName <span class="sc">==</span> <span class="st">&quot;Senegal&quot;</span> <span class="sc">&amp;</span> enr_status <span class="sc">==</span> <span class="st">&quot;Currently Enrolled&quot;</span>)</span>
-<span id="cb15-4"><a href="survey-design-sampling-and-weighting.html#cb15-4" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="survey-design-sampling-and-weighting.html#cb15-5" tabindex="-1"></a><span class="co"># unweighted (sample) estimate</span></span>
-<span id="cb15-6"><a href="survey-design-sampling-and-weighting.html#cb15-6" tabindex="-1"></a>prop_unweighted <span class="ot">=</span> <span class="fu">mean</span>(one_country<span class="sc">$</span>MPL_both, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-7"><a href="survey-design-sampling-and-weighting.html#cb15-7" tabindex="-1"></a>prop_unweighted</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="survey-design-sampling-and-weighting.html#cb4-1" tabindex="-1"></a><span class="co"># filter to enrolled learners in Senegal</span></span>
+<span id="cb4-2"><a href="survey-design-sampling-and-weighting.html#cb4-2" tabindex="-1"></a>one_country <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="survey-design-sampling-and-weighting.html#cb4-3" tabindex="-1"></a>  <span class="fu">filter</span>(CountryName <span class="sc">==</span> <span class="st">&quot;Senegal&quot;</span> <span class="sc">&amp;</span> enr_status <span class="sc">==</span> <span class="st">&quot;Currently Enrolled&quot;</span>)</span>
+<span id="cb4-4"><a href="survey-design-sampling-and-weighting.html#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="survey-design-sampling-and-weighting.html#cb4-5" tabindex="-1"></a><span class="co"># unweighted (sample) estimate</span></span>
+<span id="cb4-6"><a href="survey-design-sampling-and-weighting.html#cb4-6" tabindex="-1"></a>prop_unweighted <span class="ot">=</span> <span class="fu">mean</span>(one_country<span class="sc">$</span>MPL_both, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-7"><a href="survey-design-sampling-and-weighting.html#cb4-7" tabindex="-1"></a>prop_unweighted</span></code></pre></div>
 <pre><code>## [1] 0.2603826</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="survey-design-sampling-and-weighting.html#cb17-1" tabindex="-1"></a><span class="co"># weighted estimate with design-correct SE</span></span>
-<span id="cb17-2"><a href="survey-design-sampling-and-weighting.html#cb17-2" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb17-3"><a href="survey-design-sampling-and-weighting.html#cb17-3" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
-<span id="cb17-4"><a href="survey-design-sampling-and-weighting.html#cb17-4" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
-<span id="cb17-5"><a href="survey-design-sampling-and-weighting.html#cb17-5" tabindex="-1"></a>)</span>
-<span id="cb17-6"><a href="survey-design-sampling-and-weighting.html#cb17-6" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="survey-design-sampling-and-weighting.html#cb17-7" tabindex="-1"></a>des_one <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
-<span id="cb17-8"><a href="survey-design-sampling-and-weighting.html#cb17-8" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
-<span id="cb17-9"><a href="survey-design-sampling-and-weighting.html#cb17-9" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
-<span id="cb17-10"><a href="survey-design-sampling-and-weighting.html#cb17-10" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
-<span id="cb17-11"><a href="survey-design-sampling-and-weighting.html#cb17-11" tabindex="-1"></a>  <span class="at">data    =</span> one_country,</span>
-<span id="cb17-12"><a href="survey-design-sampling-and-weighting.html#cb17-12" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
-<span id="cb17-13"><a href="survey-design-sampling-and-weighting.html#cb17-13" tabindex="-1"></a>)</span>
-<span id="cb17-14"><a href="survey-design-sampling-and-weighting.html#cb17-14" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="survey-design-sampling-and-weighting.html#cb17-15" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="survey-design-sampling-and-weighting.html#cb17-16" tabindex="-1"></a>prop_weighted <span class="ot">=</span> <span class="fu">svymean</span>(<span class="sc">~</span>MPL_both, <span class="at">design =</span> des_one, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb17-17"><a href="survey-design-sampling-and-weighting.html#cb17-17" tabindex="-1"></a>prop_weighted</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="survey-design-sampling-and-weighting.html#cb6-1" tabindex="-1"></a><span class="co"># weighted estimate with design-correct SE</span></span>
+<span id="cb6-2"><a href="survey-design-sampling-and-weighting.html#cb6-2" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb6-3"><a href="survey-design-sampling-and-weighting.html#cb6-3" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb6-4"><a href="survey-design-sampling-and-weighting.html#cb6-4" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-5"><a href="survey-design-sampling-and-weighting.html#cb6-5" tabindex="-1"></a>)</span>
+<span id="cb6-6"><a href="survey-design-sampling-and-weighting.html#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="survey-design-sampling-and-weighting.html#cb6-7" tabindex="-1"></a>des_one <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb6-8"><a href="survey-design-sampling-and-weighting.html#cb6-8" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb6-9"><a href="survey-design-sampling-and-weighting.html#cb6-9" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb6-10"><a href="survey-design-sampling-and-weighting.html#cb6-10" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb6-11"><a href="survey-design-sampling-and-weighting.html#cb6-11" tabindex="-1"></a>  <span class="at">data    =</span> one_country,</span>
+<span id="cb6-12"><a href="survey-design-sampling-and-weighting.html#cb6-12" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-13"><a href="survey-design-sampling-and-weighting.html#cb6-13" tabindex="-1"></a>)</span>
+<span id="cb6-14"><a href="survey-design-sampling-and-weighting.html#cb6-14" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="survey-design-sampling-and-weighting.html#cb6-15" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="survey-design-sampling-and-weighting.html#cb6-16" tabindex="-1"></a>prop_weighted <span class="ot">=</span> <span class="fu">svymean</span>(<span class="sc">~</span>MPL_both, <span class="at">design =</span> des_one, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-17"><a href="survey-design-sampling-and-weighting.html#cb6-17" tabindex="-1"></a>prop_weighted</span></code></pre></div>
 <pre><code>##             mean     SE
 ## MPL_both 0.26049 0.0109</code></pre>
 <p><span class="citation">@fig-pal-analysis-workflow</span> summarizes a practical workflow that you can reuse for descriptive statistics and modelling.</p>
