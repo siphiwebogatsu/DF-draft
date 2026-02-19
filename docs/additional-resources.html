@@ -4,19 +4,19 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 A caucus-race and a long tale | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data</title>
+  <title>Chapter 7 Additional Resources | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data</title>
   <meta name="description" content="<p>AFLEARN
 Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 A caucus-race and a long tale | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  <meta property="og:title" content="Chapter 7 Additional Resources | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 A caucus-race and a long tale | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  <meta name="twitter:title" content="Chapter 7 Additional Resources | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
   
   
   
@@ -30,8 +30,8 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="logistic-regression.html"/>
-
+<link rel="prev" href="summary-and-key-takeaways.html"/>
+<link rel="next" href="logistic-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -239,17 +239,73 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a-caucus-race-and-a-long-tale" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Chapter 9</span> A caucus-race and a long tale<a href="a-caucus-race-and-a-long-tale.html#a-caucus-race-and-a-long-tale" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="additional-resources" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Additional Resources<a href="additional-resources.html#additional-resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="useful-functions-reference" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Useful Functions Reference<a href="additional-resources.html#useful-functions-reference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Function</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data dimensions</td>
+<td><code>dim()</code></td>
+<td><code>dim(data_weighted)</code></td>
+</tr>
+<tr class="even">
+<td>Variable names</td>
+<td><code>names()</code></td>
+<td><code>names(data_weighted)</code></td>
+</tr>
+<tr class="odd">
+<td>Data structure</td>
+<td><code>glimpse()</code></td>
+<td><code>glimpse(data_weighted)</code></td>
+</tr>
+<tr class="even">
+<td>Quick summary</td>
+<td><code>skim()</code></td>
+<td><code>skim(data_weighted)</code></td>
+</tr>
+<tr class="odd">
+<td>Missing values</td>
+<td><code>is.na()</code></td>
+<td><code>sum(is.na(var))</code></td>
+</tr>
+<tr class="even">
+<td>Unique values</td>
+<td><code>n_distinct()</code></td>
+<td><code>n_distinct(var)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="for-practice" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> For Practice<a href="additional-resources.html#for-practice" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Try exploring these on your own:</p>
+<ol style="list-style-type: decimal">
+<li>Create a complete variable inventory for ALL variables</li>
+<li>Investigate patterns of missing data across regions (or countries if using multi-country data)</li>
+<li>Create visualizations for the geographic distribution in your context</li>
+<li>Calculate the average number of households per village by region (or by country)</li>
+</ol>
+<hr />
+<p><strong>Remember:</strong> Getting to know your data is not a one-time task. You’ll continually discover new aspects of your data throughout the analysis process!</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="logistic-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="summary-and-key-takeaways.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -280,7 +336,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/siphiwebogatsu/DF-draft/edit/main/03-race.Rmd",
+    "link": "https://github.com/siphiwebogatsu/DF-draft/edit/main/01-get-to-know-your-data.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -288,7 +344,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.comsiphiwebogatsu/DF-draft/blob/main/03-race.Rmd",
+    "link": "https://github.comsiphiwebogatsu/DF-draft/blob/main/01-get-to-know-your-data.Rmd",
     "text": null
   },
   "download": null,
