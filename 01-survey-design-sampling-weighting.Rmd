@@ -3,8 +3,8 @@
 Household surveys such as PAL Network’s ICAN-ICAR study estimate population learning outcomes from a sample. The sampling design determines *which* households enter the data, and the survey design variables (weights, strata, and clusters) determine *how* analysts should estimate population quantities and uncertainty. After this chapter, you should be able to explain probability sampling, describe the ICAN-ICAR multi-stage design, interpret a survey weight, and compute design-correct estimates in R.
 
 ```{r}
-#| label: load packages
-#| echo: false
+
+#| echo: true
 #| warning: false
 #| message: false
 
@@ -21,7 +21,7 @@ dat = read_csv("data/2025_PAL_ICAN-ICAR_data.csv", show_col_types = FALSE)
 
 A census measures every household in the population. ICAN-ICAR survey data instead uses a probability sample because a census is rarely feasible at national scale. Probability sampling supports population inference because the design assigns each unit a known (or estimable) selection probability.
 
-ICAN-ICAR survey data uses a stratified, multi-stage cluster design. Figure @fig-pal-sampling-process illustrates the logic.
+ICAN-ICAR survey data uses a stratified, multi-stage cluster design.@fig-pal-sampling-process illustrates the logic.
 
 ```{r}
 #| label: fig-pal-sampling-process
@@ -40,14 +40,17 @@ This design shapes analysis in two ways. First, learners within the same PSU ten
 
 ## Survey weights and design-based inference
 
-A survey weight approximates how many population units a sampled unit represents. In its simplest form, the design weight equals the inverse of the selection probability. Weights often include adjustments for non-response and, in some surveys, calibration to known population totals. The ICAN-ICAR survey data includes a household weight variable, `HH_Weight_Provided`, which can be used for population estimate.
+A survey weight approximates how many population units a sampled unit represents. In its simplest form, the design weight equals the inverse of the selection probability. If a household had a 1 in 500 chance of selection, its basic weight would be 500. In other words, that household represents 500 households in the population.The ICAN-ICAR survey data includes a household weight variable, `HH_Weight_Provided`, which can be used for population estimate.
+
+To compensate for households that were selected but did not respond (or were missed), the weights are adjusted so that responding households “stand in” for similar households that did not respond. This may also involve post-stratification — adjusting weights so
+that certain known totals (e.g. population by region, or by urban/rural) align with census figures. These adjustments reduce bias from non-response and any sampling frame imperfections.
+
 
 Ignoring survey weights or clustering can make your analysis misrepresent both the population estimate and its uncertainty. If selection probabilities vary, unweighted summaries describe the sample rather than the population, whereas weighting targets the population by rebalancing each observation's contribution. Clustering also induces correlation within PSUs, thus treating the data as a random sample typically understates standard errors and produces confidence intervals that are too narrow. Survey-aware methods incorporates the design to estimate uncertainty correctly.
 
 The `svydesign()` from the `survey` package represents the sampling design through a design object. After you create that object, you pass it to survey-aware estimators such as `svymean()` and `svyglm()`. In multi-country analysis, cluster and strata identifiers can repeat across countries. The safest approach is to use `interaction()` so that identifiers become unique across the pooled data.
 
 ```{r}
-#| label: create a survey design object
 #| eval: false
 
 options(
@@ -96,7 +99,7 @@ The example below compares an unweighted and weighted estimate of the proportion
 
 # filter to enrolled learners in Senegal
 one_country = dat |>
-  filter(CountryName == "Kenya" & enr_status == "Currently Enrolled")
+  filter(CountryName == "Senegal" & enr_status == "Currently Enrolled")
 
 # unweighted (sample) estimate
 prop_unweighted = mean(one_country$MPL_both, na.rm = TRUE)
@@ -125,7 +128,7 @@ prop_weighted = svymean(~MPL_both, design = des_one, na.rm = TRUE)
 prop_weighted
 ```
 
-Figure @fig-pal-analysis-workflow summarizes a practical workflow that you can reuse for descriptive statistics and modelling.
+@fig-pal-analysis-workflow summarizes a practical workflow that you can reuse for descriptive statistics and modelling.
 
 ```{r}
 #| label: fig-pal-analysis-workflow

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Survey Design, Sampling, and Weighting | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data</title>
+  <meta name="description" content="<p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Survey Design, Sampling, and Weighting | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Survey Design, Sampling, and Weighting | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  
+  
+  
+
+<meta name="author" content="Siphiwe M. Bogatsu" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="understanding-distributions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html"><i class="fa fa-check"></i><b>2</b> Survey Design, Sampling, and Weighting</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design"><i class="fa fa-check"></i><b>2.1</b> Survey sampling and design</a></li>
+<li class="chapter" data-level="2.2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference"><i class="fa fa-check"></i><b>2.2</b> Survey weights and design-based inference</a></li>
+<li class="chapter" data-level="2.3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#practice-exercises"><i class="fa fa-check"></i><b>2.3</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#variable-types-and-levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Variable types and levels of measurement</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-continuous-variables"><i class="fa fa-check"></i><b>3.3</b> Distributions of continuous variables</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#numeric-summaries"><i class="fa fa-check"></i><b>3.3.1</b> Numeric summaries</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#plots"><i class="fa fa-check"></i><b>3.3.2</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-categorical-variables"><i class="fa fa-check"></i><b>3.4</b> Distributions of categorical variables</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.5</b> Weighted summaries using the survey design</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.5.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="3.5.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.5.2</b> Weighted frequency tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.6</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.7</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+<li class="chapter" data-level="3.9" data-path="understanding-distributions.html"><a href="understanding-distributions.html#what-logistic-regression-models"><i class="fa fa-check"></i><b>3.9</b> What logistic regression models</a></li>
+<li class="chapter" data-level="3.10" data-path="understanding-distributions.html"><a href="understanding-distributions.html#simple-versus-multiple-logistic-regression"><i class="fa fa-check"></i><b>3.10</b> Simple versus multiple logistic regression</a></li>
+<li class="chapter" data-level="3.11" data-path="understanding-distributions.html"><a href="understanding-distributions.html#data"><i class="fa fa-check"></i><b>3.11</b> Data</a>
+<ul>
+<li class="chapter" data-level="3.11.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#import-subset-and-keep-only-needed-variables"><i class="fa fa-check"></i><b>3.11.1</b> Import, subset, and keep only needed variables</a></li>
+<li class="chapter" data-level="3.11.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#recode-variables-labels-reference-levels"><i class="fa fa-check"></i><b>3.11.2</b> Recode variables (labels + reference levels)</a></li>
+<li class="chapter" data-level="3.11.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#why-we-need-survey-design-information"><i class="fa fa-check"></i><b>3.11.3</b> Why we need survey design information</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="understanding-distributions.html"><a href="understanding-distributions.html#simple-logistic-regression"><i class="fa fa-check"></i><b>3.12</b> Simple Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="3.12.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-predictor-childs-age"><i class="fa fa-check"></i><b>3.12.1</b> Continuous predictor: child’s age</a></li>
+<li class="chapter" data-level="3.12.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-predictor-example-books"><i class="fa fa-check"></i><b>3.12.2</b> Categorical predictor example: Books</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="understanding-distributions.html"><a href="understanding-distributions.html#multiple-binary-logistic-regression"><i class="fa fa-check"></i><b>3.13</b> Multiple binary logistic regression</a></li>
+<li class="chapter" data-level="3.14" data-path="understanding-distributions.html"><a href="understanding-distributions.html#interaction"><i class="fa fa-check"></i><b>3.14</b> Interaction</a>
+<ul>
+<li class="chapter" data-level="3.14.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#interpretation-of-age-sex-and-the-agesex-interaction"><i class="fa fa-check"></i><b>3.14.1</b> Interpretation of age, sex, and the age*sex interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="understanding-distributions.html"><a href="understanding-distributions.html#reporting-results"><i class="fa fa-check"></i><b>3.15</b> Reporting Results</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="survey-design-sampling-and-weighting" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Survey Design, Sampling, and Weighting<a href="survey-design-sampling-and-weighting.html#survey-design-sampling-and-weighting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Household surveys such as PAL Network’s ICAN-ICAR study estimate population learning outcomes from a sample. The sampling design determines <em>which</em> households enter the data, and the survey design variables (weights, strata, and clusters) determine <em>how</em> analysts should estimate population quantities and uncertainty. After this chapter, you should be able to explain probability sampling, describe the ICAN-ICAR multi-stage design, interpret a survey weight, and compute design-correct estimates in R.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="survey-design-sampling-and-weighting.html#cb1-1" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb1-2"><a href="survey-design-sampling-and-weighting.html#cb1-2" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb1-3"><a href="survey-design-sampling-and-weighting.html#cb1-3" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb1-4"><a href="survey-design-sampling-and-weighting.html#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="survey-design-sampling-and-weighting.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.5.2</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.5.1</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.5.2</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.5.1</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 4.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.5.1</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.5.1</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.5.1</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="survey-design-sampling-and-weighting.html#cb10-1" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code></pre></div>
+<pre><code>## Warning: package &#39;survey&#39; was built under R version 4.5.1</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="survey-design-sampling-and-weighting.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb12-2"><a href="survey-design-sampling-and-weighting.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="survey-design-sampling-and-weighting.html#cb12-3" tabindex="-1"></a><span class="co"># load the data</span></span>
+<span id="cb12-4"><a href="survey-design-sampling-and-weighting.html#cb12-4" tabindex="-1"></a>dat <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/2025_PAL_ICAN-ICAR_data.csv&quot;</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
+<div id="survey-sampling-and-design" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Survey sampling and design<a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A census measures every household in the population. ICAN-ICAR survey data instead uses a probability sample because a census is rarely feasible at national scale. Probability sampling supports population inference because the design assigns each unit a known (or estimable) selection probability.</p>
+<p>ICAN-ICAR survey data uses a stratified, multi-stage cluster design.@fig-pal-sampling-process illustrates the logic.</p>
+<div class="figure"><span style="display:block;" id="fig:fig-pal-sampling-process"></span>
+<img src="figs/samplingdesignchart2.png" alt="Illustration of the ICAN-ICAR multi-stage sampling process." width="100%" />
+<p class="caption">
+Figure 2.1: Illustration of the ICAN-ICAR multi-stage sampling process.
+</p>
+</div>
+<p><strong>Stage 1 (select clusters).</strong> The survey defines primary sampling units (PSUs) such as enumeration areas, villages, or urban blocks. Within strata (for example, region-by-urban/rural categories), the design selects PSUs using probability proportional to size (PPS) so that larger PSUs have a higher chance of selection.</p>
+<p><strong>Stage 2 (select households).</strong> Within each selected PSU, the field team selects a fixed number of households using a standardized selection procedure (for example, systematic selection from a listing). This second stage produces the household sample used for data collection.</p>
+<p>This design shapes analysis in two ways. First, learners within the same PSU tend to resemble one another, which increases uncertainty relative to a simple random sample of the same size. Second, stratification often improves precision because the sample covers key sub-populations more evenly.</p>
+</div>
+<div id="survey-weights-and-design-based-inference" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Survey weights and design-based inference<a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A survey weight approximates how many population units a sampled unit represents. In its simplest form, the design weight equals the inverse of the selection probability. If a household had a 1 in 500 chance of selection, its basic weight would be 500. In other words, that household represents 500 households in the population.The ICAN-ICAR survey data includes a household weight variable, <code>HH_Weight_Provided</code>, which can be used for population estimate.</p>
+<p>To compensate for households that were selected but did not respond (or were missed), the weights are adjusted so that responding households “stand in” for similar households that did not respond. This may also involve post-stratification — adjusting weights so
+that certain known totals (e.g. population by region, or by urban/rural) align with census figures. These adjustments reduce bias from non-response and any sampling frame imperfections.</p>
+<p>Ignoring survey weights or clustering can make your analysis misrepresent both the population estimate and its uncertainty. If selection probabilities vary, unweighted summaries describe the sample rather than the population, whereas weighting targets the population by rebalancing each observation’s contribution. Clustering also induces correlation within PSUs, thus treating the data as a random sample typically understates standard errors and produces confidence intervals that are too narrow. Survey-aware methods incorporates the design to estimate uncertainty correctly.</p>
+<p>The <code>svydesign()</code> from the <code>survey</code> package represents the sampling design through a design object. After you create that object, you pass it to survey-aware estimators such as <code>svymean()</code> and <code>svyglm()</code>. In multi-country analysis, cluster and strata identifiers can repeat across countries. The safest approach is to use <code>interaction()</code> so that identifiers become unique across the pooled data.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="survey-design-sampling-and-weighting.html#cb14-1" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb14-2"><a href="survey-design-sampling-and-weighting.html#cb14-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb14-3"><a href="survey-design-sampling-and-weighting.html#cb14-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-4"><a href="survey-design-sampling-and-weighting.html#cb14-4" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="survey-design-sampling-and-weighting.html#cb14-5" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="survey-design-sampling-and-weighting.html#cb14-6" tabindex="-1"></a>des <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb14-7"><a href="survey-design-sampling-and-weighting.html#cb14-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb14-8"><a href="survey-design-sampling-and-weighting.html#cb14-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb14-9"><a href="survey-design-sampling-and-weighting.html#cb14-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb14-10"><a href="survey-design-sampling-and-weighting.html#cb14-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
+<span id="cb14-11"><a href="survey-design-sampling-and-weighting.html#cb14-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-12"><a href="survey-design-sampling-and-weighting.html#cb14-12" tabindex="-1"></a>)</span></code></pre></div>
+<p>Let’s break down each component:</p>
+<p><strong>1. <code>ids = ~interaction(CountryName, VillageID) + HHID</code></strong></p>
+<p>This specifies the <strong>two-stage cluster structure</strong>:</p>
+<ul>
+<li><strong>Stage 1:</strong> EAs/Villages (identified uniquely by <code>interaction(CountryName, VillageID)</code>)</li>
+<li><strong>Stage 2:</strong> Households within EAs (identified by <code>HHID</code>)</li>
+</ul>
+<p>We use <code>interaction()</code> to create unique EA identifiers across countries, since the same <code>VillageID</code> might exist in multiple countries. The <code>+</code> indicates nested stages (households within EAs)</p>
+<p><strong>2. <code>strata = ~interaction(CountryName, Tier_One_Unit)</code></strong></p>
+<p>Stratification variables are the geographic regions within each country. <code>Tier_One_Unit</code> represents the first-level administrative division (provinces, districts, etc.). We interact this with <code>CountryName</code> to treat each country as its own separate stratification system. This ensures that sampling variability is calculated correctly within each country’s design</p>
+<p><strong>3. <code>weights = ~HH_Weight_Provided</code></strong></p>
+<p>This is the final household weight variable provided in the data. Already incorporates all necessary adjustments (selection probabilities, non-response, post-stratification)</p>
+<p><strong>4. <code>nest = TRUE</code></strong></p>
+<p>This is essential when cluster IDs are only unique within strata. It tells R that <code>VillageID</code> values can repeat across different strata/countries, and prevents R from treating EAs with the same ID in different countries as the same cluster.</p>
+<p>The example below compares an unweighted and weighted estimate of the proportion of enrolled learners who meet minimum proficiency in both maths and reading in Senegal.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="survey-design-sampling-and-weighting.html#cb15-1" tabindex="-1"></a><span class="co"># filter to enrolled learners in Senegal</span></span>
+<span id="cb15-2"><a href="survey-design-sampling-and-weighting.html#cb15-2" tabindex="-1"></a>one_country <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="survey-design-sampling-and-weighting.html#cb15-3" tabindex="-1"></a>  <span class="fu">filter</span>(CountryName <span class="sc">==</span> <span class="st">&quot;Senegal&quot;</span> <span class="sc">&amp;</span> enr_status <span class="sc">==</span> <span class="st">&quot;Currently Enrolled&quot;</span>)</span>
+<span id="cb15-4"><a href="survey-design-sampling-and-weighting.html#cb15-4" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="survey-design-sampling-and-weighting.html#cb15-5" tabindex="-1"></a><span class="co"># unweighted (sample) estimate</span></span>
+<span id="cb15-6"><a href="survey-design-sampling-and-weighting.html#cb15-6" tabindex="-1"></a>prop_unweighted <span class="ot">=</span> <span class="fu">mean</span>(one_country<span class="sc">$</span>MPL_both, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-7"><a href="survey-design-sampling-and-weighting.html#cb15-7" tabindex="-1"></a>prop_unweighted</span></code></pre></div>
+<pre><code>## [1] 0.2603826</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="survey-design-sampling-and-weighting.html#cb17-1" tabindex="-1"></a><span class="co"># weighted estimate with design-correct SE</span></span>
+<span id="cb17-2"><a href="survey-design-sampling-and-weighting.html#cb17-2" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb17-3"><a href="survey-design-sampling-and-weighting.html#cb17-3" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb17-4"><a href="survey-design-sampling-and-weighting.html#cb17-4" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb17-5"><a href="survey-design-sampling-and-weighting.html#cb17-5" tabindex="-1"></a>)</span>
+<span id="cb17-6"><a href="survey-design-sampling-and-weighting.html#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="survey-design-sampling-and-weighting.html#cb17-7" tabindex="-1"></a>des_one <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb17-8"><a href="survey-design-sampling-and-weighting.html#cb17-8" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb17-9"><a href="survey-design-sampling-and-weighting.html#cb17-9" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb17-10"><a href="survey-design-sampling-and-weighting.html#cb17-10" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb17-11"><a href="survey-design-sampling-and-weighting.html#cb17-11" tabindex="-1"></a>  <span class="at">data    =</span> one_country,</span>
+<span id="cb17-12"><a href="survey-design-sampling-and-weighting.html#cb17-12" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb17-13"><a href="survey-design-sampling-and-weighting.html#cb17-13" tabindex="-1"></a>)</span>
+<span id="cb17-14"><a href="survey-design-sampling-and-weighting.html#cb17-14" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="survey-design-sampling-and-weighting.html#cb17-15" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="survey-design-sampling-and-weighting.html#cb17-16" tabindex="-1"></a>prop_weighted <span class="ot">=</span> <span class="fu">svymean</span>(<span class="sc">~</span>MPL_both, <span class="at">design =</span> des_one, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-17"><a href="survey-design-sampling-and-weighting.html#cb17-17" tabindex="-1"></a>prop_weighted</span></code></pre></div>
+<pre><code>##             mean     SE
+## MPL_both 0.26049 0.0109</code></pre>
+<p><span class="citation">@fig-pal-analysis-workflow</span> summarizes a practical workflow that you can reuse for descriptive statistics and modelling.</p>
+<div class="figure"><span style="display:block;" id="fig:fig-pal-analysis-workflow"></span>
+<img src="figs/analysisflow_pal.png" alt="A practical workflow for analysing ICAN-ICAR survey data in R." width="85%" />
+<p class="caption">
+Figure 2.2: A practical workflow for analysing ICAN-ICAR survey data in R.
+</p>
+</div>
+<p>After you define <code>des</code>, these are the common <em>survey-aware</em> functions:</p>
+<ul>
+<li><code>svymean()</code> for weighted means and proportions,</li>
+<li><code>svytotal()</code> for weighted totals,</li>
+<li><code>svyby()</code> for subgroup estimates, and</li>
+<li><code>svyglm()</code> for regression models with design-correct standard errors.</li>
+</ul>
+</div>
+<div id="practice-exercises" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Practice exercises<a href="survey-design-sampling-and-weighting.html#practice-exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Change the country filter in the example and compare unweighted and weighted MPL estimates.</li>
+<li>Estimate the weighted proportion meeting MPL in maths (<code>MPL_math</code>) and compare it with the unweighted proportion.</li>
+<li>Within one country, use <code>svyby()</code> to estimate MPL by <code>Location</code> (urban/rural) for enrolled learners.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="understanding-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/siphiwebogatsu/DF-draft/edit/main/01-survey-design-sampling-weighting.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.comsiphiwebogatsu/DF-draft/blob/main/01-survey-design-sampling-weighting.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
