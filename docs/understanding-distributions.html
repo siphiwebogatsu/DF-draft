@@ -31,7 +31,7 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
   
   
 <link rel="prev" href="survey-design-sampling-and-weighting.html"/>
-<link rel="next" href="logistic-regression.html"/>
+<link rel="next" href="central-tendency-and-dispersion.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,8 +52,6 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -169,27 +167,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.7</b> Missing data and skip patterns</a></li>
 <li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression</a>
+<li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#what-logistic-regression-models"><i class="fa fa-check"></i><b>4.1</b> What logistic regression models</a></li>
-<li class="chapter" data-level="4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-versus-multiple-logistic-regression"><i class="fa fa-check"></i><b>4.2</b> Simple versus multiple logistic regression</a></li>
-<li class="chapter" data-level="4.3" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>4.3</b> Data</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#import-subset-and-keep-only-needed-variables"><i class="fa fa-check"></i><b>4.3.1</b> Import, subset, and keep only needed variables</a></li>
-<li class="chapter" data-level="4.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#recode-variables-labels-reference-levels"><i class="fa fa-check"></i><b>4.3.2</b> Recode variables (labels + reference levels)</a></li>
-<li class="chapter" data-level="4.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#why-we-need-survey-design-information"><i class="fa fa-check"></i><b>4.3.3</b> Why we need survey design information</a></li>
+<li class="chapter" data-level="4.1" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#central-tendency"><i class="fa fa-check"></i><b>4.1</b> Central tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#dispersion"><i class="fa fa-check"></i><b>4.2</b> Dispersion</a></li>
+<li class="chapter" data-level="4.3" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries"><i class="fa fa-check"></i><b>4.3</b> Weighted, design-correct summaries</a></li>
+<li class="chapter" data-level="4.4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis"><i class="fa fa-check"></i><b>4.4</b> Outliers and the unit of analysis</a></li>
+<li class="chapter" data-level="4.5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#practice-exercises-1"><i class="fa fa-check"></i><b>4.5</b> Practice exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>4.4</b> Simple Logistic Regression</a>
+<li class="chapter" data-level="5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html"><i class="fa fa-check"></i><b>5</b> Bivariate Analysis</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#continuous-predictor-childs-age"><i class="fa fa-check"></i><b>4.4.1</b> Continuous predictor: child’s age</a></li>
-<li class="chapter" data-level="4.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#categorical-predictor-example-books"><i class="fa fa-check"></i><b>4.4.2</b> Categorical predictor example: Books</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-binary-logistic-regression"><i class="fa fa-check"></i><b>4.5</b> Multiple binary logistic regression</a></li>
-<li class="chapter" data-level="4.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interaction"><i class="fa fa-check"></i><b>4.6</b> Interaction</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation-of-age-sex-and-the-agesex-interaction"><i class="fa fa-check"></i><b>4.6.1</b> Interpretation of age, sex, and the age*sex interaction</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="logistic-regression.html"><a href="logistic-regression.html#reporting-results"><i class="fa fa-check"></i><b>4.7</b> Reporting Results</a></li>
+<li class="chapter" data-level="5.1" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#choosing-the-right-bivariate-tool"><i class="fa fa-check"></i><b>5.1</b> Choosing the right bivariate tool</a></li>
+<li class="chapter" data-level="5.2" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#categorical-categorical-cross-tabulations"><i class="fa fa-check"></i><b>5.2</b> Categorical × categorical: cross-tabulations</a></li>
+<li class="chapter" data-level="5.3" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-categorical-comparing-group-means"><i class="fa fa-check"></i><b>5.3</b> Continuous × categorical: comparing group means</a></li>
+<li class="chapter" data-level="5.4" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends"><i class="fa fa-check"></i><b>5.4</b> Continuous × continuous: scatterplots and trends</a></li>
+<li class="chapter" data-level="5.5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#testing-association-with-chi-squared-tests"><i class="fa fa-check"></i><b>5.5</b> Testing association with chi-squared tests</a></li>
+<li class="chapter" data-level="5.6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#practice-exercises-2"><i class="fa fa-check"></i><b>5.6</b> Practice exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -280,8 +273,9 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
 <h3><span class="header-section-number">3.3.2</span> Plots<a href="understanding-distributions.html#plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Histograms and density plots show shape (skewness, clustering, and outliers).</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="understanding-distributions.html#cb19-1" tabindex="-1"></a><span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(<span class="at">x =</span> ch02)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="understanding-distributions.html#cb19-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="understanding-distributions.html#cb19-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Child age (years)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>)</span></code></pre></div>
+<span id="cb19-2"><a href="understanding-distributions.html#cb19-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">&quot;magenta&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="understanding-distributions.html#cb19-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Child age (years)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="understanding-distributions.html#cb19-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:fig-age-hist"></span>
 <img src="figs/fig-age-hist-1.png" alt="Distribution of child age in the ICAN-ICAR sample." width="576" />
 <p class="caption">
@@ -312,30 +306,7 @@ Figure 3.1: Distribution of child age in the ICAN-ICAR sample.
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="understanding-distributions.html#cb25-1" tabindex="-1"></a>sex_tbl <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="understanding-distributions.html#cb25-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
 <span id="cb25-3"><a href="understanding-distributions.html#cb25-3" tabindex="-1"></a>  <span class="fu">count</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="understanding-distributions.html#cb25-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
-<span id="cb25-5"><a href="understanding-distributions.html#cb25-5" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="understanding-distributions.html#cb25-6" tabindex="-1"></a><span class="fu">kable</span>(sex_tbl, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Sex&quot;</span>, <span class="st">&quot;Count&quot;</span>, <span class="st">&quot;Percent&quot;</span>))</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Sex</th>
-<th align="right">Count</th>
-<th align="right">Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Female</td>
-<td align="right">45213</td>
-<td align="right">50.7</td>
-</tr>
-<tr class="even">
-<td align="left">Male</td>
-<td align="right">43928</td>
-<td align="right">49.3</td>
-</tr>
-</tbody>
-</table>
+<span id="cb25-4"><a href="understanding-distributions.html#cb25-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
 </div>
 <div id="weighted-summaries-using-the-survey-design" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Weighted summaries using the survey design<a href="understanding-distributions.html#weighted-summaries-using-the-survey-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -376,75 +347,7 @@ Figure 3.1: Distribution of child age in the ICAN-ICAR sample.
 <span id="cb31-4"><a href="understanding-distributions.html#cb31-4" tabindex="-1"></a>  <span class="at">CountryName =</span> <span class="fu">names</span>(country_w),</span>
 <span id="cb31-5"><a href="understanding-distributions.html#cb31-5" tabindex="-1"></a>  <span class="at">weighted_n  =</span> <span class="fu">as.numeric</span>(country_w),</span>
 <span id="cb31-6"><a href="understanding-distributions.html#cb31-6" tabindex="-1"></a>  <span class="at">percent     =</span> <span class="fu">as.numeric</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(country_w))</span>
-<span id="cb31-7"><a href="understanding-distributions.html#cb31-7" tabindex="-1"></a>)</span>
-<span id="cb31-8"><a href="understanding-distributions.html#cb31-8" tabindex="-1"></a></span>
-<span id="cb31-9"><a href="understanding-distributions.html#cb31-9" tabindex="-1"></a><span class="fu">kable</span>(country_w_tbl, <span class="at">digits =</span> <span class="dv">1</span>, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Country&quot;</span>, <span class="st">&quot;Weighted count&quot;</span>, <span class="st">&quot;Percent&quot;</span>))</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">Country</th>
-<th align="right">Weighted count</th>
-<th align="right">Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Bangladesh</td>
-<td align="right">46534652</td>
-<td align="right">17.9</td>
-</tr>
-<tr class="even">
-<td align="left">Kenya</td>
-<td align="right">18133333</td>
-<td align="right">7.0</td>
-</tr>
-<tr class="odd">
-<td align="left">Mali</td>
-<td align="right">3703030</td>
-<td align="right">1.4</td>
-</tr>
-<tr class="even">
-<td align="left">Mexico</td>
-<td align="right">51275864</td>
-<td align="right">19.7</td>
-</tr>
-<tr class="odd">
-<td align="left">Mozambique</td>
-<td align="right">9694001</td>
-<td align="right">3.7</td>
-</tr>
-<tr class="even">
-<td align="left">Nepal</td>
-<td align="right">16370232</td>
-<td align="right">6.3</td>
-</tr>
-<tr class="odd">
-<td align="left">Nicaragua</td>
-<td align="right">1132365</td>
-<td align="right">0.4</td>
-</tr>
-<tr class="even">
-<td align="left">Pakistan</td>
-<td align="right">53312701</td>
-<td align="right">20.5</td>
-</tr>
-<tr class="odd">
-<td align="left">Senegal</td>
-<td align="right">4097044</td>
-<td align="right">1.6</td>
-</tr>
-<tr class="even">
-<td align="left">Tanzania</td>
-<td align="right">24984302</td>
-<td align="right">9.6</td>
-</tr>
-<tr class="odd">
-<td align="left">Uganda</td>
-<td align="right">31361665</td>
-<td align="right">12.0</td>
-</tr>
-</tbody>
-</table>
+<span id="cb31-7"><a href="understanding-distributions.html#cb31-7" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 </div>
 <div id="household-level-variables-in-a-child-level-file" class="section level2 hasAnchor" number="3.6">
@@ -550,7 +453,7 @@ Figure 3.1: Distribution of child age in the ICAN-ICAR sample.
         </div>
       </div>
 <a href="survey-design-sampling-and-weighting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="logistic-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="central-tendency-and-dispersion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -604,20 +507,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

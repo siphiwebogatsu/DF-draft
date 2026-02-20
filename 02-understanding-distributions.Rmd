@@ -96,8 +96,9 @@ Histograms and density plots show shape (skewness, clustering, and outliers).
 #| message: false
 
 ggplot(dat, aes(x = ch02)) +
-  geom_histogram(bins = 20) +
-  labs(x = "Child age (years)", y = "Count")
+  geom_histogram(bins = 20, fill = "magenta") +
+  labs(x = "Child age (years)", y = "Count") +
+  theme_bw()
 ```
 
 ## Distributions of categorical variables
@@ -139,8 +140,6 @@ sex_tbl = dat |>
   filter(!is.na(sex)) |>
   count(sex) |>
   mutate(percent = 100 * n / sum(n))
-
-kable(sex_tbl, digits = 1, col.names = c("Sex", "Count", "Percent"))
 ```
 
 ## Weighted summaries using the survey design
@@ -206,8 +205,6 @@ country_w_tbl = tibble(
   weighted_n  = as.numeric(country_w),
   percent     = as.numeric(100 * prop.table(country_w))
 )
-
-kable(country_w_tbl, digits = 1, col.names = c("Country", "Weighted count", "Percent"))
 ```
 
 ## Household-level variables in a child-level file

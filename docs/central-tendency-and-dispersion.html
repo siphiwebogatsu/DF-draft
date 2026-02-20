@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Central Tendency and Dispersion | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data</title>
+  <meta name="description" content="<p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Central Tendency and Dispersion | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Central Tendency and Dispersion | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  
+  
+  
+
+<meta name="author" content="Siphiwe M. Bogatsu" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="understanding-distributions.html"/>
+<link rel="next" href="bivariate-analysis.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html"><i class="fa fa-check"></i><b>2</b> Survey Design, Sampling, and Weighting</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design"><i class="fa fa-check"></i><b>2.1</b> Survey sampling and design</a></li>
+<li class="chapter" data-level="2.2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference"><i class="fa fa-check"></i><b>2.2</b> Survey weights and design-based inference</a></li>
+<li class="chapter" data-level="2.3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#practice-exercises"><i class="fa fa-check"></i><b>2.3</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#variable-types-and-levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Variable types and levels of measurement</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-continuous-variables"><i class="fa fa-check"></i><b>3.3</b> Distributions of continuous variables</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#numeric-summaries"><i class="fa fa-check"></i><b>3.3.1</b> Numeric summaries</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#plots"><i class="fa fa-check"></i><b>3.3.2</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-categorical-variables"><i class="fa fa-check"></i><b>3.4</b> Distributions of categorical variables</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.5</b> Weighted summaries using the survey design</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.5.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="3.5.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.5.2</b> Weighted frequency tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.6</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.7</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#central-tendency"><i class="fa fa-check"></i><b>4.1</b> Central tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#dispersion"><i class="fa fa-check"></i><b>4.2</b> Dispersion</a></li>
+<li class="chapter" data-level="4.3" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries"><i class="fa fa-check"></i><b>4.3</b> Weighted, design-correct summaries</a></li>
+<li class="chapter" data-level="4.4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis"><i class="fa fa-check"></i><b>4.4</b> Outliers and the unit of analysis</a></li>
+<li class="chapter" data-level="4.5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#practice-exercises-1"><i class="fa fa-check"></i><b>4.5</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html"><i class="fa fa-check"></i><b>5</b> Bivariate Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#choosing-the-right-bivariate-tool"><i class="fa fa-check"></i><b>5.1</b> Choosing the right bivariate tool</a></li>
+<li class="chapter" data-level="5.2" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#categorical-categorical-cross-tabulations"><i class="fa fa-check"></i><b>5.2</b> Categorical × categorical: cross-tabulations</a></li>
+<li class="chapter" data-level="5.3" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-categorical-comparing-group-means"><i class="fa fa-check"></i><b>5.3</b> Continuous × categorical: comparing group means</a></li>
+<li class="chapter" data-level="5.4" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends"><i class="fa fa-check"></i><b>5.4</b> Continuous × continuous: scatterplots and trends</a></li>
+<li class="chapter" data-level="5.5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#testing-association-with-chi-squared-tests"><i class="fa fa-check"></i><b>5.5</b> Testing association with chi-squared tests</a></li>
+<li class="chapter" data-level="5.6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#practice-exercises-2"><i class="fa fa-check"></i><b>5.6</b> Practice exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="central-tendency-and-dispersion" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Central Tendency and Dispersion<a href="central-tendency-and-dispersion.html#central-tendency-and-dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Descriptive statistics summarise data in ways that support interpretation and comparison. In household surveys such as PAL Network’s ICAN-ICAR study, you should compute these summaries with survey weights and design variables when your goal is population inference.</p>
+<p>After this chapter, you should be able to (i) compute and interpret measures of central tendency (mean, median, and mode), (ii) compute and interpret measures of dispersion (variance, standard deviation, and interquartile range), and (iii) produce weighted, design-correct summaries in R.</p>
+<div id="central-tendency" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Central tendency<a href="central-tendency-and-dispersion.html#central-tendency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Measures of central tendency describe a “typical” value.</p>
+<p><strong>Mean.</strong> The mean is the arithmetic average. It uses all observations and is sensitive to extreme values.</p>
+<p><strong>Median.</strong> The median is the 50th percentile. It remains stable when a small number of observations are very large or very small, so it is often more informative for skewed distributions.</p>
+<p><strong>Mode.</strong> The mode is the most common value. It is most useful for categorical variables.</p>
+<p>The next example uses ICAR assessment time as a continuous variable. If your dataset stores this variable under a different name (for example, <code>ican_assess_time</code>), replace it in the code.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="central-tendency-and-dispersion.html#cb41-1" tabindex="-1"></a><span class="fu">summary</span>(dat<span class="sc">$</span>icar_assess_time)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   0.000   1.683   4.067   5.569   7.000 675.717    2827</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="central-tendency-and-dispersion.html#cb43-1" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb43-2"><a href="central-tendency-and-dispersion.html#cb43-2" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;median&quot;</span>),</span>
+<span id="cb43-3"><a href="central-tendency-and-dispersion.html#cb43-3" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(</span>
+<span id="cb43-4"><a href="central-tendency-and-dispersion.html#cb43-4" tabindex="-1"></a>    <span class="fu">mean</span>(dat<span class="sc">$</span>icar_assess_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb43-5"><a href="central-tendency-and-dispersion.html#cb43-5" tabindex="-1"></a>    <span class="fu">median</span>(dat<span class="sc">$</span>icar_assess_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-6"><a href="central-tendency-and-dispersion.html#cb43-6" tabindex="-1"></a>  )</span>
+<span id="cb43-7"><a href="central-tendency-and-dispersion.html#cb43-7" tabindex="-1"></a>) </span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   statistic value
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 mean       5.57
+## 2 median     4.07</code></pre>
+<p>A distribution plot helps you interpret the difference between the mean and the median. When the distribution is right-skewed, a small number of large values typically pulls the mean above the median.</p>
+<div class="figure"><span style="display:block;" id="fig:fig-hist-assessment-time"></span>
+<img src="figs/fig-hist-assessment-time-1.png" alt="Histogram of ICAR assessment time." width="672" />
+<p class="caption">
+Figure 4.1: Histogram of ICAR assessment time.
+</p>
+</div>
+<p>To compute a mode for a categorical variable, count frequencies and select the largest count.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="central-tendency-and-dispersion.html#cb45-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href="central-tendency-and-dispersion.html#cb45-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(residence)) <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="central-tendency-and-dispersion.html#cb45-3" tabindex="-1"></a>  <span class="fu">count</span>(residence, <span class="at">name =</span> <span class="st">&quot;n&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="central-tendency-and-dispersion.html#cb45-4" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb45-5"><a href="central-tendency-and-dispersion.html#cb45-5" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   residence     n
+##   &lt;fct&gt;     &lt;int&gt;
+## 1 Rural     49781</code></pre>
+</div>
+<div id="dispersion" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Dispersion<a href="central-tendency-and-dispersion.html#dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Measures of dispersion describe how much values vary.</p>
+<p><strong>Variance and standard deviation.</strong> The variance is the average squared deviation from the mean. The standard deviation is the square root of the variance, so it is measured on the original scale.</p>
+<p><strong>Interquartile range (IQR).</strong> The IQR is the distance between the 75th and 25th percentiles. It summarises spread in the middle of the distribution and is less sensitive to outliers than the standard deviation.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="central-tendency-and-dispersion.html#cb47-1" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb47-2"><a href="central-tendency-and-dispersion.html#cb47-2" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">c</span>(<span class="st">&quot;sd&quot;</span>, <span class="st">&quot;IQR&quot;</span>),</span>
+<span id="cb47-3"><a href="central-tendency-and-dispersion.html#cb47-3" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(</span>
+<span id="cb47-4"><a href="central-tendency-and-dispersion.html#cb47-4" tabindex="-1"></a>    <span class="fu">sd</span>(dat<span class="sc">$</span>icar_assess_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb47-5"><a href="central-tendency-and-dispersion.html#cb47-5" tabindex="-1"></a>    <span class="fu">IQR</span>(dat<span class="sc">$</span>icar_assess_time, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-6"><a href="central-tendency-and-dispersion.html#cb47-6" tabindex="-1"></a>  )</span>
+<span id="cb47-7"><a href="central-tendency-and-dispersion.html#cb47-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   statistic value
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 sd        14.9 
+## 2 IQR        5.32</code></pre>
+</div>
+<div id="weighted-design-correct-summaries" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Weighted, design-correct summaries<a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Unweighted summaries describe the sample. Weighted, design-correct summaries target the population and use appropriate standard errors for a stratified, clustered design.</p>
+<p>The code below estimates the population mean of ICAR assessment time for one country using the survey design object. It also computes the median through a weighted quantile.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="central-tendency-and-dispersion.html#cb49-1" tabindex="-1"></a>des_country <span class="ot">=</span> <span class="fu">subset</span>(des, CountryName <span class="sc">==</span> <span class="st">&quot;Senegal&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(icar_assess_time))</span>
+<span id="cb49-2"><a href="central-tendency-and-dispersion.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="central-tendency-and-dispersion.html#cb49-3" tabindex="-1"></a>m <span class="ot">=</span> <span class="fu">svymean</span>(<span class="sc">~</span>icar_assess_time, <span class="at">design =</span> des_country, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-4"><a href="central-tendency-and-dispersion.html#cb49-4" tabindex="-1"></a>q50 <span class="ot">=</span> <span class="fu">svyquantile</span>(<span class="sc">~</span>icar_assess_time, <span class="at">design =</span> des_country, <span class="at">quantiles =</span> <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-5"><a href="central-tendency-and-dispersion.html#cb49-5" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="central-tendency-and-dispersion.html#cb49-6" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb49-7"><a href="central-tendency-and-dispersion.html#cb49-7" tabindex="-1"></a>  <span class="at">quantity =</span> <span class="fu">c</span>(<span class="st">&quot;mean (weighted)&quot;</span>, <span class="st">&quot;median (weighted)&quot;</span>),</span>
+<span id="cb49-8"><a href="central-tendency-and-dispersion.html#cb49-8" tabindex="-1"></a>  <span class="at">estimate =</span> <span class="fu">c</span>(<span class="fu">coef</span>(m)[[<span class="st">&quot;icar_assess_time&quot;</span>]], <span class="fu">coef</span>(q50))</span>
+<span id="cb49-9"><a href="central-tendency-and-dispersion.html#cb49-9" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   quantity          estimate
+##   &lt;chr&gt;                &lt;dbl&gt;
+## 1 mean (weighted)       5.82
+## 2 median (weighted)     4.07</code></pre>
+<p>To compare groups, use <code>svyby()</code> so that estimates and standard errors respect the design.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="central-tendency-and-dispersion.html#cb51-1" tabindex="-1"></a><span class="fu">svyby</span>(</span>
+<span id="cb51-2"><a href="central-tendency-and-dispersion.html#cb51-2" tabindex="-1"></a>  <span class="sc">~</span>icar_assess_time,</span>
+<span id="cb51-3"><a href="central-tendency-and-dispersion.html#cb51-3" tabindex="-1"></a>  <span class="sc">~</span>sex,</span>
+<span id="cb51-4"><a href="central-tendency-and-dispersion.html#cb51-4" tabindex="-1"></a>  <span class="at">design =</span> <span class="fu">subset</span>(des, CountryName <span class="sc">==</span> <span class="st">&quot;Senegal&quot;</span> <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(icar_assess_time) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sex)),</span>
+<span id="cb51-5"><a href="central-tendency-and-dispersion.html#cb51-5" tabindex="-1"></a>  <span class="at">FUN =</span> svymean,</span>
+<span id="cb51-6"><a href="central-tendency-and-dispersion.html#cb51-6" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb51-7"><a href="central-tendency-and-dispersion.html#cb51-7" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="outliers-and-the-unit-of-analysis" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Outliers and the unit of analysis<a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In PAL data, some variables are defined at the household level (for example, household size). When the dataset includes multiple children per household, household-level quantities appear repeatedly. A household summary should therefore use one row per household.</p>
+<p>The code below constructs a household-level dataset by keeping the first observation in each household. It then shows how an outlier can affect the mean more than the median.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="central-tendency-and-dispersion.html#cb52-1" tabindex="-1"></a>dat_hh <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="central-tendency-and-dispersion.html#cb52-2" tabindex="-1"></a>  <span class="fu">group_by</span>(HHID) <span class="sc">|&gt;</span></span>
+<span id="cb52-3"><a href="central-tendency-and-dispersion.html#cb52-3" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb52-4"><a href="central-tendency-and-dispersion.html#cb52-4" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb52-5"><a href="central-tendency-and-dispersion.html#cb52-5" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-6"><a href="central-tendency-and-dispersion.html#cb52-6" tabindex="-1"></a>    <span class="at">hh_size =</span> <span class="fu">ifelse</span>(hh06a <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> hh06a <span class="sc">&lt;=</span> <span class="dv">50</span>, hh06a, <span class="cn">NA_real_</span>)  <span class="co"># simple, transparent cutoff</span></span>
+<span id="cb52-7"><a href="central-tendency-and-dispersion.html#cb52-7" tabindex="-1"></a>  )</span>
+<span id="cb52-8"><a href="central-tendency-and-dispersion.html#cb52-8" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="central-tendency-and-dispersion.html#cb52-9" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb52-10"><a href="central-tendency-and-dispersion.html#cb52-10" tabindex="-1"></a>  <span class="at">statistic =</span> <span class="fu">c</span>(<span class="st">&quot;mean&quot;</span>, <span class="st">&quot;median&quot;</span>),</span>
+<span id="cb52-11"><a href="central-tendency-and-dispersion.html#cb52-11" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(</span>
+<span id="cb52-12"><a href="central-tendency-and-dispersion.html#cb52-12" tabindex="-1"></a>    <span class="fu">mean</span>(dat_hh<span class="sc">$</span>hh_size, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb52-13"><a href="central-tendency-and-dispersion.html#cb52-13" tabindex="-1"></a>    <span class="fu">median</span>(dat_hh<span class="sc">$</span>hh_size, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb52-14"><a href="central-tendency-and-dispersion.html#cb52-14" tabindex="-1"></a>  )</span>
+<span id="cb52-15"><a href="central-tendency-and-dispersion.html#cb52-15" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##   statistic value
+##   &lt;chr&gt;     &lt;dbl&gt;
+## 1 mean       6.29
+## 2 median     5</code></pre>
+<p>If a small number of extreme values drives the mean away from the typical household size, the median or the IQR usually provides a clearer summary of the distribution.</p>
+</div>
+<div id="practice-exercises-1" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Practice exercises<a href="central-tendency-and-dispersion.html#practice-exercises-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>For a country of your choice, compute the unweighted mean and median of <code>icar_assess_time</code>. Then compute the weighted mean and weighted median using <code>svymean()</code> and <code>svyquantile()</code>.</li>
+<li>Use <code>svyby()</code> to estimate the weighted mean ICAR assessment time by <code>residence</code> for one country. Interpret the difference.</li>
+<li>For household size (<code>hh06a</code>), compare the mean and median using the household-level dataset created in this chapter. Explain which measure better represents a “typical” household size and why.</li>
+<li>Choose one additional continuous variable (for example, child age <code>ch02</code>). Compute its mean, median, standard deviation, and IQR, and then describe the distribution in two to three sentences.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="understanding-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bivariate-analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/siphiwebogatsu/DF-draft/edit/main/03-central-tendency-dispersion.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.comsiphiwebogatsu/DF-draft/blob/main/03-central-tendency-dispersion.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Bivariate Analysis | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data</title>
+  <meta name="description" content="<p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Bivariate Analysis | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Bivariate Analysis | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  
+  
+  
+
+<meta name="author" content="Siphiwe M. Bogatsu" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="central-tendency-and-dispersion.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html"><i class="fa fa-check"></i><b>2</b> Survey Design, Sampling, and Weighting</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design"><i class="fa fa-check"></i><b>2.1</b> Survey sampling and design</a></li>
+<li class="chapter" data-level="2.2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference"><i class="fa fa-check"></i><b>2.2</b> Survey weights and design-based inference</a></li>
+<li class="chapter" data-level="2.3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#practice-exercises"><i class="fa fa-check"></i><b>2.3</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
+<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#variable-types-and-levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Variable types and levels of measurement</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-continuous-variables"><i class="fa fa-check"></i><b>3.3</b> Distributions of continuous variables</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#numeric-summaries"><i class="fa fa-check"></i><b>3.3.1</b> Numeric summaries</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#plots"><i class="fa fa-check"></i><b>3.3.2</b> Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-categorical-variables"><i class="fa fa-check"></i><b>3.4</b> Distributions of categorical variables</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.5</b> Weighted summaries using the survey design</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.5.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="3.5.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.5.2</b> Weighted frequency tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.6</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.7</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#central-tendency"><i class="fa fa-check"></i><b>4.1</b> Central tendency</a></li>
+<li class="chapter" data-level="4.2" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#dispersion"><i class="fa fa-check"></i><b>4.2</b> Dispersion</a></li>
+<li class="chapter" data-level="4.3" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries"><i class="fa fa-check"></i><b>4.3</b> Weighted, design-correct summaries</a></li>
+<li class="chapter" data-level="4.4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis"><i class="fa fa-check"></i><b>4.4</b> Outliers and the unit of analysis</a></li>
+<li class="chapter" data-level="4.5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#practice-exercises-1"><i class="fa fa-check"></i><b>4.5</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html"><i class="fa fa-check"></i><b>5</b> Bivariate Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#choosing-the-right-bivariate-tool"><i class="fa fa-check"></i><b>5.1</b> Choosing the right bivariate tool</a></li>
+<li class="chapter" data-level="5.2" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#categorical-categorical-cross-tabulations"><i class="fa fa-check"></i><b>5.2</b> Categorical × categorical: cross-tabulations</a></li>
+<li class="chapter" data-level="5.3" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-categorical-comparing-group-means"><i class="fa fa-check"></i><b>5.3</b> Continuous × categorical: comparing group means</a></li>
+<li class="chapter" data-level="5.4" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends"><i class="fa fa-check"></i><b>5.4</b> Continuous × continuous: scatterplots and trends</a></li>
+<li class="chapter" data-level="5.5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#testing-association-with-chi-squared-tests"><i class="fa fa-check"></i><b>5.5</b> Testing association with chi-squared tests</a></li>
+<li class="chapter" data-level="5.6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#practice-exercises-2"><i class="fa fa-check"></i><b>5.6</b> Practice exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bivariate-analysis" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Bivariate Analysis<a href="bivariate-analysis.html#bivariate-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Bivariate analysis examines the relationship between two variables. In PAL ICAN-ICAR survey work, it helps you describe differences across groups (for example, enrolment by residence) and patterns between numeric measures (for example, numeracy score by age). This chapter focuses on descriptive bivariate tools—cross-tabulations, group summaries, and scatterplots—while emphasising survey weights and clustering for population inference.</p>
+<div id="choosing-the-right-bivariate-tool" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Choosing the right bivariate tool<a href="bivariate-analysis.html#choosing-the-right-bivariate-tool" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Select a method based on the measurement type of each variable.</p>
+<ul>
+<li><strong>Categorical × categorical:</strong> use a cross-tabulation and report row or column proportions.</li>
+<li><strong>Continuous × categorical:</strong> compare group summaries (means, medians, and spread).</li>
+<li><strong>Continuous × continuous:</strong> use a scatterplot and summarise the trend.</li>
+</ul>
+<p>When you want population statements, use weighted estimators and design-correct standard errors.</p>
+</div>
+<div id="categorical-categorical-cross-tabulations" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Categorical × categorical: cross-tabulations<a href="bivariate-analysis.html#categorical-categorical-cross-tabulations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A cross-tabulation shows how the categories of one variable distribute across the categories of another. Use <strong>column proportions</strong> to compare rates across groups and <strong>row proportions</strong> to describe composition within a category.</p>
+<p>The example below describes enrolment by sex.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="bivariate-analysis.html#cb54-1" tabindex="-1"></a>tab_enroll_sex <span class="ot">=</span> <span class="fu">table</span>(dat<span class="sc">$</span>enrolled, dat<span class="sc">$</span>sex, <span class="at">useNA =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb54-2"><a href="bivariate-analysis.html#cb54-2" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="bivariate-analysis.html#cb54-3" tabindex="-1"></a>tab_enroll_sex</span></code></pre></div>
+<pre><code>##               
+##                Female  Male
+##   Enrolled      40292 39105
+##   Not enrolled   4921  4823</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="bivariate-analysis.html#cb56-1" tabindex="-1"></a><span class="fu">prop.table</span>(tab_enroll_sex, <span class="at">margin =</span> <span class="dv">2</span>)   <span class="co"># column proportions: enrolment rate by sex</span></span></code></pre></div>
+<pre><code>##               
+##                   Female      Male
+##   Enrolled     0.8911596 0.8902067
+##   Not enrolled 0.1088404 0.1097933</code></pre>
+<p>The same analysis becomes a population estimate when you use the survey design object.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="bivariate-analysis.html#cb58-1" tabindex="-1"></a>tab_enroll_sex_w <span class="ot">=</span> <span class="fu">svytable</span>(<span class="sc">~</span>enrolled <span class="sc">+</span> sex, <span class="at">design =</span> <span class="fu">subset</span>(des, <span class="sc">!</span><span class="fu">is.na</span>(enrolled) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sex)))</span>
+<span id="cb58-2"><a href="bivariate-analysis.html#cb58-2" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="bivariate-analysis.html#cb58-3" tabindex="-1"></a>tab_enroll_sex_w</span></code></pre></div>
+<pre><code>##               sex
+## enrolled          Female      Male
+##   Enrolled     117939955 126288632
+##   Not enrolled   7894402   8476200</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="bivariate-analysis.html#cb60-1" tabindex="-1"></a><span class="fu">prop.table</span>(tab_enroll_sex_w, <span class="at">margin =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##               sex
+## enrolled           Female       Male
+##   Enrolled     0.93726354 0.93710377
+##   Not enrolled 0.06273646 0.06289623</code></pre>
+<p><strong>Interpretation rule.</strong> If your question is “What proportion of girls are enrolled?”, read the <em>Enrolled</em> cell within the <em>Female</em> column of the column-proportion table.</p>
+</div>
+<div id="continuous-categorical-comparing-group-means" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Continuous × categorical: comparing group means<a href="bivariate-analysis.html#continuous-categorical-comparing-group-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When one variable is numeric and the other defines groups, start with group summaries. Report the mean and a measure of dispersion (such as the standard deviation). Use weighted means for population-level comparisons.</p>
+<p>The example below compares mean numeracy score by enrolment status.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="bivariate-analysis.html#cb62-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb62-2"><a href="bivariate-analysis.html#cb62-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(enrolled) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(numeracy_score)) <span class="sc">|&gt;</span></span>
+<span id="cb62-3"><a href="bivariate-analysis.html#cb62-3" tabindex="-1"></a>  <span class="fu">group_by</span>(enrolled) <span class="sc">|&gt;</span></span>
+<span id="cb62-4"><a href="bivariate-analysis.html#cb62-4" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb62-5"><a href="bivariate-analysis.html#cb62-5" tabindex="-1"></a>    <span class="at">mean_score =</span> <span class="fu">mean</span>(numeracy_score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb62-6"><a href="bivariate-analysis.html#cb62-6" tabindex="-1"></a>    <span class="at">sd_score   =</span> <span class="fu">sd</span>(numeracy_score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb62-7"><a href="bivariate-analysis.html#cb62-7" tabindex="-1"></a>    <span class="at">n          =</span> <span class="fu">n</span>(),</span>
+<span id="cb62-8"><a href="bivariate-analysis.html#cb62-8" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb62-9"><a href="bivariate-analysis.html#cb62-9" tabindex="-1"></a>  ) </span></code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##   enrolled     mean_score sd_score     n
+##   &lt;fct&gt;             &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+## 1 Enrolled          21.0     10.3  79397
+## 2 Not enrolled       8.58     9.17  9744</code></pre>
+<p>Weighted means (with design-correct standard errors) use <code>svyby()</code> and <code>svymean()</code>.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="bivariate-analysis.html#cb64-1" tabindex="-1"></a><span class="fu">svyby</span>(</span>
+<span id="cb64-2"><a href="bivariate-analysis.html#cb64-2" tabindex="-1"></a>  <span class="sc">~</span>numeracy_score, <span class="sc">~</span>enrolled,</span>
+<span id="cb64-3"><a href="bivariate-analysis.html#cb64-3" tabindex="-1"></a>  <span class="at">design =</span> <span class="fu">subset</span>(des, <span class="sc">!</span><span class="fu">is.na</span>(enrolled) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(numeracy_score)),</span>
+<span id="cb64-4"><a href="bivariate-analysis.html#cb64-4" tabindex="-1"></a>  svymean,</span>
+<span id="cb64-5"><a href="bivariate-analysis.html#cb64-5" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb64-6"><a href="bivariate-analysis.html#cb64-6" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##                  enrolled numeracy_score        se
+## Enrolled         Enrolled       21.93872 0.1216989
+## Not enrolled Not enrolled       10.85661 0.3190279</code></pre>
+</div>
+<div id="continuous-continuous-scatterplots-and-trends" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Continuous × continuous: scatterplots and trends<a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A scatterplot summarizes how two numeric variables move together. Use it to detect patterns, outliers, and heterogeneity.</p>
+<p>The plot below shows numeracy score by age. It is descriptive; later chapters formalise such relationships with regression.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="bivariate-analysis.html#cb66-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb66-2"><a href="bivariate-analysis.html#cb66-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(numeracy_score)) <span class="sc">|&gt;</span></span>
+<span id="cb66-3"><a href="bivariate-analysis.html#cb66-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> numeracy_score)) <span class="sc">+</span></span>
+<span id="cb66-4"><a href="bivariate-analysis.html#cb66-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb66-5"><a href="bivariate-analysis.html#cb66-5" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb66-6"><a href="bivariate-analysis.html#cb66-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Child age (years)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Numeracy score&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-7"><a href="bivariate-analysis.html#cb66-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fig-scatter-age-numeracy"></span>
+<img src="figs/fig-scatter-age-numeracy-1.png" alt="Scatterplot of numeracy score by child age (sample description)." width="672" />
+<p class="caption">
+Figure 5.1: Scatterplot of numeracy score by child age (sample description).
+</p>
+</div>
+<p>If you want a design-correct summary of the average relationship, you can fit a survey-weighted linear model.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="bivariate-analysis.html#cb67-1" tabindex="-1"></a>fit_age <span class="ot">=</span> <span class="fu">svyglm</span>(</span>
+<span id="cb67-2"><a href="bivariate-analysis.html#cb67-2" tabindex="-1"></a>  numeracy_score <span class="sc">~</span> age,</span>
+<span id="cb67-3"><a href="bivariate-analysis.html#cb67-3" tabindex="-1"></a>  <span class="at">design =</span> <span class="fu">subset</span>(des, <span class="sc">!</span><span class="fu">is.na</span>(age) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(numeracy_score))</span>
+<span id="cb67-4"><a href="bivariate-analysis.html#cb67-4" tabindex="-1"></a>)</span>
+<span id="cb67-5"><a href="bivariate-analysis.html#cb67-5" tabindex="-1"></a></span>
+<span id="cb67-6"><a href="bivariate-analysis.html#cb67-6" tabindex="-1"></a><span class="fu">summary</span>(fit_age)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## svyglm(formula = numeracy_score ~ age, design = subset(des, !is.na(age) &amp; 
+##     !is.na(numeracy_score)))
+## 
+## Survey design:
+## subset(des, !is.na(age) &amp; !is.na(numeracy_score))
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.71354    0.27370   2.607  0.00918 ** 
+## age          2.05466    0.02264  90.773  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 70.81908)
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+<div id="testing-association-with-chi-squared-tests" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Testing association with chi-squared tests<a href="bivariate-analysis.html#testing-association-with-chi-squared-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A chi-squared test evaluates whether two categorical variables are statistically independent.</p>
+<p>First, compute the test for the sample (unweighted).</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="bivariate-analysis.html#cb69-1" tabindex="-1"></a>tab_enroll_res <span class="ot">=</span> <span class="fu">table</span>(dat<span class="sc">$</span>enrolled, dat<span class="sc">$</span>residence, <span class="at">useNA =</span> <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb69-2"><a href="bivariate-analysis.html#cb69-2" tabindex="-1"></a><span class="fu">chisq.test</span>(tab_enroll_res)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  tab_enroll_res
+## X-squared = 1145.8, df = 1, p-value &lt; 2.2e-16</code></pre>
+<p>For population inference under a complex survey design, use the design-based chi-squared test.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="bivariate-analysis.html#cb71-1" tabindex="-1"></a><span class="fu">svychisq</span>(</span>
+<span id="cb71-2"><a href="bivariate-analysis.html#cb71-2" tabindex="-1"></a>  <span class="sc">~</span>enrolled <span class="sc">+</span> residence,</span>
+<span id="cb71-3"><a href="bivariate-analysis.html#cb71-3" tabindex="-1"></a>  <span class="at">design =</span> <span class="fu">subset</span>(des, <span class="sc">!</span><span class="fu">is.na</span>(enrolled) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(residence))</span>
+<span id="cb71-4"><a href="bivariate-analysis.html#cb71-4" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s X^2: Rao &amp; Scott adjustment
+## 
+## data:  svychisq(~enrolled + residence, design = subset(des, !is.na(enrolled) &amp;     !is.na(residence)))
+## F = 10.709, ndf = 1, ddf = 2648, p-value = 0.00108</code></pre>
+</div>
+<div id="practice-exercises-2" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Practice exercises<a href="bivariate-analysis.html#practice-exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Estimate the proportion of non-enrolled children in rural and urban areas. Report the result as a population estimate using <code>svytable()</code> and column proportions.</li>
+<li>Compare mean ICAR assessment time (<code>icar_assess_time</code>) by residence. Report unweighted and weighted means.</li>
+<li>Cross-tabulate <code>numeracy_group</code> by <code>literacy_group</code>. Describe the pattern using column proportions.</li>
+<li>Test whether enrolment status differs by residence using <code>chisq.test()</code> and <code>svychisq()</code>. State which test supports population inference and why.</li>
+<li>Create a scatterplot of <code>icar_assess_time</code> against <code>numeracy_score</code>. Describe the direction and variability of the relationship in one paragraph.</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="central-tendency-and-dispersion.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/siphiwebogatsu/DF-draft/edit/main/04-bivariate-analysis.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.comsiphiwebogatsu/DF-draft/blob/main/04-bivariate-analysis.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+# Simple Linear Regression
+
+Regression analysis describes how an outcome changes as a predictor changes. In this chapter, you will learn how to summarise the association between two numeric variables with a correlation coefficient and how to estimate a simple linear regression model. Because ICAN-ICAR uses a complex survey design, you will also fit the same model with survey weights, clustering, and stratification so that inference reflects the sampling design.
+
+```{r}
+#| label: load packages
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(broom)
+library(survey)
+library(knitr)
+
+# load the data
+dat = read_csv("data/2025_PAL_ICAN-ICAR_data.csv", show_col_types = FALSE)
+```
+
+## Preparing variables for analysis
+
+We study the relationship between a child’s grade (`ch06a`) and a literacy score constructed from item-level responses. Grade is a plausible predictor because it often reflects additional exposure to schooling. Regression can quantify association, but it does not by itself establish causality; use theory and study design to justify causal claims.
+
+**Literacy score.** The literacy items are coded so that `2` indicates a correct response and `0` or `1` indicates an incorrect response. We recode correct responses to `1`, recode incorrect responses to `0`, and sum across items. This scoring treats missing item responses as incorrect when it computes totals (`na.rm = TRUE`). Use a different rule if your assessment protocol defines missingness differently.
+
+```{r}
+#| label: create literacy score
+#| warning: false
+#| message: false
+
+# keep observations with non-missing weights (so weighted and unweighted use the same cases)
+dat = dat |> 
+  filter(!is.na(HH_Weight_Provided))
+
+# grade (keep plausible values; adjust bounds if your instrument differs)
+dat = dat |>
+  mutate(
+    grade = ifelse(ch06a >= 0 & ch06a <= 12, ch06a, NA_real_)
+  )
+
+# literacy items (update these names if your dataset differs)
+literacy_items = c(
+  paste0("l1.", 1:4),
+  paste0("l2.", 1:5),
+  paste0("l3.", 1:5),
+  paste0("l4.", 1:6),
+  paste0("l5.", 1:5),
+  paste0("l6.", 1:5)
+)
+
+dat = dat |>
+  mutate(
+    across(
+      all_of(literacy_items),
+      ~ case_when(
+        .x == 2 ~ 1,
+        .x %in% c(0, 1) ~ 0,
+        TRUE ~ NA_real_
+      )
+    ),
+    literacy_score = rowSums(across(all_of(literacy_items)), na.rm = TRUE)
+  )
+```
+
+For the examples below, we work with one country to keep output readable. Replace the value of `country_name` to analyse a different country.
+
+```{r}
+#| label: analysis sample
+#| warning: false
+#| message: false
+
+country_name = "Senegal"
+
+d = dat |>
+  filter(
+    CountryName == country_name,
+    !is.na(grade),
+    !is.na(literacy_score)
+  )
+```
+
+## Correlation and simple regression
+
+Correlation provides a first summary of a linear relationship between two numeric variables. A correlation near `0` indicates a weak linear association, while values close to `1` or `-1` indicate a strong positive or negative linear association. Because correlation targets linear patterns, treat it as a starting point rather than a complete description.
+
+```{r}
+#| label: unweighted correlation
+#| warning: false
+#| message: false
+
+cor_unweighted = cor(d$grade, d$literacy_score, use = "complete.obs")
+cor_unweighted
+```
+
+**A quick check.** A scatterplot helps you assess whether a linear relationship is plausible and whether a small number of extreme values dominate the pattern.
+
+```{r}
+#| label: scatterplot
+#| warning: false
+#| message: false
+
+ggplot(d, aes(x = grade, y = literacy_score)) +
+  geom_point(alpha = 0.35) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    x = "Grade",
+    y = "Literacy score",
+    title = paste("Literacy score and grade in", country_name)
+  ) +
+  theme_classic()
+```
+
+A simple linear regression model has the form
+
+\[
+Y_i = \alpha + \beta X_i + \varepsilon_i,
+\]
+
+
+where \(\beta\) (the slope) describes the expected change in \(Y\) for a one-unit increase in \(X\). In our example,
+
+\[
+\text{literacy\_score}_i = \alpha + \beta \cdot \text{grade}_i + \varepsilon_i.
+\]
+
+The unweighted model describes the relationship in the sample.
+
+```{r}
+#| label: lm unweighted
+#| warning: false
+#| message: false
+
+m_lm = lm(literacy_score ~ grade, data = d)
+
+tidy(m_lm, conf.int = TRUE) 
+
+```
+
+## Survey-weighted regression for population inference
+
+To make population statements, fit the regression with the survey design. This approach accounts for weights, clustering, and stratification when it computes standard errors.
+
+```{r}
+#| label: survey design object
+#| warning: false
+#| message: false
+
+options(
+  survey.lonely.psu = "adjust",
+  survey.adjust.domain.lonely = TRUE
+)
+
+des = svydesign(
+  ids     = ~interaction(CountryName, VillageID) + HHID,
+  strata  = ~interaction(CountryName, Tier_One_Unit),
+  weights = ~HH_Weight_Provided,
+  data    = dat,
+  nest    = TRUE
+)
+
+des_country = subset(des, CountryName == country_name & !is.na(grade) & !is.na(literacy_score))
+```
+
+```{r}
+#| label: weighted correlation
+#| warning: false
+#| message: false
+
+V = svyvar(~grade + literacy_score, design = des_country, na.rm = TRUE)
+
+cor_weighted = V[1, 2] / sqrt(V[1, 1] * V[2, 2])
+cor_weighted
+```
+
+```{r}
+#| label: svyglm weighted
+#| warning: false
+#| message: false
+
+m_svy = svyglm(literacy_score ~ grade, design = des_country)
+
+tidy(m_svy, conf.int = TRUE) 
+```
+
+Interpret the slope as the expected change in the literacy score associated with a one-grade increase, holding the model form fixed. Use the survey-based standard errors and confidence intervals for inference.
+
+**Predicted values.** Predictions translate the fitted line into an expected score at a specific grade. The example below reports the predicted literacy score for grade 3, with a standard error from the survey model.
+
+```{r}
+#| label: prediction grade 3
+#| warning: false
+#| message: false
+
+new = tibble(grade = 3)
+
+pred = predict(m_svy, newdata = new, se.fit = TRUE)
+pred
+
+```
+
+## Practice exercises
+
+1. Replace `country_name` with a different country and compare the weighted and unweighted correlations.
+2. Fit the survey-weighted model for one country and interpret the slope in a single sentence.
+3. Change the prediction grade from 3 to 6. How does the predicted score change?
+4. Repeat the analysis using `ch02` (age) as the predictor instead of grade. Compare the interpretation with the grade model.

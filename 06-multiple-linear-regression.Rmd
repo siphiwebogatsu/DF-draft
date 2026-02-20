@@ -1,0 +1,262 @@
+# Multiple Linear Regression
+
+Simple linear regression relates an outcome to one predictor. Multiple linear regression extends the same idea by including several predictors in one model. Researchers use this approach to estimate *partial associations*: each coefficient describes the association between a predictor and the outcome **holding the other predictors constant**.
+
+In this chapter, we use PAL Network’s ICAN-ICAR 2025 survey data to model a continuous outcome (for example, a numeracy score) as a function of grade, age, and background characteristics. Because ICAN-ICAR uses stratification, clustering, and survey weights, we fit models with the `survey` package so that standard errors reflect the sampling design.
+
+```{r}
+#| label: setup-multiple-regression
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(survey)
+library(broom)
+library(knitr)
+
+dat <- read_csv("data/2025_PAL_ICAN-ICAR_data.csv", show_col_types = FALSE)
+
+# Keep only cases with provided household weights
+dat = dat |>
+  filter(!is.na(HH_Weight_Provided)) |>
+  mutate(
+    ch02_num = as.numeric(ch02),
+    ch06a_num = as.numeric(ch06a),
+    ican_time_raw = as.numeric(ican_assess_time),
+    icar_time_raw = as.numeric(icar_assess_time),
+    age   = if_else(ch02_num  > 0, ch02_num,  NA_real_),
+    grade = if_else(ch06a_num > 0, ch06a_num, NA_real_),
+    gender   = factor(ch03, levels = c(1, 2), labels = c("Female", "Male")),
+    location = factor(Location),
+    ican_time = if_else(ican_time_raw > 0, ican_time_raw, NA_real_),
+    icar_time = if_else(icar_time_raw > 0, icar_time_raw, NA_real_),
+    
+    # A common analysis sample is ages 8–14 
+    sample1 = if_else(age >= 8 & age <= 14, 1L, 0L)
+  )
+
+# Create a numeracy score if the dataset does not already contain one.
+# This code uses ICAN numeracy items n1–n36 coded as: 0/1 = incorrect, 2 = correct.
+
+
+if (!("numeracy_score" %in% names(dat))) {
+  numeracy_items <- paste0("n", 1:36)
+  present_items <- numeracy_items[numeracy_items %in% names(dat)]
+
+  if (length(present_items) > 0) {
+    dat <- dat |>
+      mutate(
+        across(
+          all_of(present_items),
+          ~ case_when(
+            as.numeric(.x) == 2 ~ 1,
+            as.numeric(.x) %in% c(0, 1) ~ 0,
+            TRUE ~ NA_real_
+          )
+        ),
+        numeracy_score = rowSums(across(all_of(present_items)), na.rm = TRUE)
+      )
+  }
+}
+
+# Survey design settings
+options(
+  survey.lonely.psu = "adjust",
+  survey.adjust.domain.lonely = TRUE
+)
+
+des <- svydesign(
+  ids     = ~interaction(CountryName, VillageID) + HHID,
+  strata  = ~interaction(CountryName, Tier_One_Unit),
+  weights = ~HH_Weight_Provided,
+  data    = dat,
+  nest    = TRUE
+)
+```
+
+## The multiple regression model and its interpretation
+
+Multiple linear regression models a continuous outcome as a linear function of several predictors:
+
+$$
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_k X_k + \varepsilon.
+$$
+
+Each slope coefficient is a *partial effect*. For example, in a model with `grade` and `age`, the coefficient for `grade` is the expected change in the outcome associated with one additional grade **among learners of the same age**, on average.
+
+Multiple regression does not automatically solve causal problems. It improves adjustment only when you include relevant confounders and the model matches the data-generating process.
+
+## Data and analysis sample
+
+To keep the example concrete, we estimate models within one country and within an age-restricted analysis sample. Choose any country that has a sufficient sample size.
+
+```{r}
+#| label: define-analysis-sample
+#| echo: true
+#| warning: false
+#| message: false
+
+country_name <- "Senegal"
+
+des_country <- subset(
+  des,
+  sample1 == 1 &
+    CountryName == country_name &
+    !is.na(numeracy_score) &
+    !is.na(age) &
+    !is.na(grade) &
+    !is.na(gender) &
+    !is.na(location)
+)
+```
+
+If your data do not contain `numeracy_score`, switch the outcome to another continuous variable (for example, `ican_time`). The modelling steps stay the same.
+
+## Building a multiple regression model
+
+We build the model in steps so that you can see how coefficients change when you add controls.
+
+**Model 1 (bivariate).** Regress numeracy score on grade.
+
+**Model 2 (add a control).** Add age. The grade coefficient now reflects the association between grade and numeracy score among learners of the same age.
+
+**Model 3 (add background variables).** Add gender and location. These covariates often correlate with both grade and learning outcomes, so the model conditions on them.
+
+```{r}
+#| label: fit-multiple-regression-models
+#| warning: false
+#| message: false
+
+m1 <- svyglm(numeracy_score ~ grade, design = des_country)
+m2 <- svyglm(numeracy_score ~ grade + age, design = des_country)
+m3 <- svyglm(numeracy_score ~ grade + age + gender + location, design = des_country)
+
+summary(m3)
+```
+
+### Comparing coefficients across models
+
+A short table helps you compare how the coefficient on `grade` changes as you add controls.
+
+```{r}
+#| label: compare-grade-coefficient
+#| warning: false
+#| message: false
+
+grade_compare <- bind_rows(
+  tidy(m1, conf.int = TRUE) |>
+    filter(term == "grade") |>
+    mutate(model = "M1: grade"),
+  tidy(m2, conf.int = TRUE) |>
+    filter(term == "grade") |>
+    mutate(model = "M2: grade + age"),
+  tidy(m3, conf.int = TRUE) |>
+    filter(term == "grade") |>
+    mutate(model = "M3: + gender + location")
+) |>
+  select(model, estimate, conf.low, conf.high, p.value)
+
+grade_compare
+```
+
+If the grade coefficient changes noticeably, the additional variables likely explain part of the association between grade and the outcome. Interpret this pattern as *statistical adjustment*, not as proof of causality.
+
+### Interpreting categorical predictors
+
+R automatically creates indicator (dummy) variables for factors. In Model 3:
+
+- the `genderMale` coefficient compares males with females (the reference group), holding other predictors constant;
+- the `locationUrban` coefficient compares urban with rural, holding other predictors constant.
+
+If you want a different reference category, set it explicitly:
+
+```{r}
+#| label: set-reference-levels
+#| eval: false
+
+dat <- dat |>
+  mutate(
+    gender = relevel(gender, ref = "Female"),
+    location = relevel(location, ref = "Rural")
+  )
+```
+
+## Extensions: interactions and non-linear effects
+
+Use extensions only when they answer a substantive question and you can justify them.
+
+**Interactions.** An interaction allows the association between one predictor and the outcome to differ across groups. For example, the gender gap may differ between rural and urban areas:
+
+```{r}
+#| label: interaction-example
+#| eval: false
+
+m_int <- svyglm(
+  numeracy_score ~ grade + age + gender * location,
+  design = des_country
+)
+tidy(m_int, conf.int = TRUE)
+```
+
+**Transformations.** When the outcome is positive and right-skewed (such as assessment time), a log transformation often improves interpretability and fit. In a log outcome model, a coefficient approximates a percentage change:
+
+```{r}
+#| label: log-outcome-example
+#| eval: false
+
+des_log <- update(des_country, ln_ican_time = log(ican_time))
+m_log <- svyglm(ln_ican_time ~ age + gender + location, design = des_log)
+
+# Approximate percent change for a one-unit increase in age:
+100 * coef(m_log)[["age"]]
+```
+
+**Quadratic terms.** A squared term captures curvature (for example, diminishing returns to grade):
+
+```{r}
+#| label: quadratic-example
+#| eval: false
+
+des_quad <- update(des_country, grade_sq = grade^2)
+m_quad <- svyglm(numeracy_score ~ grade + grade_sq + age + gender + location, design = des_quad)
+
+# Turning point (only meaningful if the quadratic term is substantively justified)
+b <- coef(m_quad)[["grade"]]
+a <- coef(m_quad)[["grade_sq"]]
+turning_point <- -b / (2 * a)
+turning_point
+```
+
+## Reporting results
+
+Report results with coefficients, uncertainty, and clear reference categories. A compact regression table helps readers interpret the model.
+
+```{r}
+#| label: report-model
+#| warning: false
+#| message: false
+
+report_tbl <- tidy(m3, conf.int = TRUE) |>
+  mutate(
+    term = recode(
+      term,
+      `(Intercept)` = "Intercept",
+      grade = "Grade (one level)",
+      age = "Age (years)",
+      genderMale = "Male (ref: Female)",
+      locationUrban = "Urban (ref: Rural)"
+    )
+  ) |>
+  select(term, estimate, conf.low, conf.high, p.value)
+
+report_tbl
+```
+
+When you describe results, state the outcome scale and the comparison group. For example: “Holding age, gender, and location constant, one additional grade is associated with an average increase of *b* points in numeracy score.”
+
+## Practice exercises
+
+1. Change `country_name` and re-estimate Model 3. Which coefficients are stable across countries?
+2. Fit a model with `numeracy_score ~ age + grade + gender + location + age:gender`. Interpret the interaction term.
+3. Replace the outcome with `ican_time` and refit the model. Compare the interpretation before and after logging the outcome.

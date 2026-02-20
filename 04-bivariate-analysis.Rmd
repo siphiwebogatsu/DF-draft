@@ -1,0 +1,261 @@
+# Bivariate Analysis
+
+Bivariate analysis examines the relationship between two variables. In PAL ICAN-ICAR survey work, it helps you describe differences across groups (for example, enrolment by residence) and patterns between numeric measures (for example, numeracy score by age). This chapter focuses on descriptive bivariate tools—cross-tabulations, group summaries, and scatterplots—while emphasising survey weights and clustering for population inference.
+
+```{r}
+#| label: setup-bivariate
+#| echo: false
+#| warning: false
+#| message: false
+
+library(tidyverse)
+library(survey)
+library(knitr)
+
+# load PAL data
+dat = read_csv("data/2025_PAL_ICAN-ICAR_data.csv", show_col_types = FALSE)
+
+# keep rows with valid weights so unweighted and weighted results use the same analytic sample
+dat = dat |>
+  filter(!is.na(HH_Weight_Provided))
+
+# recode common variables used in examples
+dat = dat |>
+  mutate(
+    sex = factor(ch03, levels = c(1, 2), labels = c("Female", "Male")),
+    residence = str_trim(Location) |> factor(levels = c("Rural", "Urban")),
+    enrolled = factor(
+      case_when(
+        ch05 == 1 ~ "Enrolled",
+        ch05 == 0 ~ "Not enrolled",
+        TRUE ~ NA_character_
+      ),
+      levels = c("Enrolled", "Not enrolled")
+    ),
+    age = if_else(ch02 > 0, ch02, NA_real_)
+  )
+
+# create numeracy_score if it is not already present
+if (!("numeracy_score" %in% names(dat))) {
+  numeracy_items = paste0("n", 1:36)
+  if (all(numeracy_items %in% names(dat))) {
+    dat = dat |>
+      mutate(
+        across(
+          all_of(numeracy_items),
+          ~ case_when(
+            .x == 2 ~ 1,
+            .x %in% c(0, 1) ~ 0,
+            TRUE ~ NA_real_
+          )
+        ),
+        numeracy_score = rowSums(across(all_of(numeracy_items)), na.rm = TRUE)
+      )
+  } else {
+    dat$numeracy_score = NA_real_
+  }
+}
+
+# create literacy_score if it is not already present
+if (!("literacy_score" %in% names(dat))) {
+  literacy_items = c(
+    paste0("l1.", 1:4),
+    paste0("l2.", 1:5),
+    paste0("l3.", 1:5),
+    paste0("l4.", 1:6),
+    paste0("l5.", 1:5),
+    paste0("l6.", 1:5)
+  )
+  if (all(literacy_items %in% names(dat))) {
+    dat = dat |>
+      mutate(
+        across(
+          all_of(literacy_items),
+          ~ case_when(
+            .x == 2 ~ 1,
+            .x %in% c(0, 1) ~ 0,
+            TRUE ~ NA_real_
+          )
+        ),
+        literacy_score = rowSums(across(all_of(literacy_items)), na.rm = TRUE)
+      )
+  } else {
+    dat$literacy_score = NA_real_
+  }
+}
+
+# grouped versions (useful for cross-tabs)
+dat = dat |>
+  mutate(
+    numeracy_group = case_when(
+      is.na(numeracy_score) ~ NA_character_,
+      numeracy_score <= 12 ~ "Low",
+      numeracy_score <= 24 ~ "Medium",
+      numeracy_score > 24  ~ "High"
+    ) |> factor(levels = c("Low", "Medium", "High")),
+    literacy_group = case_when(
+      is.na(literacy_score) ~ NA_character_,
+      literacy_score <= 10 ~ "Low",
+      literacy_score <= 20 ~ "Medium",
+      literacy_score > 20  ~ "High"
+    ) |> factor(levels = c("Low", "Medium", "High"))
+  )
+
+# survey design object (multi-country file: make strata and PSU ids unique by country)
+options(
+  survey.lonely.psu = "adjust",
+  survey.adjust.domain.lonely = TRUE
+)
+
+des = svydesign(
+  ids     = ~interaction(CountryName, VillageID) + HHID,
+  strata  = ~interaction(CountryName, Tier_One_Unit),
+  weights = ~HH_Weight_Provided,
+  data    = dat,
+  nest    = TRUE
+)
+```
+
+## Choosing the right bivariate tool
+
+Select a method based on the measurement type of each variable.
+
+- **Categorical × categorical:** use a cross-tabulation and report row or column proportions.
+- **Continuous × categorical:** compare group summaries (means, medians, and spread).
+- **Continuous × continuous:** use a scatterplot and summarise the trend.
+
+When you want population statements, use weighted estimators and design-correct standard errors.
+
+## Categorical × categorical: cross-tabulations
+
+A cross-tabulation shows how the categories of one variable distribute across the categories of another. Use **column proportions** to compare rates across groups and **row proportions** to describe composition within a category.
+
+The example below describes enrolment by sex.
+
+```{r}
+#| label: crosstab-unweighted
+#| warning: false
+
+tab_enroll_sex = table(dat$enrolled, dat$sex, useNA = "no")
+
+tab_enroll_sex
+prop.table(tab_enroll_sex, margin = 2)   # column proportions: enrolment rate by sex
+```
+
+The same analysis becomes a population estimate when you use the survey design object.
+
+```{r}
+#| label: crosstab-weighted
+#| warning: false
+
+tab_enroll_sex_w = svytable(~enrolled + sex, design = subset(des, !is.na(enrolled) & !is.na(sex)))
+
+tab_enroll_sex_w
+prop.table(tab_enroll_sex_w, margin = 2)
+```
+
+**Interpretation rule.** If your question is “What proportion of girls are enrolled?”, read the *Enrolled* cell within the *Female* column of the column-proportion table.
+
+## Continuous × categorical: comparing group means
+
+When one variable is numeric and the other defines groups, start with group summaries. Report the mean and a measure of dispersion (such as the standard deviation). Use weighted means for population-level comparisons.
+
+The example below compares mean numeracy score by enrolment status.
+
+```{r}
+#| label: mean-by-group-unweighted
+#| warning: false
+
+dat |>
+  filter(!is.na(enrolled) & !is.na(numeracy_score)) |>
+  group_by(enrolled) |>
+  summarise(
+    mean_score = mean(numeracy_score, na.rm = TRUE),
+    sd_score   = sd(numeracy_score, na.rm = TRUE),
+    n          = n(),
+    .groups = "drop"
+  ) 
+```
+
+Weighted means (with design-correct standard errors) use `svyby()` and `svymean()`.
+
+```{r}
+#| label: mean-by-group-weighted
+#| warning: false
+
+svyby(
+  ~numeracy_score, ~enrolled,
+  design = subset(des, !is.na(enrolled) & !is.na(numeracy_score)),
+  svymean,
+  na.rm = TRUE
+)
+```
+
+## Continuous × continuous: scatterplots and trends
+
+A scatterplot summarizes how two numeric variables move together. Use it to detect patterns, outliers, and heterogeneity.
+
+The plot below shows numeracy score by age. It is descriptive; later chapters formalise such relationships with regression.
+
+```{r}
+#| label: fig-scatter-age-numeracy
+#| fig-cap: "Scatterplot of numeracy score by child age (sample description)."
+#| warning: false
+#| message: false
+
+dat |>
+  filter(!is.na(age) & !is.na(numeracy_score)) |>
+  ggplot(aes(x = age, y = numeracy_score)) +
+  geom_point(alpha = 0.2) +
+  stat_smooth(method = "lm", se = FALSE) +
+  labs(x = "Child age (years)", y = "Numeracy score") +
+  theme_bw()
+```
+
+If you want a design-correct summary of the average relationship, you can fit a survey-weighted linear model.
+
+```{r}
+#| label: svyglm-age-numeracy
+#| warning: false
+
+fit_age = svyglm(
+  numeracy_score ~ age,
+  design = subset(des, !is.na(age) & !is.na(numeracy_score))
+)
+
+summary(fit_age)
+```
+
+## Testing association with chi-squared tests
+
+A chi-squared test evaluates whether two categorical variables are statistically independent.
+
+First, compute the test for the sample (unweighted).
+
+```{r}
+#| label: chisq-unweighted
+#| warning: false
+
+tab_enroll_res = table(dat$enrolled, dat$residence, useNA = "no")
+chisq.test(tab_enroll_res)
+```
+
+For population inference under a complex survey design, use the design-based chi-squared test.
+
+```{r}
+#| label: chisq-weighted
+#| warning: false
+
+svychisq(
+  ~enrolled + residence,
+  design = subset(des, !is.na(enrolled) & !is.na(residence))
+)
+```
+
+## Practice exercises
+
+1. Estimate the proportion of non-enrolled children in rural and urban areas. Report the result as a population estimate using `svytable()` and column proportions.
+2. Compare mean ICAR assessment time (`icar_assess_time`) by residence. Report unweighted and weighted means.
+3. Cross-tabulate `numeracy_group` by `literacy_group`. Describe the pattern using column proportions.
+4. Test whether enrolment status differs by residence using `chisq.test()` and `svychisq()`. State which test supports population inference and why.
+5. Create a scatterplot of `icar_assess_time` against `numeracy_score`. Describe the direction and variability of the relationship in one paragraph.
