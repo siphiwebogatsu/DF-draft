@@ -4,7 +4,6 @@ Many questions in early-foundational learning research ask about the likelihood 
 
 
 ```{r}
-#| label: load packages
 #| echo: false
 #| warning: false
 

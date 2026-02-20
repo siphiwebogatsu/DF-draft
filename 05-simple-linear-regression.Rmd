@@ -3,7 +3,6 @@
 Regression analysis describes how an outcome changes as a predictor changes. In this chapter, you will learn how to summarise the association between two numeric variables with a correlation coefficient and how to estimate a simple linear regression model. Because ICAN-ICAR uses a complex survey design, you will also fit the same model with survey weights, clustering, and stratification so that inference reflects the sampling design.
 
 ```{r}
-#| label: load packages
 #| echo: false
 #| warning: false
 #| message: false
