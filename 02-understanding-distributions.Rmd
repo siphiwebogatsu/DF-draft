@@ -36,7 +36,7 @@ This is quite big. A good idea from here is to subset to the variables that we w
 #| message: false
 
 dat = dat |>
-  select(CountryName, Location, HHID, ChildID,
+  select(CountryName, Location, HHID,VillageID, ChildID,
          ch02, ch03, ch06a, ch06b, enr_status, pt02b,
          pt01b, ch04a, MPL_both) 
 
@@ -248,9 +248,9 @@ library(knitr)
 library(kableExtra)
 table13 <- data.frame(
   `Graph type` = c("Bar charts", "Line graphs", "Area graph", "Histogram", "Boxplot", "Pie chart"),
-  Nominal  = c("✓", "✗", "✗", "✗", "✗", "✓"),
+  Categorical  = c("✓", "✗", "✗", "✗", "✗", "✓"),
   Ordinal  = c("✓", "?", "?", "✗", "✓", "✓"),
-  Interval = c("?", "✓", "✓", "✓", "✓", "?"),
+  Continuous = c("?", "✓", "✓", "✓", "✓", "?"),
   check.names = FALSE
 )
 
@@ -284,9 +284,9 @@ table_data <- data.frame(
     "Graph/visual","Skewness statistic",
     "Graph/visual","Kurtosis statistic"
   ),
-  Nominal = c("✓","✗","✗","✓","✗","✗","✗","✗","✗","✗"),
+  Categorical = c("✓","✗","✗","✓","✗","✗","✗","✗","✗","✗"),
   Ordinal = c("?","✓","✗","?","✓","✗","✓","✗","✓","✗"),
-  Interval = c("?","?","✓","?","?","✓","✓","✓","✓","✓")
+  Continuous = c("?","?","✓","?","?","✓","✓","✓","✓","✓")
 )
 
 kable(
