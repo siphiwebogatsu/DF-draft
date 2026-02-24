@@ -62,7 +62,7 @@ Any variable is composed of two or more categories or attributes. Thus the child
 2.  whether the categories can be rank ordered;
 3.  whether the differences or intervals between each category can be specified in a meaningful numerical sense.
 
-## Continuous level
+### Continuous level
 
 A continuous variable is one in which the categories can be ranked from low to high in some meaningful way. In addition to ordering the categories from low to high it is possible to specify the amount of difference between the categories or values. The child's age, when measured in years, is an example of a continuous variable. We rank-order the categories of age (in years) from youngest (lowest) to oldest (highest). Furthermore, we can specify the amount of difference between the categories. The difference between the category "9 years old" and the category "13 years old" is 4 years. Other examples would be the number of household members, time taken to complete the numeracy assessment, and the numeracy score of the child.
 
@@ -129,7 +129,7 @@ ggplot(dat, aes(x = pt01b)) +
 
 For the child's age there is no evidence clustering - the variable is spread fairly evenly across the categories. Both the mother's and father's age cluster at the lower end of their respective distributions, with tails on the high end.
 
-## Ordinal level
+### Ordinal level
 
 An ordinal variable is one where we can rank-order categories from low to high. However, we cannot specify in numeric terms how much difference there is between the categories. For example, when the age variable has categories such as "child", "adolescent", "young adult", "middle aged" and "elderly" the variable is measured at the ordinal level. The categories can be ordered from youngest to eldest but we cannot specify precisely the age gap between people in different categories. Measuring the child's difficulty in their eyesight as "no difficulty", "some difficulty", and "a lot of difficulty" would produce an ordinal variable.
 
@@ -196,7 +196,7 @@ dat |>
 ```
 While the mode as a measure of central tendency can be for ordinal variables the median is preferred because it takes account of the fact that children can be ranked on ordinal variables. The median is worked out by ranking each case in a distribution from low to high on the variable and finding the middle child. Whatever the category the middle child belongs to is the median category. In large scale survey research, this is done by obtaining a frequency table, as we have done above, for the variable and examining the cumulative percentage column. To locate the median simply look down this column until the cumulative percentage nudges over $50$ percent and then look at the category of the variable that corresponds to this. In `ch04a` case, the middle child is the one with no difficulty in eyesight.
 
-## Categorical level 
+### Categorical level 
 A categorical variable is one where the different categories have no set rank-order. With a categorical variable it makes no sense to say that the categories can be ordered from low to high in some sense. The type of school the child goes to (`ch06b`) is a categorical variable where categories have no natural rank-order. 
 
 Two main types of summarising statistics are used for categorical variables to describe their distributions: those used to indicate typical values (central tendency), and those used to indicate group variation With categorical variables the only way to indicate the typical response is to identify the single most common response. The most common response, the one with the largest number of cases, is called the mode. 
@@ -265,7 +265,7 @@ kable(
 
 Also, the table below helps one to choose summary descriptive statistics for different levels of measurement
 
-```{r}
+```{r echo=FALSE}
 library(knitr)
 library(kableExtra)
 
