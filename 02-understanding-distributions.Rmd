@@ -36,9 +36,9 @@ This is quite big. A good idea from here is to subset to the variables that we w
 #| message: false
 
 dat = dat |>
-  select(CountryName, Location, HHID,VillageID, ChildID,
+  select(CountryName, Location, HHID,VillageID, ChildID, Tier_One_Unit,
          ch02, ch03, ch06a, ch06b, enr_status, pt02b,
-         pt01b, ch04a, MPL_both) 
+         pt01b, ch04a, MPL_both, HH_Weight_Provided) 
 
 ```
 

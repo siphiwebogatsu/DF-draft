@@ -153,21 +153,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
-<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#variable-types-and-levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Variable types and levels of measurement</a></li>
-<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-continuous-variables"><i class="fa fa-check"></i><b>3.3</b> Distributions of continuous variables</a>
+<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Levels of measurement</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>3.3</b> Continuous level</a></li>
+<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>3.4</b> Ordinal level</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>3.5</b> Categorical level</a></li>
+<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.6</b> Weighted summaries using the survey design</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#numeric-summaries"><i class="fa fa-check"></i><b>3.3.1</b> Numeric summaries</a></li>
-<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#plots"><i class="fa fa-check"></i><b>3.3.2</b> Plots</a></li>
+<li class="chapter" data-level="3.6.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.6.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="3.6.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.6.2</b> Weighted frequency tables</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-categorical-variables"><i class="fa fa-check"></i><b>3.4</b> Distributions of categorical variables</a></li>
-<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.5</b> Weighted summaries using the survey design</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.5.1</b> Weighted proportions and means</a></li>
-<li class="chapter" data-level="3.5.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.5.2</b> Weighted frequency tables</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.6</b> Household-level variables in a child-level file</a></li>
-<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.7</b> Missing data and skip patterns</a></li>
-<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.7</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.8</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="3.9" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
 <ul>
@@ -255,64 +252,64 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
 <h2><span class="header-section-number">6.1</span> Preparing variables for analysis<a href="simple-linear-regression.html#preparing-variables-for-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We study the relationship between a child’s grade (<code>ch06a</code>) and a literacy score constructed from item-level responses. Grade is a plausible predictor because it often reflects additional exposure to schooling. Regression can quantify association, but it does not by itself establish causality; use theory and study design to justify causal claims.</p>
 <p><strong>Literacy score.</strong> The literacy items are coded so that <code>2</code> indicates a correct response and <code>0</code> or <code>1</code> indicates an incorrect response. We recode correct responses to <code>1</code>, recode incorrect responses to <code>0</code>, and sum across items. This scoring treats missing item responses as incorrect when it computes totals (<code>na.rm = TRUE</code>). Use a different rule if your assessment protocol defines missingness differently.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="simple-linear-regression.html#cb73-1" tabindex="-1"></a><span class="co"># keep observations with non-missing weights (so weighted and unweighted use the same cases)</span></span>
-<span id="cb73-2"><a href="simple-linear-regression.html#cb73-2" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span> </span>
-<span id="cb73-3"><a href="simple-linear-regression.html#cb73-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(HH_Weight_Provided))</span>
-<span id="cb73-4"><a href="simple-linear-regression.html#cb73-4" tabindex="-1"></a></span>
-<span id="cb73-5"><a href="simple-linear-regression.html#cb73-5" tabindex="-1"></a><span class="co"># grade (keep plausible values; adjust bounds if your instrument differs)</span></span>
-<span id="cb73-6"><a href="simple-linear-regression.html#cb73-6" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
-<span id="cb73-7"><a href="simple-linear-regression.html#cb73-7" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb73-8"><a href="simple-linear-regression.html#cb73-8" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">ifelse</span>(ch06a <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> ch06a <span class="sc">&lt;=</span> <span class="dv">12</span>, ch06a, <span class="cn">NA_real_</span>)</span>
-<span id="cb73-9"><a href="simple-linear-regression.html#cb73-9" tabindex="-1"></a>  )</span>
-<span id="cb73-10"><a href="simple-linear-regression.html#cb73-10" tabindex="-1"></a></span>
-<span id="cb73-11"><a href="simple-linear-regression.html#cb73-11" tabindex="-1"></a><span class="co"># literacy items (update these names if your dataset differs)</span></span>
-<span id="cb73-12"><a href="simple-linear-regression.html#cb73-12" tabindex="-1"></a>literacy_items <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb73-13"><a href="simple-linear-regression.html#cb73-13" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l1.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),</span>
-<span id="cb73-14"><a href="simple-linear-regression.html#cb73-14" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l2.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb73-15"><a href="simple-linear-regression.html#cb73-15" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l3.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb73-16"><a href="simple-linear-regression.html#cb73-16" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l4.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),</span>
-<span id="cb73-17"><a href="simple-linear-regression.html#cb73-17" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l5.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
-<span id="cb73-18"><a href="simple-linear-regression.html#cb73-18" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l6.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb73-19"><a href="simple-linear-regression.html#cb73-19" tabindex="-1"></a>)</span>
-<span id="cb73-20"><a href="simple-linear-regression.html#cb73-20" tabindex="-1"></a></span>
-<span id="cb73-21"><a href="simple-linear-regression.html#cb73-21" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
-<span id="cb73-22"><a href="simple-linear-regression.html#cb73-22" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb73-23"><a href="simple-linear-regression.html#cb73-23" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb73-24"><a href="simple-linear-regression.html#cb73-24" tabindex="-1"></a>      <span class="fu">all_of</span>(literacy_items),</span>
-<span id="cb73-25"><a href="simple-linear-regression.html#cb73-25" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(</span>
-<span id="cb73-26"><a href="simple-linear-regression.html#cb73-26" tabindex="-1"></a>        .x <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb73-27"><a href="simple-linear-regression.html#cb73-27" tabindex="-1"></a>        .x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">~</span> <span class="dv">0</span>,</span>
-<span id="cb73-28"><a href="simple-linear-regression.html#cb73-28" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
-<span id="cb73-29"><a href="simple-linear-regression.html#cb73-29" tabindex="-1"></a>      )</span>
-<span id="cb73-30"><a href="simple-linear-regression.html#cb73-30" tabindex="-1"></a>    ),</span>
-<span id="cb73-31"><a href="simple-linear-regression.html#cb73-31" tabindex="-1"></a>    <span class="at">literacy_score =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(literacy_items)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb73-32"><a href="simple-linear-regression.html#cb73-32" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="simple-linear-regression.html#cb70-1" tabindex="-1"></a><span class="co"># keep observations with non-missing weights (so weighted and unweighted use the same cases)</span></span>
+<span id="cb70-2"><a href="simple-linear-regression.html#cb70-2" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span> </span>
+<span id="cb70-3"><a href="simple-linear-regression.html#cb70-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(HH_Weight_Provided))</span>
+<span id="cb70-4"><a href="simple-linear-regression.html#cb70-4" tabindex="-1"></a></span>
+<span id="cb70-5"><a href="simple-linear-regression.html#cb70-5" tabindex="-1"></a><span class="co"># grade (keep plausible values; adjust bounds if your instrument differs)</span></span>
+<span id="cb70-6"><a href="simple-linear-regression.html#cb70-6" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb70-7"><a href="simple-linear-regression.html#cb70-7" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb70-8"><a href="simple-linear-regression.html#cb70-8" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">ifelse</span>(ch06a <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> ch06a <span class="sc">&lt;=</span> <span class="dv">12</span>, ch06a, <span class="cn">NA_real_</span>)</span>
+<span id="cb70-9"><a href="simple-linear-regression.html#cb70-9" tabindex="-1"></a>  )</span>
+<span id="cb70-10"><a href="simple-linear-regression.html#cb70-10" tabindex="-1"></a></span>
+<span id="cb70-11"><a href="simple-linear-regression.html#cb70-11" tabindex="-1"></a><span class="co"># literacy items (update these names if your dataset differs)</span></span>
+<span id="cb70-12"><a href="simple-linear-regression.html#cb70-12" tabindex="-1"></a>literacy_items <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb70-13"><a href="simple-linear-regression.html#cb70-13" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l1.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>),</span>
+<span id="cb70-14"><a href="simple-linear-regression.html#cb70-14" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l2.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb70-15"><a href="simple-linear-regression.html#cb70-15" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l3.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb70-16"><a href="simple-linear-regression.html#cb70-16" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l4.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),</span>
+<span id="cb70-17"><a href="simple-linear-regression.html#cb70-17" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l5.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>),</span>
+<span id="cb70-18"><a href="simple-linear-regression.html#cb70-18" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;l6.&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb70-19"><a href="simple-linear-regression.html#cb70-19" tabindex="-1"></a>)</span>
+<span id="cb70-20"><a href="simple-linear-regression.html#cb70-20" tabindex="-1"></a></span>
+<span id="cb70-21"><a href="simple-linear-regression.html#cb70-21" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb70-22"><a href="simple-linear-regression.html#cb70-22" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb70-23"><a href="simple-linear-regression.html#cb70-23" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb70-24"><a href="simple-linear-regression.html#cb70-24" tabindex="-1"></a>      <span class="fu">all_of</span>(literacy_items),</span>
+<span id="cb70-25"><a href="simple-linear-regression.html#cb70-25" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">case_when</span>(</span>
+<span id="cb70-26"><a href="simple-linear-regression.html#cb70-26" tabindex="-1"></a>        .x <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb70-27"><a href="simple-linear-regression.html#cb70-27" tabindex="-1"></a>        .x <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb70-28"><a href="simple-linear-regression.html#cb70-28" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">NA_real_</span></span>
+<span id="cb70-29"><a href="simple-linear-regression.html#cb70-29" tabindex="-1"></a>      )</span>
+<span id="cb70-30"><a href="simple-linear-regression.html#cb70-30" tabindex="-1"></a>    ),</span>
+<span id="cb70-31"><a href="simple-linear-regression.html#cb70-31" tabindex="-1"></a>    <span class="at">literacy_score =</span> <span class="fu">rowSums</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(literacy_items)), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb70-32"><a href="simple-linear-regression.html#cb70-32" tabindex="-1"></a>  )</span></code></pre></div>
 <p>For the examples below, we work with one country to keep output readable. Replace the value of <code>country_name</code> to analyse a different country.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="simple-linear-regression.html#cb74-1" tabindex="-1"></a>country_name <span class="ot">=</span> <span class="st">&quot;Senegal&quot;</span></span>
-<span id="cb74-2"><a href="simple-linear-regression.html#cb74-2" tabindex="-1"></a></span>
-<span id="cb74-3"><a href="simple-linear-regression.html#cb74-3" tabindex="-1"></a>d <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
-<span id="cb74-4"><a href="simple-linear-regression.html#cb74-4" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb74-5"><a href="simple-linear-regression.html#cb74-5" tabindex="-1"></a>    CountryName <span class="sc">==</span> country_name,</span>
-<span id="cb74-6"><a href="simple-linear-regression.html#cb74-6" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(grade),</span>
-<span id="cb74-7"><a href="simple-linear-regression.html#cb74-7" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(literacy_score)</span>
-<span id="cb74-8"><a href="simple-linear-regression.html#cb74-8" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="simple-linear-regression.html#cb71-1" tabindex="-1"></a>country_name <span class="ot">=</span> <span class="st">&quot;Senegal&quot;</span></span>
+<span id="cb71-2"><a href="simple-linear-regression.html#cb71-2" tabindex="-1"></a></span>
+<span id="cb71-3"><a href="simple-linear-regression.html#cb71-3" tabindex="-1"></a>d <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb71-4"><a href="simple-linear-regression.html#cb71-4" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb71-5"><a href="simple-linear-regression.html#cb71-5" tabindex="-1"></a>    CountryName <span class="sc">==</span> country_name,</span>
+<span id="cb71-6"><a href="simple-linear-regression.html#cb71-6" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(grade),</span>
+<span id="cb71-7"><a href="simple-linear-regression.html#cb71-7" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(literacy_score)</span>
+<span id="cb71-8"><a href="simple-linear-regression.html#cb71-8" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <div id="correlation-and-simple-regression" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Correlation and simple regression<a href="simple-linear-regression.html#correlation-and-simple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Correlation provides a first summary of a linear relationship between two numeric variables. A correlation near <code>0</code> indicates a weak linear association, while values close to <code>1</code> or <code>-1</code> indicate a strong positive or negative linear association. Because correlation targets linear patterns, treat it as a starting point rather than a complete description.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="simple-linear-regression.html#cb75-1" tabindex="-1"></a>cor_unweighted <span class="ot">=</span> <span class="fu">cor</span>(d<span class="sc">$</span>grade, d<span class="sc">$</span>literacy_score, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb75-2"><a href="simple-linear-regression.html#cb75-2" tabindex="-1"></a>cor_unweighted</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="simple-linear-regression.html#cb72-1" tabindex="-1"></a>cor_unweighted <span class="ot">=</span> <span class="fu">cor</span>(d<span class="sc">$</span>grade, d<span class="sc">$</span>literacy_score, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb72-2"><a href="simple-linear-regression.html#cb72-2" tabindex="-1"></a>cor_unweighted</span></code></pre></div>
 <pre><code>## [1] 0.7361826</code></pre>
 <p><strong>A quick check.</strong> A scatterplot helps you assess whether a linear relationship is plausible and whether a small number of extreme values dominate the pattern.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="simple-linear-regression.html#cb77-1" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> literacy_score)) <span class="sc">+</span></span>
-<span id="cb77-2"><a href="simple-linear-regression.html#cb77-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
-<span id="cb77-3"><a href="simple-linear-regression.html#cb77-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb77-4"><a href="simple-linear-regression.html#cb77-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb77-5"><a href="simple-linear-regression.html#cb77-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Grade&quot;</span>,</span>
-<span id="cb77-6"><a href="simple-linear-regression.html#cb77-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Literacy score&quot;</span>,</span>
-<span id="cb77-7"><a href="simple-linear-regression.html#cb77-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Literacy score and grade in&quot;</span>, country_name)</span>
-<span id="cb77-8"><a href="simple-linear-regression.html#cb77-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb77-9"><a href="simple-linear-regression.html#cb77-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="simple-linear-regression.html#cb74-1" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(<span class="at">x =</span> grade, <span class="at">y =</span> literacy_score)) <span class="sc">+</span></span>
+<span id="cb74-2"><a href="simple-linear-regression.html#cb74-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.35</span>) <span class="sc">+</span></span>
+<span id="cb74-3"><a href="simple-linear-regression.html#cb74-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb74-4"><a href="simple-linear-regression.html#cb74-4" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb74-5"><a href="simple-linear-regression.html#cb74-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Grade&quot;</span>,</span>
+<span id="cb74-6"><a href="simple-linear-regression.html#cb74-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Literacy score&quot;</span>,</span>
+<span id="cb74-7"><a href="simple-linear-regression.html#cb74-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Literacy score and grade in&quot;</span>, country_name)</span>
+<span id="cb74-8"><a href="simple-linear-regression.html#cb74-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb74-9"><a href="simple-linear-regression.html#cb74-9" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="figs/scatterplot-1.png" width="672" /></p>
 <p>A simple linear regression model has the form</p>
 <p><span class="math display">\[
@@ -323,9 +320,9 @@ Y_i = \alpha + \beta X_i + \varepsilon_i,
 \text{literacy\_score}_i = \alpha + \beta \cdot \text{grade}_i + \varepsilon_i.
 \]</span></p>
 <p>The unweighted model describes the relationship in the sample.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="simple-linear-regression.html#cb78-1" tabindex="-1"></a>m_lm <span class="ot">=</span> <span class="fu">lm</span>(literacy_score <span class="sc">~</span> grade, <span class="at">data =</span> d)</span>
-<span id="cb78-2"><a href="simple-linear-regression.html#cb78-2" tabindex="-1"></a></span>
-<span id="cb78-3"><a href="simple-linear-regression.html#cb78-3" tabindex="-1"></a><span class="fu">tidy</span>(m_lm, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="simple-linear-regression.html#cb75-1" tabindex="-1"></a>m_lm <span class="ot">=</span> <span class="fu">lm</span>(literacy_score <span class="sc">~</span> grade, <span class="at">data =</span> d)</span>
+<span id="cb75-2"><a href="simple-linear-regression.html#cb75-2" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="simple-linear-regression.html#cb75-3" tabindex="-1"></a><span class="fu">tidy</span>(m_lm, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 2 × 7
 ##   term        estimate std.error statistic  p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -335,28 +332,28 @@ Y_i = \alpha + \beta X_i + \varepsilon_i,
 <div id="survey-weighted-regression-for-population-inference" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Survey-weighted regression for population inference<a href="simple-linear-regression.html#survey-weighted-regression-for-population-inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To make population statements, fit the regression with the survey design. This approach accounts for weights, clustering, and stratification when it computes standard errors.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="simple-linear-regression.html#cb80-1" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb80-2"><a href="simple-linear-regression.html#cb80-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
-<span id="cb80-3"><a href="simple-linear-regression.html#cb80-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
-<span id="cb80-4"><a href="simple-linear-regression.html#cb80-4" tabindex="-1"></a>)</span>
-<span id="cb80-5"><a href="simple-linear-regression.html#cb80-5" tabindex="-1"></a></span>
-<span id="cb80-6"><a href="simple-linear-regression.html#cb80-6" tabindex="-1"></a>des <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
-<span id="cb80-7"><a href="simple-linear-regression.html#cb80-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
-<span id="cb80-8"><a href="simple-linear-regression.html#cb80-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
-<span id="cb80-9"><a href="simple-linear-regression.html#cb80-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
-<span id="cb80-10"><a href="simple-linear-regression.html#cb80-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
-<span id="cb80-11"><a href="simple-linear-regression.html#cb80-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
-<span id="cb80-12"><a href="simple-linear-regression.html#cb80-12" tabindex="-1"></a>)</span>
-<span id="cb80-13"><a href="simple-linear-regression.html#cb80-13" tabindex="-1"></a></span>
-<span id="cb80-14"><a href="simple-linear-regression.html#cb80-14" tabindex="-1"></a>des_country <span class="ot">=</span> <span class="fu">subset</span>(des, CountryName <span class="sc">==</span> country_name <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(grade) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(literacy_score))</span></code></pre></div>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="simple-linear-regression.html#cb81-1" tabindex="-1"></a>V <span class="ot">=</span> <span class="fu">svyvar</span>(<span class="sc">~</span>grade <span class="sc">+</span> literacy_score, <span class="at">design =</span> des_country, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb81-2"><a href="simple-linear-regression.html#cb81-2" tabindex="-1"></a></span>
-<span id="cb81-3"><a href="simple-linear-regression.html#cb81-3" tabindex="-1"></a>cor_weighted <span class="ot">=</span> V[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">/</span> <span class="fu">sqrt</span>(V[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">*</span> V[<span class="dv">2</span>, <span class="dv">2</span>])</span>
-<span id="cb81-4"><a href="simple-linear-regression.html#cb81-4" tabindex="-1"></a>cor_weighted</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="simple-linear-regression.html#cb77-1" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb77-2"><a href="simple-linear-regression.html#cb77-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb77-3"><a href="simple-linear-regression.html#cb77-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb77-4"><a href="simple-linear-regression.html#cb77-4" tabindex="-1"></a>)</span>
+<span id="cb77-5"><a href="simple-linear-regression.html#cb77-5" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="simple-linear-regression.html#cb77-6" tabindex="-1"></a>des <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb77-7"><a href="simple-linear-regression.html#cb77-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb77-8"><a href="simple-linear-regression.html#cb77-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb77-9"><a href="simple-linear-regression.html#cb77-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb77-10"><a href="simple-linear-regression.html#cb77-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
+<span id="cb77-11"><a href="simple-linear-regression.html#cb77-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb77-12"><a href="simple-linear-regression.html#cb77-12" tabindex="-1"></a>)</span>
+<span id="cb77-13"><a href="simple-linear-regression.html#cb77-13" tabindex="-1"></a></span>
+<span id="cb77-14"><a href="simple-linear-regression.html#cb77-14" tabindex="-1"></a>des_country <span class="ot">=</span> <span class="fu">subset</span>(des, CountryName <span class="sc">==</span> country_name <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(grade) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(literacy_score))</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="simple-linear-regression.html#cb78-1" tabindex="-1"></a>V <span class="ot">=</span> <span class="fu">svyvar</span>(<span class="sc">~</span>grade <span class="sc">+</span> literacy_score, <span class="at">design =</span> des_country, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb78-2"><a href="simple-linear-regression.html#cb78-2" tabindex="-1"></a></span>
+<span id="cb78-3"><a href="simple-linear-regression.html#cb78-3" tabindex="-1"></a>cor_weighted <span class="ot">=</span> V[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">/</span> <span class="fu">sqrt</span>(V[<span class="dv">1</span>, <span class="dv">1</span>] <span class="sc">*</span> V[<span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb78-4"><a href="simple-linear-regression.html#cb78-4" tabindex="-1"></a>cor_weighted</span></code></pre></div>
 <pre><code>## [1] 0.7384252</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="simple-linear-regression.html#cb83-1" tabindex="-1"></a>m_svy <span class="ot">=</span> <span class="fu">svyglm</span>(literacy_score <span class="sc">~</span> grade, <span class="at">design =</span> des_country)</span>
-<span id="cb83-2"><a href="simple-linear-regression.html#cb83-2" tabindex="-1"></a></span>
-<span id="cb83-3"><a href="simple-linear-regression.html#cb83-3" tabindex="-1"></a><span class="fu">tidy</span>(m_svy, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="simple-linear-regression.html#cb80-1" tabindex="-1"></a>m_svy <span class="ot">=</span> <span class="fu">svyglm</span>(literacy_score <span class="sc">~</span> grade, <span class="at">design =</span> des_country)</span>
+<span id="cb80-2"><a href="simple-linear-regression.html#cb80-2" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="simple-linear-regression.html#cb80-3" tabindex="-1"></a><span class="fu">tidy</span>(m_svy, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
 <pre><code>## # A tibble: 2 × 7
 ##   term        estimate std.error statistic   p.value conf.low conf.high
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
@@ -364,10 +361,10 @@ Y_i = \alpha + \beta X_i + \varepsilon_i,
 ## 2 grade           3.04    0.0407     74.6  1.59e-140     2.96      3.12</code></pre>
 <p>Interpret the slope as the expected change in the literacy score associated with a one-grade increase, holding the model form fixed. Use the survey-based standard errors and confidence intervals for inference.</p>
 <p><strong>Predicted values.</strong> Predictions translate the fitted line into an expected score at a specific grade. The example below reports the predicted literacy score for grade 3, with a standard error from the survey model.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="simple-linear-regression.html#cb85-1" tabindex="-1"></a>new <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">grade =</span> <span class="dv">3</span>)</span>
-<span id="cb85-2"><a href="simple-linear-regression.html#cb85-2" tabindex="-1"></a></span>
-<span id="cb85-3"><a href="simple-linear-regression.html#cb85-3" tabindex="-1"></a>pred <span class="ot">=</span> <span class="fu">predict</span>(m_svy, <span class="at">newdata =</span> new, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb85-4"><a href="simple-linear-regression.html#cb85-4" tabindex="-1"></a>pred</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="simple-linear-regression.html#cb82-1" tabindex="-1"></a>new <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">grade =</span> <span class="dv">3</span>)</span>
+<span id="cb82-2"><a href="simple-linear-regression.html#cb82-2" tabindex="-1"></a></span>
+<span id="cb82-3"><a href="simple-linear-regression.html#cb82-3" tabindex="-1"></a>pred <span class="ot">=</span> <span class="fu">predict</span>(m_svy, <span class="at">newdata =</span> new, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb82-4"><a href="simple-linear-regression.html#cb82-4" tabindex="-1"></a>pred</span></code></pre></div>
 <pre><code>##     link     SE
 ## 1 11.177 0.2104</code></pre>
 </div>

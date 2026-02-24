@@ -153,21 +153,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
-<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#variable-types-and-levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Variable types and levels of measurement</a></li>
-<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-continuous-variables"><i class="fa fa-check"></i><b>3.3</b> Distributions of continuous variables</a>
+<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Levels of measurement</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>3.3</b> Continuous level</a></li>
+<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>3.4</b> Ordinal level</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>3.5</b> Categorical level</a></li>
+<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.6</b> Weighted summaries using the survey design</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#numeric-summaries"><i class="fa fa-check"></i><b>3.3.1</b> Numeric summaries</a></li>
-<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#plots"><i class="fa fa-check"></i><b>3.3.2</b> Plots</a></li>
+<li class="chapter" data-level="3.6.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.6.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="3.6.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.6.2</b> Weighted frequency tables</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#distributions-of-categorical-variables"><i class="fa fa-check"></i><b>3.4</b> Distributions of categorical variables</a></li>
-<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.5</b> Weighted summaries using the survey design</a>
-<ul>
-<li class="chapter" data-level="3.5.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.5.1</b> Weighted proportions and means</a></li>
-<li class="chapter" data-level="3.5.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.5.2</b> Weighted frequency tables</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.6</b> Household-level variables in a child-level file</a></li>
-<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.7</b> Missing data and skip patterns</a></li>
-<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.8</b> Exercises</a></li>
+<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.7</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.8</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="3.9" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
 <ul>
@@ -264,18 +261,18 @@ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_k X_k + \varepsilon.
 <div id="data-and-analysis-sample" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Data and analysis sample<a href="multiple-linear-regression.html#data-and-analysis-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To keep the example concrete, we estimate models within one country and within an age-restricted analysis sample. Choose any country that has a sufficient sample size.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="multiple-linear-regression.html#cb87-1" tabindex="-1"></a>country_name <span class="ot">&lt;-</span> <span class="st">&quot;Senegal&quot;</span></span>
-<span id="cb87-2"><a href="multiple-linear-regression.html#cb87-2" tabindex="-1"></a></span>
-<span id="cb87-3"><a href="multiple-linear-regression.html#cb87-3" tabindex="-1"></a>des_country <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb87-4"><a href="multiple-linear-regression.html#cb87-4" tabindex="-1"></a>  des,</span>
-<span id="cb87-5"><a href="multiple-linear-regression.html#cb87-5" tabindex="-1"></a>  sample1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span></span>
-<span id="cb87-6"><a href="multiple-linear-regression.html#cb87-6" tabindex="-1"></a>    CountryName <span class="sc">==</span> country_name <span class="sc">&amp;</span></span>
-<span id="cb87-7"><a href="multiple-linear-regression.html#cb87-7" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(numeracy_score) <span class="sc">&amp;</span></span>
-<span id="cb87-8"><a href="multiple-linear-regression.html#cb87-8" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(age) <span class="sc">&amp;</span></span>
-<span id="cb87-9"><a href="multiple-linear-regression.html#cb87-9" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(grade) <span class="sc">&amp;</span></span>
-<span id="cb87-10"><a href="multiple-linear-regression.html#cb87-10" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(gender) <span class="sc">&amp;</span></span>
-<span id="cb87-11"><a href="multiple-linear-regression.html#cb87-11" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(location)</span>
-<span id="cb87-12"><a href="multiple-linear-regression.html#cb87-12" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="multiple-linear-regression.html#cb84-1" tabindex="-1"></a>country_name <span class="ot">&lt;-</span> <span class="st">&quot;Senegal&quot;</span></span>
+<span id="cb84-2"><a href="multiple-linear-regression.html#cb84-2" tabindex="-1"></a></span>
+<span id="cb84-3"><a href="multiple-linear-regression.html#cb84-3" tabindex="-1"></a>des_country <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb84-4"><a href="multiple-linear-regression.html#cb84-4" tabindex="-1"></a>  des,</span>
+<span id="cb84-5"><a href="multiple-linear-regression.html#cb84-5" tabindex="-1"></a>  sample1 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span></span>
+<span id="cb84-6"><a href="multiple-linear-regression.html#cb84-6" tabindex="-1"></a>    CountryName <span class="sc">==</span> country_name <span class="sc">&amp;</span></span>
+<span id="cb84-7"><a href="multiple-linear-regression.html#cb84-7" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(numeracy_score) <span class="sc">&amp;</span></span>
+<span id="cb84-8"><a href="multiple-linear-regression.html#cb84-8" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(age) <span class="sc">&amp;</span></span>
+<span id="cb84-9"><a href="multiple-linear-regression.html#cb84-9" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(grade) <span class="sc">&amp;</span></span>
+<span id="cb84-10"><a href="multiple-linear-regression.html#cb84-10" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(gender) <span class="sc">&amp;</span></span>
+<span id="cb84-11"><a href="multiple-linear-regression.html#cb84-11" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">is.na</span>(location)</span>
+<span id="cb84-12"><a href="multiple-linear-regression.html#cb84-12" tabindex="-1"></a>)</span></code></pre></div>
 <p>If your data do not contain <code>numeracy_score</code>, switch the outcome to another continuous variable (for example, <code>ican_time</code>). The modelling steps stay the same.</p>
 </div>
 <div id="building-a-multiple-regression-model" class="section level2 hasAnchor" number="7.3">
@@ -284,11 +281,11 @@ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_k X_k + \varepsilon.
 <p><strong>Model 1 (bivariate).</strong> Regress numeracy score on grade.</p>
 <p><strong>Model 2 (add a control).</strong> Add age. The grade coefficient now reflects the association between grade and numeracy score among learners of the same age.</p>
 <p><strong>Model 3 (add background variables).</strong> Add gender and location. These covariates often correlate with both grade and learning outcomes, so the model conditions on them.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="multiple-linear-regression.html#cb88-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade, <span class="at">design =</span> des_country)</span>
-<span id="cb88-2"><a href="multiple-linear-regression.html#cb88-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> age, <span class="at">design =</span> des_country)</span>
-<span id="cb88-3"><a href="multiple-linear-regression.html#cb88-3" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> location, <span class="at">design =</span> des_country)</span>
-<span id="cb88-4"><a href="multiple-linear-regression.html#cb88-4" tabindex="-1"></a></span>
-<span id="cb88-5"><a href="multiple-linear-regression.html#cb88-5" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="multiple-linear-regression.html#cb85-1" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade, <span class="at">design =</span> des_country)</span>
+<span id="cb85-2"><a href="multiple-linear-regression.html#cb85-2" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> age, <span class="at">design =</span> des_country)</span>
+<span id="cb85-3"><a href="multiple-linear-regression.html#cb85-3" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> location, <span class="at">design =</span> des_country)</span>
+<span id="cb85-4"><a href="multiple-linear-regression.html#cb85-4" tabindex="-1"></a></span>
+<span id="cb85-5"><a href="multiple-linear-regression.html#cb85-5" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## svyglm(formula = numeracy_score ~ grade + age + gender + location, 
@@ -314,20 +311,20 @@ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_k X_k + \varepsilon.
 <div id="comparing-coefficients-across-models" class="section level3 hasAnchor" number="7.3.1">
 <h3><span class="header-section-number">7.3.1</span> Comparing coefficients across models<a href="multiple-linear-regression.html#comparing-coefficients-across-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A short table helps you compare how the coefficient on <code>grade</code> changes as you add controls.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="multiple-linear-regression.html#cb90-1" tabindex="-1"></a>grade_compare <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb90-2"><a href="multiple-linear-regression.html#cb90-2" tabindex="-1"></a>  <span class="fu">tidy</span>(m1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb90-3"><a href="multiple-linear-regression.html#cb90-3" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;grade&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb90-4"><a href="multiple-linear-regression.html#cb90-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;M1: grade&quot;</span>),</span>
-<span id="cb90-5"><a href="multiple-linear-regression.html#cb90-5" tabindex="-1"></a>  <span class="fu">tidy</span>(m2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb90-6"><a href="multiple-linear-regression.html#cb90-6" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;grade&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb90-7"><a href="multiple-linear-regression.html#cb90-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;M2: grade + age&quot;</span>),</span>
-<span id="cb90-8"><a href="multiple-linear-regression.html#cb90-8" tabindex="-1"></a>  <span class="fu">tidy</span>(m3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb90-9"><a href="multiple-linear-regression.html#cb90-9" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;grade&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb90-10"><a href="multiple-linear-regression.html#cb90-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;M3: + gender + location&quot;</span>)</span>
-<span id="cb90-11"><a href="multiple-linear-regression.html#cb90-11" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb90-12"><a href="multiple-linear-regression.html#cb90-12" tabindex="-1"></a>  <span class="fu">select</span>(model, estimate, conf.low, conf.high, p.value)</span>
-<span id="cb90-13"><a href="multiple-linear-regression.html#cb90-13" tabindex="-1"></a></span>
-<span id="cb90-14"><a href="multiple-linear-regression.html#cb90-14" tabindex="-1"></a>grade_compare</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="multiple-linear-regression.html#cb87-1" tabindex="-1"></a>grade_compare <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb87-2"><a href="multiple-linear-regression.html#cb87-2" tabindex="-1"></a>  <span class="fu">tidy</span>(m1, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb87-3"><a href="multiple-linear-regression.html#cb87-3" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;grade&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb87-4"><a href="multiple-linear-regression.html#cb87-4" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;M1: grade&quot;</span>),</span>
+<span id="cb87-5"><a href="multiple-linear-regression.html#cb87-5" tabindex="-1"></a>  <span class="fu">tidy</span>(m2, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb87-6"><a href="multiple-linear-regression.html#cb87-6" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;grade&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb87-7"><a href="multiple-linear-regression.html#cb87-7" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;M2: grade + age&quot;</span>),</span>
+<span id="cb87-8"><a href="multiple-linear-regression.html#cb87-8" tabindex="-1"></a>  <span class="fu">tidy</span>(m3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb87-9"><a href="multiple-linear-regression.html#cb87-9" tabindex="-1"></a>    <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&quot;grade&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb87-10"><a href="multiple-linear-regression.html#cb87-10" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">model =</span> <span class="st">&quot;M3: + gender + location&quot;</span>)</span>
+<span id="cb87-11"><a href="multiple-linear-regression.html#cb87-11" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb87-12"><a href="multiple-linear-regression.html#cb87-12" tabindex="-1"></a>  <span class="fu">select</span>(model, estimate, conf.low, conf.high, p.value)</span>
+<span id="cb87-13"><a href="multiple-linear-regression.html#cb87-13" tabindex="-1"></a></span>
+<span id="cb87-14"><a href="multiple-linear-regression.html#cb87-14" tabindex="-1"></a>grade_compare</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   model                   estimate conf.low conf.high  p.value
 ##   &lt;chr&gt;                      &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -344,55 +341,55 @@ Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_k X_k + \varepsilon.
 <li>the <code>locationUrban</code> coefficient compares urban with rural, holding other predictors constant.</li>
 </ul>
 <p>If you want a different reference category, set it explicitly:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="multiple-linear-regression.html#cb92-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span></span>
-<span id="cb92-2"><a href="multiple-linear-regression.html#cb92-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb92-3"><a href="multiple-linear-regression.html#cb92-3" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">relevel</span>(gender, <span class="at">ref =</span> <span class="st">&quot;Female&quot;</span>),</span>
-<span id="cb92-4"><a href="multiple-linear-regression.html#cb92-4" tabindex="-1"></a>    <span class="at">location =</span> <span class="fu">relevel</span>(location, <span class="at">ref =</span> <span class="st">&quot;Rural&quot;</span>)</span>
-<span id="cb92-5"><a href="multiple-linear-regression.html#cb92-5" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="multiple-linear-regression.html#cb89-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb89-2"><a href="multiple-linear-regression.html#cb89-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb89-3"><a href="multiple-linear-regression.html#cb89-3" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">relevel</span>(gender, <span class="at">ref =</span> <span class="st">&quot;Female&quot;</span>),</span>
+<span id="cb89-4"><a href="multiple-linear-regression.html#cb89-4" tabindex="-1"></a>    <span class="at">location =</span> <span class="fu">relevel</span>(location, <span class="at">ref =</span> <span class="st">&quot;Rural&quot;</span>)</span>
+<span id="cb89-5"><a href="multiple-linear-regression.html#cb89-5" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 </div>
 <div id="extensions-interactions-and-non-linear-effects" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Extensions: interactions and non-linear effects<a href="multiple-linear-regression.html#extensions-interactions-and-non-linear-effects" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use extensions only when they answer a substantive question and you can justify them.</p>
 <p><strong>Interactions.</strong> An interaction allows the association between one predictor and the outcome to differ across groups. For example, the gender gap may differ between rural and urban areas:</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="multiple-linear-regression.html#cb93-1" tabindex="-1"></a>m_int <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(</span>
-<span id="cb93-2"><a href="multiple-linear-regression.html#cb93-2" tabindex="-1"></a>  numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">*</span> location,</span>
-<span id="cb93-3"><a href="multiple-linear-regression.html#cb93-3" tabindex="-1"></a>  <span class="at">design =</span> des_country</span>
-<span id="cb93-4"><a href="multiple-linear-regression.html#cb93-4" tabindex="-1"></a>)</span>
-<span id="cb93-5"><a href="multiple-linear-regression.html#cb93-5" tabindex="-1"></a><span class="fu">tidy</span>(m_int, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="multiple-linear-regression.html#cb90-1" tabindex="-1"></a>m_int <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(</span>
+<span id="cb90-2"><a href="multiple-linear-regression.html#cb90-2" tabindex="-1"></a>  numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">*</span> location,</span>
+<span id="cb90-3"><a href="multiple-linear-regression.html#cb90-3" tabindex="-1"></a>  <span class="at">design =</span> des_country</span>
+<span id="cb90-4"><a href="multiple-linear-regression.html#cb90-4" tabindex="-1"></a>)</span>
+<span id="cb90-5"><a href="multiple-linear-regression.html#cb90-5" tabindex="-1"></a><span class="fu">tidy</span>(m_int, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><strong>Transformations.</strong> When the outcome is positive and right-skewed (such as assessment time), a log transformation often improves interpretability and fit. In a log outcome model, a coefficient approximates a percentage change:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="multiple-linear-regression.html#cb94-1" tabindex="-1"></a>des_log <span class="ot">&lt;-</span> <span class="fu">update</span>(des_country, <span class="at">ln_ican_time =</span> <span class="fu">log</span>(ican_time))</span>
-<span id="cb94-2"><a href="multiple-linear-regression.html#cb94-2" tabindex="-1"></a>m_log <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(ln_ican_time <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> location, <span class="at">design =</span> des_log)</span>
-<span id="cb94-3"><a href="multiple-linear-regression.html#cb94-3" tabindex="-1"></a></span>
-<span id="cb94-4"><a href="multiple-linear-regression.html#cb94-4" tabindex="-1"></a><span class="co"># Approximate percent change for a one-unit increase in age:</span></span>
-<span id="cb94-5"><a href="multiple-linear-regression.html#cb94-5" tabindex="-1"></a><span class="dv">100</span> <span class="sc">*</span> <span class="fu">coef</span>(m_log)[[<span class="st">&quot;age&quot;</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="multiple-linear-regression.html#cb91-1" tabindex="-1"></a>des_log <span class="ot">&lt;-</span> <span class="fu">update</span>(des_country, <span class="at">ln_ican_time =</span> <span class="fu">log</span>(ican_time))</span>
+<span id="cb91-2"><a href="multiple-linear-regression.html#cb91-2" tabindex="-1"></a>m_log <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(ln_ican_time <span class="sc">~</span> age <span class="sc">+</span> gender <span class="sc">+</span> location, <span class="at">design =</span> des_log)</span>
+<span id="cb91-3"><a href="multiple-linear-regression.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="multiple-linear-regression.html#cb91-4" tabindex="-1"></a><span class="co"># Approximate percent change for a one-unit increase in age:</span></span>
+<span id="cb91-5"><a href="multiple-linear-regression.html#cb91-5" tabindex="-1"></a><span class="dv">100</span> <span class="sc">*</span> <span class="fu">coef</span>(m_log)[[<span class="st">&quot;age&quot;</span>]]</span></code></pre></div>
 <p><strong>Quadratic terms.</strong> A squared term captures curvature (for example, diminishing returns to grade):</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="multiple-linear-regression.html#cb95-1" tabindex="-1"></a>des_quad <span class="ot">&lt;-</span> <span class="fu">update</span>(des_country, <span class="at">grade_sq =</span> grade<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb95-2"><a href="multiple-linear-regression.html#cb95-2" tabindex="-1"></a>m_quad <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> grade_sq <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> location, <span class="at">design =</span> des_quad)</span>
-<span id="cb95-3"><a href="multiple-linear-regression.html#cb95-3" tabindex="-1"></a></span>
-<span id="cb95-4"><a href="multiple-linear-regression.html#cb95-4" tabindex="-1"></a><span class="co"># Turning point (only meaningful if the quadratic term is substantively justified)</span></span>
-<span id="cb95-5"><a href="multiple-linear-regression.html#cb95-5" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_quad)[[<span class="st">&quot;grade&quot;</span>]]</span>
-<span id="cb95-6"><a href="multiple-linear-regression.html#cb95-6" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_quad)[[<span class="st">&quot;grade_sq&quot;</span>]]</span>
-<span id="cb95-7"><a href="multiple-linear-regression.html#cb95-7" tabindex="-1"></a>turning_point <span class="ot">&lt;-</span> <span class="sc">-</span>b <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> a)</span>
-<span id="cb95-8"><a href="multiple-linear-regression.html#cb95-8" tabindex="-1"></a>turning_point</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="multiple-linear-regression.html#cb92-1" tabindex="-1"></a>des_quad <span class="ot">&lt;-</span> <span class="fu">update</span>(des_country, <span class="at">grade_sq =</span> grade<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb92-2"><a href="multiple-linear-regression.html#cb92-2" tabindex="-1"></a>m_quad <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(numeracy_score <span class="sc">~</span> grade <span class="sc">+</span> grade_sq <span class="sc">+</span> age <span class="sc">+</span> gender <span class="sc">+</span> location, <span class="at">design =</span> des_quad)</span>
+<span id="cb92-3"><a href="multiple-linear-regression.html#cb92-3" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="multiple-linear-regression.html#cb92-4" tabindex="-1"></a><span class="co"># Turning point (only meaningful if the quadratic term is substantively justified)</span></span>
+<span id="cb92-5"><a href="multiple-linear-regression.html#cb92-5" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_quad)[[<span class="st">&quot;grade&quot;</span>]]</span>
+<span id="cb92-6"><a href="multiple-linear-regression.html#cb92-6" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">coef</span>(m_quad)[[<span class="st">&quot;grade_sq&quot;</span>]]</span>
+<span id="cb92-7"><a href="multiple-linear-regression.html#cb92-7" tabindex="-1"></a>turning_point <span class="ot">&lt;-</span> <span class="sc">-</span>b <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> a)</span>
+<span id="cb92-8"><a href="multiple-linear-regression.html#cb92-8" tabindex="-1"></a>turning_point</span></code></pre></div>
 </div>
 <div id="reporting-results" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Reporting results<a href="multiple-linear-regression.html#reporting-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Report results with coefficients, uncertainty, and clear reference categories. A compact regression table helps readers interpret the model.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="multiple-linear-regression.html#cb96-1" tabindex="-1"></a>report_tbl <span class="ot">&lt;-</span> <span class="fu">tidy</span>(m3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb96-2"><a href="multiple-linear-regression.html#cb96-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb96-3"><a href="multiple-linear-regression.html#cb96-3" tabindex="-1"></a>    <span class="at">term =</span> <span class="fu">recode</span>(</span>
-<span id="cb96-4"><a href="multiple-linear-regression.html#cb96-4" tabindex="-1"></a>      term,</span>
-<span id="cb96-5"><a href="multiple-linear-regression.html#cb96-5" tabindex="-1"></a>      <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Intercept&quot;</span>,</span>
-<span id="cb96-6"><a href="multiple-linear-regression.html#cb96-6" tabindex="-1"></a>      <span class="at">grade =</span> <span class="st">&quot;Grade (one level)&quot;</span>,</span>
-<span id="cb96-7"><a href="multiple-linear-regression.html#cb96-7" tabindex="-1"></a>      <span class="at">age =</span> <span class="st">&quot;Age (years)&quot;</span>,</span>
-<span id="cb96-8"><a href="multiple-linear-regression.html#cb96-8" tabindex="-1"></a>      <span class="at">genderMale =</span> <span class="st">&quot;Male (ref: Female)&quot;</span>,</span>
-<span id="cb96-9"><a href="multiple-linear-regression.html#cb96-9" tabindex="-1"></a>      <span class="at">locationUrban =</span> <span class="st">&quot;Urban (ref: Rural)&quot;</span></span>
-<span id="cb96-10"><a href="multiple-linear-regression.html#cb96-10" tabindex="-1"></a>    )</span>
-<span id="cb96-11"><a href="multiple-linear-regression.html#cb96-11" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb96-12"><a href="multiple-linear-regression.html#cb96-12" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, conf.low, conf.high, p.value)</span>
-<span id="cb96-13"><a href="multiple-linear-regression.html#cb96-13" tabindex="-1"></a></span>
-<span id="cb96-14"><a href="multiple-linear-regression.html#cb96-14" tabindex="-1"></a>report_tbl</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="multiple-linear-regression.html#cb93-1" tabindex="-1"></a>report_tbl <span class="ot">&lt;-</span> <span class="fu">tidy</span>(m3, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb93-2"><a href="multiple-linear-regression.html#cb93-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb93-3"><a href="multiple-linear-regression.html#cb93-3" tabindex="-1"></a>    <span class="at">term =</span> <span class="fu">recode</span>(</span>
+<span id="cb93-4"><a href="multiple-linear-regression.html#cb93-4" tabindex="-1"></a>      term,</span>
+<span id="cb93-5"><a href="multiple-linear-regression.html#cb93-5" tabindex="-1"></a>      <span class="st">`</span><span class="at">(Intercept)</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Intercept&quot;</span>,</span>
+<span id="cb93-6"><a href="multiple-linear-regression.html#cb93-6" tabindex="-1"></a>      <span class="at">grade =</span> <span class="st">&quot;Grade (one level)&quot;</span>,</span>
+<span id="cb93-7"><a href="multiple-linear-regression.html#cb93-7" tabindex="-1"></a>      <span class="at">age =</span> <span class="st">&quot;Age (years)&quot;</span>,</span>
+<span id="cb93-8"><a href="multiple-linear-regression.html#cb93-8" tabindex="-1"></a>      <span class="at">genderMale =</span> <span class="st">&quot;Male (ref: Female)&quot;</span>,</span>
+<span id="cb93-9"><a href="multiple-linear-regression.html#cb93-9" tabindex="-1"></a>      <span class="at">locationUrban =</span> <span class="st">&quot;Urban (ref: Rural)&quot;</span></span>
+<span id="cb93-10"><a href="multiple-linear-regression.html#cb93-10" tabindex="-1"></a>    )</span>
+<span id="cb93-11"><a href="multiple-linear-regression.html#cb93-11" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb93-12"><a href="multiple-linear-regression.html#cb93-12" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate, conf.low, conf.high, p.value)</span>
+<span id="cb93-13"><a href="multiple-linear-regression.html#cb93-13" tabindex="-1"></a></span>
+<span id="cb93-14"><a href="multiple-linear-regression.html#cb93-14" tabindex="-1"></a>report_tbl</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##   term               estimate conf.low conf.high  p.value
 ##   &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
