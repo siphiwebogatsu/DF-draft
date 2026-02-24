@@ -14,15 +14,11 @@ library(knitr)
 
 # load the data
 dat = read_csv("data/2025_PAL_ICAN-ICAR_data.csv")
-
-# keep observations with a valid household weight
-dat = dat |>
-  filter(!is.na(HH_Weight_Provided))
 ```
 
 ## Getting oriented to the data
 
-Start by checking the size of the dataset and inspecting the variables.
+Firstly, check the number of rows and columns to get a sense of how big the data.
 
 ```{r}
 #| label: quick-checks
@@ -30,62 +26,62 @@ Start by checking the size of the dataset and inspecting the variables.
 #| message: false
 
 dim(dat)       # rows and columns
-names(dat)[1:25]  # first 25 variable names
 ```
 
-A useful next step is to focus on a small set of variables. In this course we frequently use child age (`ch02`), child sex (`ch03`), enrolment status (`enr_status`), and assessment timing variables.
+This is quite big. A good idea from here is to subset to the variables that we want to explore. The `dplyr` package has a `select` function that allows one to select and rearrange variables. For this session, we focus only on the child's age, parent's age, gender, enrollment status, and whether or not the child has met the minimum proficiency level for both numeracy and literacy.
 
 ```{r}
 #| label: select-key-variables
 #| warning: false
 #| message: false
 
-dat |>
+dat = dat |>
   select(CountryName, Location, HHID, ChildID,
-         ch02, ch03, ch06a, enr_status,
-         icar_assess_time, ican_assess_time) |>
-  head(10)
+         ch02, ch03, ch06a, ch06b, enr_status, pt02b,
+         pt01b, ch04a, MPL_both) 
+
 ```
 
-## Variable types and levels of measurement
+One can use the `skim()` function from `skimr` package to attain a broad view of the data and get useful summary statistics on each variable. It is useful because it handles data of all types and it is an alternative to `summary()`.
 
-The summary tools you use depend on the type of variable.
+```{r}
+library(skimr)
 
-**Continuous (or continuous-like) variables** represent quantities. Examples include child age (`ch02`), household size (`hh06a`), and assessment time (`icar_assess_time`). Even when a variable records whole numbers (such as household size), it often behaves like a continuous measure because averages and differences remain interpretable.
+dat |> 
+  skim()
 
-**Categorical variables** group observations into distinct categories. Examples include `CountryName`, `Location`, and child sex (`ch03`). For categorical variables, counts and proportions are more informative than averages.
+```
 
-The ICAN-ICAR data are stored at the child level: each row is a child. Some variables therefore repeat across children in the same household (for example, household size). When you analyse household-level variables, you must avoid counting the same household multiple times.
+*complete_rate* tells us the proportion of rows that are not missing for that particular variable. For instance, `pt02b` has only $55,4\%$ of rows that have entries. In other words, this is equivalent to $39813$ missings (see also, *n_missing)* out of the $89141$ rows. It is important to see that if one does not specify correctly the variable type, then `skim()` will not pick that up. The child's gender, `ch03`, is being recognized as a continuous variable instead of a categorical variable. Therefore, one should make sure that the variables are in their correct type to ensure correct variable summaries .
 
-## Distributions of continuous variables
+## Levels of measurement
 
-A distribution summary typically combines (i) a numeric description and (ii) a plot.
+Any variable is composed of two or more categories or attributes. Thus the child's gender is a variable with the categories male and female, country of birth is a variable with the categories being particular countries. The level of measurement of variables refers to how the categories of the variable relate to one another. There are three main levels of measurement: continuous, ordinal and categorical. Three characteristics of the categories of a variable determine its level of measurement:
 
-### Numeric summaries
+1.  whether there are different categories;
+2.  whether the categories can be rank ordered;
+3.  whether the differences or intervals between each category can be specified in a meaningful numerical sense.
 
-Use `summary()` for a quick overview, then compute statistics that match your question.
+## Continuous level
+
+A continuous variable is one in which the categories can be ranked from low to high in some meaningful way. In addition to ordering the categories from low to high it is possible to specify the amount of difference between the categories or values. The child's age, when measured in years, is an example of a continuous variable. We rank-order the categories of age (in years) from youngest (lowest) to oldest (highest). Furthermore, we can specify the amount of difference between the categories. The difference between the category "9 years old" and the category "13 years old" is 4 years. Other examples would be the number of household members, time taken to complete the numeracy assessment, and the numeracy score of the child.
+
+We use the 5 number summary (box plot can also suffice) and a histogram to describe the distribution of continuous variables. In our data, we only have the parent's age and child's age as continuous variables.
 
 ```{r}
 #| label: continuous-summaries
 #| warning: false
 #| message: false
 
-summary(dat$ch02)              # child age
-summary(dat$icar_assess_time)  # ICAR assessment time
-
-dat |>
-  summarise(
-    mean_age   = mean(ch02, na.rm = TRUE),
-    sd_age     = sd(ch02, na.rm = TRUE),
-    p25_age    = quantile(ch02, 0.25, na.rm = TRUE),
-    median_age = median(ch02, na.rm = TRUE),
-    p75_age    = quantile(ch02, 0.75, na.rm = TRUE)
-  )
+# 5 number summary 
+dat |> 
+  select(ch02, pt02b, pt01b) |>
+  skim()
 ```
 
-### Plots
+The typical age in years the children belong is $10$ years old, while it is $36$ and $43$ years old for the mother and father respectively. The child's age is spread fairly evenly across the age categories relative to both the mother and father's ages (see the standard deviation). If one had to order the children by age from the youngest ($5$) to the oldest ($16$), then the middle child would be $10$ years old.
 
-Histograms and density plots show shape (skewness, clustering, and outliers).
+Now, let us assess whether the categories of each variable tend to cluster towards the low or the high end. And possibly identify the potential outliers.
 
 ```{r}
 #| label: fig-age-hist
@@ -95,52 +91,213 @@ Histograms and density plots show shape (skewness, clustering, and outliers).
 #| warning: false
 #| message: false
 
+# Histograms and box plot 
+## child's age
 ggplot(dat, aes(x = ch02)) +
-  geom_histogram(bins = 20, fill = "magenta") +
-  labs(x = "Child age (years)", y = "Count") +
+  geom_histogram(
+    bins = 20,
+    aes(y = after_stat(count / sum(count) * 100)),
+    fill = "gold"
+  ) +
+  labs(x = "Age (years)", y = "Percentage (%)",
+       title = "Child's age histogram with percentage") +
   theme_bw()
+
+## father's age 
+ggplot(dat, aes(x = pt02b)) +
+  geom_histogram(
+    bins = 20,
+    aes(y = after_stat(count / sum(count) * 100)),
+    fill = "skyblue"
+  ) +
+  labs(x = "Age (years)", y = "Percentage (%)",
+       title = "Father's age histogram with percentage") +
+  theme_bw()
+
+## mother's age
+ggplot(dat, aes(x = pt01b)) +
+  geom_histogram(
+    bins = 20,
+    aes(y = after_stat(count / sum(count) * 100)),
+    fill = "magenta"
+  ) +
+  labs(x = "Age (years)", y = "Percentage (%)",
+       title = "Mother's age histogram with percentage") +
+  theme_bw()
+
 ```
 
-## Distributions of categorical variables
+For the child's age there is no evidence clustering - the variable is spread fairly evenly across the categories. Both the mother's and father's age cluster at the lower end of their respective distributions, with tails on the high end.
 
-For categorical variables, start with a frequency table and then compute proportions.
+## Ordinal level
+
+An ordinal variable is one where we can rank-order categories from low to high. However, we cannot specify in numeric terms how much difference there is between the categories. For example, when the age variable has categories such as "child", "adolescent", "young adult", "middle aged" and "elderly" the variable is measured at the ordinal level. The categories can be ordered from youngest to eldest but we cannot specify precisely the age gap between people in different categories. Measuring the child's difficulty in their eyesight as "no difficulty", "some difficulty", and "a lot of difficulty" would produce an ordinal variable.
+
+Typically, one can describe the distribution of an ordinal variable by asking about the frequency of children belonging to particular categories, asking which categories have a lot of cases and which have fewer cases. In that a frequency table will suffice.
+
+Since the categories of ordinal variables can be ranked these categories should be put in their correct rank order in a frequency table. Failure to do so will distort both patterns in the data and statistics used to summarise them. 
 
 ```{r}
-#| label: sex-location-tables
+#| label: eyesight-freq-tables
 #| warning: false
 #| message: false
 
-# raw counts
-table(dat$ch03, useNA = "ifany")
-table(dat$Location, useNA = "ifany")
-```
-
-It is usually clearer to attach labels. For example, `ch03` is typically coded 1/2 for Female/Male.
-
-```{r}
-#| label: recode-sex-residence
-#| warning: false
-#| message: false
-
+# first insert appropriate labels 
 dat = dat |>
+        mutate(
+          ch04a = as.character(ch04a), 
+          ch04a = case_when(
+            ch04a == "1" ~ "No difficulty", 
+            ch04a == "2" ~ "Some difficulty", 
+            ch04a == "3" ~ "A lot of difficulty", 
+            ch04a == "4" ~ "Cannot do at all", 
+            TRUE ~ ch04a
+          )
+        )
+
+# convert to ordered factor 
+dat = dat |>
+       mutate(
+         ch04a = factor(ch04a, levels = c("No difficulty", 
+                                          "Some difficulty", 
+                                          "A lot of difficulty", 
+                                          "Cannot do at all"), 
+                                 ordered = TRUE)
+       )
+
+
+```
+
+Now, we are set to create a frequency table for the eyesight variable.
+
+```{r}
+
+dat |>
+  count(ch04a) |>
   mutate(
-    sex = factor(ch03, levels = c(1, 2), labels = c("Female", "Male")),
-    residence = factor(Location, levels = c("Rural", "Urban"))
+    percent = 100*(n/sum(n))
   )
 ```
 
-Now you can create clean frequency tables.
+Pay attention to the description of `ch04a` - R recognizes it as an \<ord\> now. From the table, we can see that only $2,9\%$ children in the sample have some form of difficulty in their eyesight, even after wearing glasses. One category in this variable accounts for the bulk of the cases. One can say that this sample is fairly homogeneous with regards to `ch04a` . In other words, the frequency table is not symmetrical because most of the cases are clustered at one end of a distribution of this ordinal variable. When cases are clustered at the low end the distribution is positively skewed.
+
+Sometimes ordinal variables can often be displayed effectively with graphs. Now, we can going to show how `ch04a` is distributed using a bar graph.
 
 ```{r}
-#| label: sex-table
-#| warning: false
-#| message: false
+#| label: bar-graph-eyesight
 
-sex_tbl = dat |>
-  filter(!is.na(sex)) |>
-  count(sex) |>
-  mutate(percent = 100 * n / sum(n))
+dat |>
+  ggplot(aes(x = ch04a))+
+  geom_bar(fill = "violet")+
+  theme_bw() +
+  labs(title = "Vertical bar chart with counts", 
+           x = "Eyesight")
+
 ```
+While the mode as a measure of central tendency can be for ordinal variables the median is preferred because it takes account of the fact that children can be ranked on ordinal variables. The median is worked out by ranking each case in a distribution from low to high on the variable and finding the middle child. Whatever the category the middle child belongs to is the median category. In large scale survey research, this is done by obtaining a frequency table, as we have done above, for the variable and examining the cumulative percentage column. To locate the median simply look down this column until the cumulative percentage nudges over $50$ percent and then look at the category of the variable that corresponds to this. In `ch04a` case, the middle child is the one with no difficulty in eyesight.
+
+## Categorical level 
+A categorical variable is one where the different categories have no set rank-order. With a categorical variable it makes no sense to say that the categories can be ordered from low to high in some sense. The type of school the child goes to (`ch06b`) is a categorical variable where categories have no natural rank-order. 
+
+Two main types of summarising statistics are used for categorical variables to describe their distributions: those used to indicate typical values (central tendency), and those used to indicate group variation With categorical variables the only way to indicate the typical response is to identify the single most common response. The most common response, the one with the largest number of cases, is called the mode. 
+
+```{r}
+
+# firstly, give proper labels 
+dat = dat |>
+        mutate(
+          ch06b = as.character(ch06b), 
+          ch06b = case_when(
+            ch06b == "1" ~ "Government", 
+            ch06b == "2" ~ "Private", 
+            ch06b == "3" ~ "Other", 
+            TRUE ~ ch06b
+          )
+        )
+# create a frequency table
+dat |> 
+  count(ch06b) |>
+  mutate(percent = 100*(n/sum(n)))
+```
+In the table above, the single most common response is "Government", thus "Government" schools is the mode of the `ch04a`. But, sometimes using the mode to measure the typical response is problematic. Picking the most common response does not tell us how typical it is. In that case, we have to provide a way of summarising how diverse a group is. For categorical variables the appropriate measure of variation is the variation ratio. It is easily calculated by seeing what percentage of children are not in the model category. The variation ratio is normally expressed as a proportion. This is simply done by moving the decimal place on the percentage figure (percent not in modal category) two places to the left. Thus in the frequency table, the mode is "Government" which contains $66,2\%$ of the sample. The percentage not in the model category is therefore $33.8\%$. The variation ratio therefore is $0,33$. 
+
+It is desirable to use a measure of variation alongside a measure of central tendency. The measure of central tendency gives us an idea of what is typical while the measure of variation gives us a sense og how typical typical is. The more variation there is in a sample the less well the average summarises the sample. In the case of the variation ratio - the higher the variation ratio the more poorly the mode summarises the overall distribution of the categorical variable. 
+
+A bar chart is most appropriate graphical tool one can use to describe the distribution of a categorical variable. 
+
+```{r}
+#| label: bar-graph-schooltype
+
+dat |>
+  ggplot(aes(x = ch06b))+
+  geom_bar(
+    aes(y = after_stat(count / sum(count) * 100)),
+    fill = "violet"
+    ) +
+  coord_flip() +
+  theme_bw() +
+  labs(title = "Horizontal bar chart with counts", 
+            y= "School Type")
+
+```
+The table below summarises the graphical representation that can be used to describe variables at each of the three levels of measurement. Consider these everytime.
+```{r echo=FALSE}
+
+
+library(knitr)
+library(kableExtra)
+table13 <- data.frame(
+  `Graph type` = c("Bar charts", "Line graphs", "Area graph", "Histogram", "Boxplot", "Pie chart"),
+  Nominal  = c("✓", "✗", "✗", "✗", "✗", "✓"),
+  Ordinal  = c("✓", "?", "?", "✗", "✓", "✓"),
+  Interval = c("?", "✓", "✓", "✓", "✓", "?"),
+  check.names = FALSE
+)
+
+kable(
+  table13,
+  caption = "Graph type by level of measurement",
+  align = c("l", "c", "c", "c"), 
+  booktabs= TRUE
+)  %>%
+  kable_styling(full_width = FALSE, position = "center")
+```
+
+Also, the table below helps one to choose summary descriptive statistics for different levels of measurement
+
+```{r}
+library(knitr)
+library(kableExtra)
+
+table_data <- data.frame(
+  Category = c(
+    "Averages","",
+    "",
+    "Dispersion/variation","",
+    "",
+    "Symmetry","",
+    "Kurtosis",""
+  ),
+  Statistic = c(
+    "Mode","Median","Mean",
+    "Variation ratio","Interquartile range","Variance/standard deviation",
+    "Graph/visual","Skewness statistic",
+    "Graph/visual","Kurtosis statistic"
+  ),
+  Nominal = c("✓","✗","✗","✓","✗","✗","✗","✗","✗","✗"),
+  Ordinal = c("?","✓","✗","?","✓","✗","✓","✗","✓","✗"),
+  Interval = c("?","?","✓","?","?","✓","✓","✓","✓","✓")
+)
+
+kable(
+  table_data,
+  caption = "Choosing summary descriptive statistics for different levels of measurement",
+  align = "c",
+  booktabs = TRUE
+) %>%
+  kable_styling(full_width = FALSE, position = "center")
+```
+
 
 ## Weighted summaries using the survey design
 
@@ -186,7 +343,7 @@ Weighted means for several continuous variables:
 #| warning: false
 #| message: false
 
-svymean(~ch02 + icar_assess_time + ican_assess_time, des_child_all, na.rm = TRUE)
+svymean(~ch02 + pt02b + pt01b, des_child_all, na.rm = TRUE)
 ```
 
 ### Weighted frequency tables
@@ -326,9 +483,8 @@ svyby(
 
 Use the ICAN-ICAR data and the tools in this chapter to answer the questions below.
 
-1. What proportion of the sample is rural (`Location == "Rural"`)? Compute both the unweighted and weighted estimate.
-2. What is the unweighted and weighted mean child age (`ch02`) for enrolled learners (`enr_status == "Currently Enrolled"`)?
-3. Create an age group variable (for example, `<= 10` vs `> 10`). What share of learners falls in each age group?
-4. Produce a weighted frequency table for `Location` within one country of your choice.
-5. Investigate missingness in `ch06a` by `residence` and by `sex`. Report the results as unweighted and weighted proportions.
-
+1.  What proportion of the sample is rural (`Location == "Rural"`)? Compute both the unweighted and weighted estimate.
+2.  What is the unweighted and weighted mean child age (`ch02`) for enrolled learners (`enr_status == "Currently Enrolled"`)?
+3.  Create an age group variable (for example, `<= 10` vs `> 10`). What share of learners falls in each age group?
+4.  Produce a weighted frequency table for `Location` within one country of your choice.
+5.  Investigate missingness in `ch06a` by `residence` and by `sex`. Report the results as unweighted and weighted proportions.
