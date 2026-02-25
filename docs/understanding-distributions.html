@@ -153,18 +153,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
-<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Levels of measurement</a></li>
-<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>3.3</b> Continuous level</a></li>
-<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>3.4</b> Ordinal level</a></li>
-<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>3.5</b> Categorical level</a></li>
-<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.6</b> Weighted summaries using the survey design</a>
+<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Levels of measurement</a>
 <ul>
-<li class="chapter" data-level="3.6.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.6.1</b> Weighted proportions and means</a></li>
-<li class="chapter" data-level="3.6.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.6.2</b> Weighted frequency tables</a></li>
+<li class="chapter" data-level="3.2.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>3.2.1</b> Continuous level</a></li>
+<li class="chapter" data-level="3.2.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>3.2.2</b> Ordinal level</a></li>
+<li class="chapter" data-level="3.2.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>3.2.3</b> Categorical level</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.7</b> Household-level variables in a child-level file</a></li>
-<li class="chapter" data-level="3.8" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.8</b> Missing data and skip patterns</a></li>
-<li class="chapter" data-level="3.9" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.9</b> Exercises</a></li>
+<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.3</b> Weighted summaries using the survey design</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.3.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.3.2</b> Weighted frequency tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.4</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.5</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
 <ul>
@@ -561,9 +563,8 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
 <li>whether the categories can be rank ordered;</li>
 <li>whether the differences or intervals between each category can be specified in a meaningful numerical sense.</li>
 </ol>
-</div>
-<div id="continuous-level" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Continuous level<a href="understanding-distributions.html#continuous-level" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="continuous-level" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Continuous level<a href="understanding-distributions.html#continuous-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A continuous variable is one in which the categories can be ranked from low to high in some meaningful way. In addition to ordering the categories from low to high it is possible to specify the amount of difference between the categories or values. The child’s age, when measured in years, is an example of a continuous variable. We rank-order the categories of age (in years) from youngest (lowest) to oldest (highest). Furthermore, we can specify the amount of difference between the categories. The difference between the category “9 years old” and the category “13 years old” is 4 years. Other examples would be the number of household members, time taken to complete the numeracy assessment, and the numeracy score of the child.</p>
 <p>We use the 5 number summary (box plot can also suffice) and a histogram to describe the distribution of continuous variables. In our data, we only have the parent’s age and child’s age as continuous variables.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="understanding-distributions.html#cb11-1" tabindex="-1"></a><span class="co"># 5 number summary </span></span>
@@ -732,8 +733,8 @@ Figure 3.3: Distribution of child age in the ICAN-ICAR sample.
 </div>
 <p>For the child’s age there is no evidence clustering - the variable is spread fairly evenly across the categories. Both the mother’s and father’s age cluster at the lower end of their respective distributions, with tails on the high end.</p>
 </div>
-<div id="ordinal-level" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Ordinal level<a href="understanding-distributions.html#ordinal-level" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ordinal-level" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Ordinal level<a href="understanding-distributions.html#ordinal-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An ordinal variable is one where we can rank-order categories from low to high. However, we cannot specify in numeric terms how much difference there is between the categories. For example, when the age variable has categories such as “child”, “adolescent”, “young adult”, “middle aged” and “elderly” the variable is measured at the ordinal level. The categories can be ordered from youngest to eldest but we cannot specify precisely the age gap between people in different categories. Measuring the child’s difficulty in their eyesight as “no difficulty”, “some difficulty”, and “a lot of difficulty” would produce an ordinal variable.</p>
 <p>Typically, one can describe the distribution of an ordinal variable by asking about the frequency of children belonging to particular categories, asking which categories have a lot of cases and which have fewer cases. In that a frequency table will suffice.</p>
 <p>Since the categories of ordinal variables can be ranked these categories should be put in their correct rank order in a frequency table. Failure to do so will distort both patterns in the data and statistics used to summarise them.</p>
@@ -783,8 +784,8 @@ Figure 3.3: Distribution of child age in the ICAN-ICAR sample.
 <p><img src="figs/bar-graph-eyesight-1.png" width="672" />
 While the mode as a measure of central tendency can be for ordinal variables the median is preferred because it takes account of the fact that children can be ranked on ordinal variables. The median is worked out by ranking each case in a distribution from low to high on the variable and finding the middle child. Whatever the category the middle child belongs to is the median category. In large scale survey research, this is done by obtaining a frequency table, as we have done above, for the variable and examining the cumulative percentage column. To locate the median simply look down this column until the cumulative percentage nudges over <span class="math inline">\(50\)</span> percent and then look at the category of the variable that corresponds to this. In <code>ch04a</code> case, the middle child is the one with no difficulty in eyesight.</p>
 </div>
-<div id="categorical-level" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Categorical level<a href="understanding-distributions.html#categorical-level" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="categorical-level" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Categorical level<a href="understanding-distributions.html#categorical-level" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A categorical variable is one where the different categories have no set rank-order. With a categorical variable it makes no sense to say that the categories can be ordered from low to high in some sense. The type of school the child goes to (<code>ch06b</code>) is a categorical variable where categories have no natural rank-order.</p>
 <p>Two main types of summarising statistics are used for categorical variables to describe their distributions: those used to indicate typical values (central tendency), and those used to indicate group variation With categorical variables the only way to indicate the typical response is to identify the single most common response. The most common response, the one with the largest number of cases, is called the mode.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="understanding-distributions.html#cb19-1" tabindex="-1"></a><span class="co"># firstly, give proper labels </span></span>
@@ -932,36 +933,6 @@ Pie chart
 </tbody>
 </table>
 <p>Also, the table below helps one to choose summary descriptive statistics for different levels of measurement</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="understanding-distributions.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb22-2"><a href="understanding-distributions.html#cb22-2" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb22-3"><a href="understanding-distributions.html#cb22-3" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="understanding-distributions.html#cb22-4" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb22-5"><a href="understanding-distributions.html#cb22-5" tabindex="-1"></a>  <span class="at">Category =</span> <span class="fu">c</span>(</span>
-<span id="cb22-6"><a href="understanding-distributions.html#cb22-6" tabindex="-1"></a>    <span class="st">&quot;Averages&quot;</span>,<span class="st">&quot;&quot;</span>,</span>
-<span id="cb22-7"><a href="understanding-distributions.html#cb22-7" tabindex="-1"></a>    <span class="st">&quot;&quot;</span>,</span>
-<span id="cb22-8"><a href="understanding-distributions.html#cb22-8" tabindex="-1"></a>    <span class="st">&quot;Dispersion/variation&quot;</span>,<span class="st">&quot;&quot;</span>,</span>
-<span id="cb22-9"><a href="understanding-distributions.html#cb22-9" tabindex="-1"></a>    <span class="st">&quot;&quot;</span>,</span>
-<span id="cb22-10"><a href="understanding-distributions.html#cb22-10" tabindex="-1"></a>    <span class="st">&quot;Symmetry&quot;</span>,<span class="st">&quot;&quot;</span>,</span>
-<span id="cb22-11"><a href="understanding-distributions.html#cb22-11" tabindex="-1"></a>    <span class="st">&quot;Kurtosis&quot;</span>,<span class="st">&quot;&quot;</span></span>
-<span id="cb22-12"><a href="understanding-distributions.html#cb22-12" tabindex="-1"></a>  ),</span>
-<span id="cb22-13"><a href="understanding-distributions.html#cb22-13" tabindex="-1"></a>  <span class="at">Statistic =</span> <span class="fu">c</span>(</span>
-<span id="cb22-14"><a href="understanding-distributions.html#cb22-14" tabindex="-1"></a>    <span class="st">&quot;Mode&quot;</span>,<span class="st">&quot;Median&quot;</span>,<span class="st">&quot;Mean&quot;</span>,</span>
-<span id="cb22-15"><a href="understanding-distributions.html#cb22-15" tabindex="-1"></a>    <span class="st">&quot;Variation ratio&quot;</span>,<span class="st">&quot;Interquartile range&quot;</span>,<span class="st">&quot;Variance/standard deviation&quot;</span>,</span>
-<span id="cb22-16"><a href="understanding-distributions.html#cb22-16" tabindex="-1"></a>    <span class="st">&quot;Graph/visual&quot;</span>,<span class="st">&quot;Skewness statistic&quot;</span>,</span>
-<span id="cb22-17"><a href="understanding-distributions.html#cb22-17" tabindex="-1"></a>    <span class="st">&quot;Graph/visual&quot;</span>,<span class="st">&quot;Kurtosis statistic&quot;</span></span>
-<span id="cb22-18"><a href="understanding-distributions.html#cb22-18" tabindex="-1"></a>  ),</span>
-<span id="cb22-19"><a href="understanding-distributions.html#cb22-19" tabindex="-1"></a>  <span class="at">Categorical =</span> <span class="fu">c</span>(<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✗&quot;</span>),</span>
-<span id="cb22-20"><a href="understanding-distributions.html#cb22-20" tabindex="-1"></a>  <span class="at">Ordinal =</span> <span class="fu">c</span>(<span class="st">&quot;?&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;?&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✗&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✗&quot;</span>),</span>
-<span id="cb22-21"><a href="understanding-distributions.html#cb22-21" tabindex="-1"></a>  <span class="at">Continuous =</span> <span class="fu">c</span>(<span class="st">&quot;?&quot;</span>,<span class="st">&quot;?&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;?&quot;</span>,<span class="st">&quot;?&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✓&quot;</span>,<span class="st">&quot;✓&quot;</span>)</span>
-<span id="cb22-22"><a href="understanding-distributions.html#cb22-22" tabindex="-1"></a>)</span>
-<span id="cb22-23"><a href="understanding-distributions.html#cb22-23" tabindex="-1"></a></span>
-<span id="cb22-24"><a href="understanding-distributions.html#cb22-24" tabindex="-1"></a><span class="fu">kable</span>(</span>
-<span id="cb22-25"><a href="understanding-distributions.html#cb22-25" tabindex="-1"></a>  table_data,</span>
-<span id="cb22-26"><a href="understanding-distributions.html#cb22-26" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">&quot;Choosing summary descriptive statistics for different levels of measurement&quot;</span>,</span>
-<span id="cb22-27"><a href="understanding-distributions.html#cb22-27" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">&quot;c&quot;</span>,</span>
-<span id="cb22-28"><a href="understanding-distributions.html#cb22-28" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb22-29"><a href="understanding-distributions.html#cb22-29" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-30"><a href="understanding-distributions.html#cb22-30" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>, <span class="at">position =</span> <span class="st">&quot;center&quot;</span>)</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:unnamed-chunk-9">Table 3.5: </span><span id="tab:unnamed-chunk-9">Table 3.6: </span>Choosing summary descriptive statistics for different levels of measurement
@@ -1153,113 +1124,114 @@ Kurtosis statistic
 </tbody>
 </table>
 </div>
-<div id="weighted-summaries-using-the-survey-design" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Weighted summaries using the survey design<a href="understanding-distributions.html#weighted-summaries-using-the-survey-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="weighted-summaries-using-the-survey-design" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Weighted summaries using the survey design<a href="understanding-distributions.html#weighted-summaries-using-the-survey-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Unweighted summaries describe the sample. To describe the population, you must account for weights, clustering, and stratification.</p>
 <p>We create a survey design object using the same structure used elsewhere in the course.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="understanding-distributions.html#cb23-1" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb23-2"><a href="understanding-distributions.html#cb23-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
-<span id="cb23-3"><a href="understanding-distributions.html#cb23-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
-<span id="cb23-4"><a href="understanding-distributions.html#cb23-4" tabindex="-1"></a>)</span>
-<span id="cb23-5"><a href="understanding-distributions.html#cb23-5" tabindex="-1"></a></span>
-<span id="cb23-6"><a href="understanding-distributions.html#cb23-6" tabindex="-1"></a>des_child_all <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
-<span id="cb23-7"><a href="understanding-distributions.html#cb23-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
-<span id="cb23-8"><a href="understanding-distributions.html#cb23-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
-<span id="cb23-9"><a href="understanding-distributions.html#cb23-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
-<span id="cb23-10"><a href="understanding-distributions.html#cb23-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
-<span id="cb23-11"><a href="understanding-distributions.html#cb23-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
-<span id="cb23-12"><a href="understanding-distributions.html#cb23-12" tabindex="-1"></a>)</span></code></pre></div>
-<div id="weighted-proportions-and-means" class="section level3 hasAnchor" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Weighted proportions and means<a href="understanding-distributions.html#weighted-proportions-and-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="understanding-distributions.html#cb22-1" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb22-2"><a href="understanding-distributions.html#cb22-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb22-3"><a href="understanding-distributions.html#cb22-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-4"><a href="understanding-distributions.html#cb22-4" tabindex="-1"></a>)</span>
+<span id="cb22-5"><a href="understanding-distributions.html#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="understanding-distributions.html#cb22-6" tabindex="-1"></a>des_child_all <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb22-7"><a href="understanding-distributions.html#cb22-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb22-8"><a href="understanding-distributions.html#cb22-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb22-9"><a href="understanding-distributions.html#cb22-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb22-10"><a href="understanding-distributions.html#cb22-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
+<span id="cb22-11"><a href="understanding-distributions.html#cb22-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-12"><a href="understanding-distributions.html#cb22-12" tabindex="-1"></a>)</span></code></pre></div>
+<div id="weighted-proportions-and-means" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Weighted proportions and means<a href="understanding-distributions.html#weighted-proportions-and-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A weighted proportion of girls in the population:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="understanding-distributions.html#cb24-1" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span><span class="fu">I</span>(ch03 <span class="sc">==</span> <span class="dv">1</span>), des_child_all, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="understanding-distributions.html#cb23-1" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span><span class="fu">I</span>(ch03 <span class="sc">==</span> <span class="dv">1</span>), des_child_all, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##                      mean     SE
 ## I(ch03 == 1)FALSE 0.51713 0.0032
 ## I(ch03 == 1)TRUE  0.48287 0.0032</code></pre>
 <p>Weighted means for several continuous variables:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="understanding-distributions.html#cb26-1" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>ch02 <span class="sc">+</span> pt02b <span class="sc">+</span> pt01b, des_child_all, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="understanding-distributions.html#cb25-1" tabindex="-1"></a><span class="fu">svymean</span>(<span class="sc">~</span>ch02 <span class="sc">+</span> pt02b <span class="sc">+</span> pt01b, des_child_all, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##         mean     SE
 ## ch02   9.946 0.0336
 ## pt02b 41.196 0.1053
 ## pt01b 35.345 0.0920</code></pre>
 </div>
-<div id="weighted-frequency-tables" class="section level3 hasAnchor" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Weighted frequency tables<a href="understanding-distributions.html#weighted-frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="weighted-frequency-tables" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Weighted frequency tables<a href="understanding-distributions.html#weighted-frequency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Weighted distributions use <code>svytable()</code>.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="understanding-distributions.html#cb28-1" tabindex="-1"></a>country_w <span class="ot">=</span> <span class="fu">svytable</span>(<span class="sc">~</span>CountryName, des_child_all)</span>
-<span id="cb28-2"><a href="understanding-distributions.html#cb28-2" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="understanding-distributions.html#cb28-3" tabindex="-1"></a>country_w_tbl <span class="ot">=</span> <span class="fu">tibble</span>(</span>
-<span id="cb28-4"><a href="understanding-distributions.html#cb28-4" tabindex="-1"></a>  <span class="at">CountryName =</span> <span class="fu">names</span>(country_w),</span>
-<span id="cb28-5"><a href="understanding-distributions.html#cb28-5" tabindex="-1"></a>  <span class="at">weighted_n  =</span> <span class="fu">as.numeric</span>(country_w),</span>
-<span id="cb28-6"><a href="understanding-distributions.html#cb28-6" tabindex="-1"></a>  <span class="at">percent     =</span> <span class="fu">as.numeric</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(country_w))</span>
-<span id="cb28-7"><a href="understanding-distributions.html#cb28-7" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="understanding-distributions.html#cb27-1" tabindex="-1"></a>country_w <span class="ot">=</span> <span class="fu">svytable</span>(<span class="sc">~</span>CountryName, des_child_all)</span>
+<span id="cb27-2"><a href="understanding-distributions.html#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="understanding-distributions.html#cb27-3" tabindex="-1"></a>country_w_tbl <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-4"><a href="understanding-distributions.html#cb27-4" tabindex="-1"></a>  <span class="at">CountryName =</span> <span class="fu">names</span>(country_w),</span>
+<span id="cb27-5"><a href="understanding-distributions.html#cb27-5" tabindex="-1"></a>  <span class="at">weighted_n  =</span> <span class="fu">as.numeric</span>(country_w),</span>
+<span id="cb27-6"><a href="understanding-distributions.html#cb27-6" tabindex="-1"></a>  <span class="at">percent     =</span> <span class="fu">as.numeric</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(country_w))</span>
+<span id="cb27-7"><a href="understanding-distributions.html#cb27-7" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 </div>
-<div id="household-level-variables-in-a-child-level-file" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Household-level variables in a child-level file<a href="understanding-distributions.html#household-level-variables-in-a-child-level-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="household-level-variables-in-a-child-level-file" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Household-level variables in a child-level file<a href="understanding-distributions.html#household-level-variables-in-a-child-level-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When a household-level variable repeats across children, a child-level frequency table over-weights large households. A simple fix is to keep one record per household.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="understanding-distributions.html#cb29-1" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="understanding-distributions.html#cb29-2" tabindex="-1"></a>  <span class="fu">arrange</span>(HHID, ChildID) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="understanding-distributions.html#cb29-3" tabindex="-1"></a>  <span class="fu">group_by</span>(HHID) <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href="understanding-distributions.html#cb29-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hh_first =</span> <span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a href="understanding-distributions.html#cb29-5" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="understanding-distributions.html#cb28-1" tabindex="-1"></a>dat <span class="ot">=</span> dat <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="understanding-distributions.html#cb28-2" tabindex="-1"></a>  <span class="fu">arrange</span>(HHID, ChildID) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="understanding-distributions.html#cb28-3" tabindex="-1"></a>  <span class="fu">group_by</span>(HHID) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="understanding-distributions.html#cb28-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hh_first =</span> <span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-5"><a href="understanding-distributions.html#cb28-5" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <p>For example, compare a child-level and household-level distribution of roof type (<code>hh07a</code>), if that variable is available in your extract.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="understanding-distributions.html#cb30-1" tabindex="-1"></a><span class="co"># child-level distribution (counts children)</span></span>
-<span id="cb30-2"><a href="understanding-distributions.html#cb30-2" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href="understanding-distributions.html#cb30-3" tabindex="-1"></a>  <span class="fu">count</span>(hh07a) <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a href="understanding-distributions.html#cb30-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
-<span id="cb30-5"><a href="understanding-distributions.html#cb30-5" tabindex="-1"></a></span>
-<span id="cb30-6"><a href="understanding-distributions.html#cb30-6" tabindex="-1"></a><span class="co"># household-level distribution (counts households once)</span></span>
-<span id="cb30-7"><a href="understanding-distributions.html#cb30-7" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
-<span id="cb30-8"><a href="understanding-distributions.html#cb30-8" tabindex="-1"></a>  <span class="fu">filter</span>(hh_first) <span class="sc">|&gt;</span></span>
-<span id="cb30-9"><a href="understanding-distributions.html#cb30-9" tabindex="-1"></a>  <span class="fu">count</span>(hh07a) <span class="sc">|&gt;</span></span>
-<span id="cb30-10"><a href="understanding-distributions.html#cb30-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="understanding-distributions.html#cb29-1" tabindex="-1"></a><span class="co"># child-level distribution (counts children)</span></span>
+<span id="cb29-2"><a href="understanding-distributions.html#cb29-2" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="understanding-distributions.html#cb29-3" tabindex="-1"></a>  <span class="fu">count</span>(hh07a) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="understanding-distributions.html#cb29-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span>
+<span id="cb29-5"><a href="understanding-distributions.html#cb29-5" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="understanding-distributions.html#cb29-6" tabindex="-1"></a><span class="co"># household-level distribution (counts households once)</span></span>
+<span id="cb29-7"><a href="understanding-distributions.html#cb29-7" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb29-8"><a href="understanding-distributions.html#cb29-8" tabindex="-1"></a>  <span class="fu">filter</span>(hh_first) <span class="sc">|&gt;</span></span>
+<span id="cb29-9"><a href="understanding-distributions.html#cb29-9" tabindex="-1"></a>  <span class="fu">count</span>(hh07a) <span class="sc">|&gt;</span></span>
+<span id="cb29-10"><a href="understanding-distributions.html#cb29-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> <span class="dv">100</span> <span class="sc">*</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
 <p>To produce a weighted household-level distribution, subset the survey design to one row per household.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="understanding-distributions.html#cb31-1" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb31-2"><a href="understanding-distributions.html#cb31-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
-<span id="cb31-3"><a href="understanding-distributions.html#cb31-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
-<span id="cb31-4"><a href="understanding-distributions.html#cb31-4" tabindex="-1"></a>)</span>
-<span id="cb31-5"><a href="understanding-distributions.html#cb31-5" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="understanding-distributions.html#cb31-6" tabindex="-1"></a>des_child_all <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
-<span id="cb31-7"><a href="understanding-distributions.html#cb31-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
-<span id="cb31-8"><a href="understanding-distributions.html#cb31-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
-<span id="cb31-9"><a href="understanding-distributions.html#cb31-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
-<span id="cb31-10"><a href="understanding-distributions.html#cb31-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
-<span id="cb31-11"><a href="understanding-distributions.html#cb31-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
-<span id="cb31-12"><a href="understanding-distributions.html#cb31-12" tabindex="-1"></a>)</span>
-<span id="cb31-13"><a href="understanding-distributions.html#cb31-13" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="understanding-distributions.html#cb31-14" tabindex="-1"></a>des_household <span class="ot">=</span> <span class="fu">subset</span>(des_child_all, hh_first)</span>
-<span id="cb31-15"><a href="understanding-distributions.html#cb31-15" tabindex="-1"></a></span>
-<span id="cb31-16"><a href="understanding-distributions.html#cb31-16" tabindex="-1"></a>roof_w <span class="ot">=</span> <span class="fu">svytable</span>(<span class="sc">~</span>hh07a, des_household)</span>
-<span id="cb31-17"><a href="understanding-distributions.html#cb31-17" tabindex="-1"></a></span>
-<span id="cb31-18"><a href="understanding-distributions.html#cb31-18" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb31-19"><a href="understanding-distributions.html#cb31-19" tabindex="-1"></a>  <span class="at">roof_type =</span> <span class="fu">names</span>(roof_w),</span>
-<span id="cb31-20"><a href="understanding-distributions.html#cb31-20" tabindex="-1"></a>  <span class="at">percent   =</span> <span class="fu">as.numeric</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(roof_w))</span>
-<span id="cb31-21"><a href="understanding-distributions.html#cb31-21" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="understanding-distributions.html#cb30-1" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb30-2"><a href="understanding-distributions.html#cb30-2" tabindex="-1"></a>  <span class="at">survey.lonely.psu =</span> <span class="st">&quot;adjust&quot;</span>,</span>
+<span id="cb30-3"><a href="understanding-distributions.html#cb30-3" tabindex="-1"></a>  <span class="at">survey.adjust.domain.lonely =</span> <span class="cn">TRUE</span></span>
+<span id="cb30-4"><a href="understanding-distributions.html#cb30-4" tabindex="-1"></a>)</span>
+<span id="cb30-5"><a href="understanding-distributions.html#cb30-5" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="understanding-distributions.html#cb30-6" tabindex="-1"></a>des_child_all <span class="ot">=</span> <span class="fu">svydesign</span>(</span>
+<span id="cb30-7"><a href="understanding-distributions.html#cb30-7" tabindex="-1"></a>  <span class="at">ids     =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, VillageID) <span class="sc">+</span> HHID,</span>
+<span id="cb30-8"><a href="understanding-distributions.html#cb30-8" tabindex="-1"></a>  <span class="at">strata  =</span> <span class="sc">~</span><span class="fu">interaction</span>(CountryName, Tier_One_Unit),</span>
+<span id="cb30-9"><a href="understanding-distributions.html#cb30-9" tabindex="-1"></a>  <span class="at">weights =</span> <span class="sc">~</span>HH_Weight_Provided,</span>
+<span id="cb30-10"><a href="understanding-distributions.html#cb30-10" tabindex="-1"></a>  <span class="at">data    =</span> dat,</span>
+<span id="cb30-11"><a href="understanding-distributions.html#cb30-11" tabindex="-1"></a>  <span class="at">nest    =</span> <span class="cn">TRUE</span></span>
+<span id="cb30-12"><a href="understanding-distributions.html#cb30-12" tabindex="-1"></a>)</span>
+<span id="cb30-13"><a href="understanding-distributions.html#cb30-13" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="understanding-distributions.html#cb30-14" tabindex="-1"></a>des_household <span class="ot">=</span> <span class="fu">subset</span>(des_child_all, hh_first)</span>
+<span id="cb30-15"><a href="understanding-distributions.html#cb30-15" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="understanding-distributions.html#cb30-16" tabindex="-1"></a>roof_w <span class="ot">=</span> <span class="fu">svytable</span>(<span class="sc">~</span>hh07a, des_household)</span>
+<span id="cb30-17"><a href="understanding-distributions.html#cb30-17" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="understanding-distributions.html#cb30-18" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb30-19"><a href="understanding-distributions.html#cb30-19" tabindex="-1"></a>  <span class="at">roof_type =</span> <span class="fu">names</span>(roof_w),</span>
+<span id="cb30-20"><a href="understanding-distributions.html#cb30-20" tabindex="-1"></a>  <span class="at">percent   =</span> <span class="fu">as.numeric</span>(<span class="dv">100</span> <span class="sc">*</span> <span class="fu">prop.table</span>(roof_w))</span>
+<span id="cb30-21"><a href="understanding-distributions.html#cb30-21" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="missing-data-and-skip-patterns" class="section level2 hasAnchor" number="3.8">
-<h2><span class="header-section-number">3.8</span> Missing data and skip patterns<a href="understanding-distributions.html#missing-data-and-skip-patterns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="missing-data-and-skip-patterns" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Missing data and skip patterns<a href="understanding-distributions.html#missing-data-and-skip-patterns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Missing values are common in survey data. In ICAN-ICAR, missingness often reflects skip patterns. For example, grade (<code>ch06a</code>) is usually recorded only for learners who are currently enrolled.</p>
 <p>Start by checking how much is missing.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="understanding-distributions.html#cb32-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="understanding-distributions.html#cb32-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb32-3"><a href="understanding-distributions.html#cb32-3" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb32-4"><a href="understanding-distributions.html#cb32-4" tabindex="-1"></a>    <span class="at">missing_ch06a =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)),</span>
-<span id="cb32-5"><a href="understanding-distributions.html#cb32-5" tabindex="-1"></a>    <span class="at">missing_pct =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)) <span class="sc">/</span> <span class="fu">n</span>()</span>
-<span id="cb32-6"><a href="understanding-distributions.html#cb32-6" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="understanding-distributions.html#cb31-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="understanding-distributions.html#cb31-2" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb31-3"><a href="understanding-distributions.html#cb31-3" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb31-4"><a href="understanding-distributions.html#cb31-4" tabindex="-1"></a>    <span class="at">missing_ch06a =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)),</span>
+<span id="cb31-5"><a href="understanding-distributions.html#cb31-5" tabindex="-1"></a>    <span class="at">missing_pct =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)) <span class="sc">/</span> <span class="fu">n</span>()</span>
+<span id="cb31-6"><a href="understanding-distributions.html#cb31-6" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   total missing_ch06a missing_pct
 ##   &lt;int&gt;         &lt;int&gt;       &lt;dbl&gt;
 ## 1 89141          9915        11.1</code></pre>
 <p>Then evaluate whether missingness aligns with enrolment status.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="understanding-distributions.html#cb34-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="understanding-distributions.html#cb34-2" tabindex="-1"></a>  <span class="fu">group_by</span>(enr_status) <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="understanding-distributions.html#cb34-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb34-4"><a href="understanding-distributions.html#cb34-4" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb34-5"><a href="understanding-distributions.html#cb34-5" tabindex="-1"></a>    <span class="at">missing_ch06a =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)),</span>
-<span id="cb34-6"><a href="understanding-distributions.html#cb34-6" tabindex="-1"></a>    <span class="at">missing_pct =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)) <span class="sc">/</span> <span class="fu">n</span>()</span>
-<span id="cb34-7"><a href="understanding-distributions.html#cb34-7" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb34-8"><a href="understanding-distributions.html#cb34-8" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="understanding-distributions.html#cb33-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="understanding-distributions.html#cb33-2" tabindex="-1"></a>  <span class="fu">group_by</span>(enr_status) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="understanding-distributions.html#cb33-3" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb33-4"><a href="understanding-distributions.html#cb33-4" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb33-5"><a href="understanding-distributions.html#cb33-5" tabindex="-1"></a>    <span class="at">missing_ch06a =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)),</span>
+<span id="cb33-6"><a href="understanding-distributions.html#cb33-6" tabindex="-1"></a>    <span class="at">missing_pct =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(ch06a)) <span class="sc">/</span> <span class="fu">n</span>()</span>
+<span id="cb33-7"><a href="understanding-distributions.html#cb33-7" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb33-8"><a href="understanding-distributions.html#cb33-8" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   enr_status         total missing_ch06a missing_pct
 ##   &lt;chr&gt;              &lt;int&gt;         &lt;int&gt;       &lt;dbl&gt;
@@ -1267,20 +1239,24 @@ Kurtosis statistic
 ## 2 Never Enrolled      7517          7517     100    
 ## 3 Out of School       2227          2227     100</code></pre>
 <p>You can also estimate weighted missingness rates by subgroup.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="understanding-distributions.html#cb36-1" tabindex="-1"></a><span class="fu">svyby</span>(</span>
-<span id="cb36-2"><a href="understanding-distributions.html#cb36-2" tabindex="-1"></a>  <span class="sc">~</span><span class="fu">I</span>(<span class="fu">is.na</span>(ch06a)),</span>
-<span id="cb36-3"><a href="understanding-distributions.html#cb36-3" tabindex="-1"></a>  <span class="sc">~</span>enr_status,</span>
-<span id="cb36-4"><a href="understanding-distributions.html#cb36-4" tabindex="-1"></a>  des_child_all,</span>
-<span id="cb36-5"><a href="understanding-distributions.html#cb36-5" tabindex="-1"></a>  svymean,</span>
-<span id="cb36-6"><a href="understanding-distributions.html#cb36-6" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb36-7"><a href="understanding-distributions.html#cb36-7" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>##                            enr_status I(is.na(ch06a))FALSE I(is.na(ch06a))TRUE se.I(is.na(ch06a))FALSE se.I(is.na(ch06a))TRUE
-## Currently Enrolled Currently Enrolled            0.9991602        0.0008397509            0.0001091877           0.0001091877
-## Never Enrolled         Never Enrolled            0.0000000        1.0000000000            0.0000000000           0.0000000000
-## Out of School           Out of School            0.0000000        1.0000000000            0.0000000000           0.0000000000</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="understanding-distributions.html#cb35-1" tabindex="-1"></a><span class="fu">svyby</span>(</span>
+<span id="cb35-2"><a href="understanding-distributions.html#cb35-2" tabindex="-1"></a>  <span class="sc">~</span><span class="fu">I</span>(<span class="fu">is.na</span>(ch06a)),</span>
+<span id="cb35-3"><a href="understanding-distributions.html#cb35-3" tabindex="-1"></a>  <span class="sc">~</span>enr_status,</span>
+<span id="cb35-4"><a href="understanding-distributions.html#cb35-4" tabindex="-1"></a>  des_child_all,</span>
+<span id="cb35-5"><a href="understanding-distributions.html#cb35-5" tabindex="-1"></a>  svymean,</span>
+<span id="cb35-6"><a href="understanding-distributions.html#cb35-6" tabindex="-1"></a>  <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb35-7"><a href="understanding-distributions.html#cb35-7" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##                            enr_status I(is.na(ch06a))FALSE I(is.na(ch06a))TRUE
+## Currently Enrolled Currently Enrolled            0.9991602        0.0008397509
+## Never Enrolled         Never Enrolled            0.0000000        1.0000000000
+## Out of School           Out of School            0.0000000        1.0000000000
+##                    se.I(is.na(ch06a))FALSE se.I(is.na(ch06a))TRUE
+## Currently Enrolled            0.0001091877           0.0001091877
+## Never Enrolled                0.0000000000           0.0000000000
+## Out of School                 0.0000000000           0.0000000000</code></pre>
 </div>
-<div id="exercises" class="section level2 hasAnchor" number="3.9">
-<h2><span class="header-section-number">3.9</span> Exercises<a href="understanding-distributions.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercises" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Exercises<a href="understanding-distributions.html#exercises" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use the ICAN-ICAR data and the tools in this chapter to answer the questions below.</p>
 <ol style="list-style-type: decimal">
 <li>What proportion of the sample is rural (<code>Location == "Rural"</code>)? Compute both the unweighted and weighted estimate.</li>

@@ -28,7 +28,7 @@ Firstly, check the number of rows and columns to get a sense of how big the data
 dim(dat)       # rows and columns
 ```
 
-This is quite big. A good idea from here is to subset to the variables that we want to explore. The `dplyr` package has a `select` function that allows one to select and rearrange variables. For this session, we focus only on the child's age, parent's age, gender, enrollment status, and whether or not the child has met the minimum proficiency level for both numeracy and literacy.
+This is quite big. A plausible idea from here is to subset to the variables that we want to explore. This will largely depend on what we want to answer. The `dplyr` package has a `select` function that allows one to select and rearrange variables. For this session, we focus only on the child's age, parents' age, eyesight,school type, enrollment status, and whether or not the child has met the minimum proficiency level for both numeracy and literacy.
 
 ```{r}
 #| label: select-key-variables
@@ -37,22 +37,41 @@ This is quite big. A good idea from here is to subset to the variables that we w
 
 dat = dat |>
   select(CountryName, Location, HHID,VillageID, ChildID, Tier_One_Unit,
-         ch02, ch03, ch06a, ch06b, enr_status, pt02b,
+         ch02, ch06b, enr_status, pt02b,
          pt01b, ch04a, MPL_both, HH_Weight_Provided) 
 
 ```
 
-One can use the `skim()` function from `skimr` package to attain a broad view of the data and get useful summary statistics on each variable. It is useful because it handles data of all types and it is an alternative to `summary()`.
+One can use the `skim()` function from `skimr` package to attain a broad view of the data and get useful summary statistics on each variable. It is useful because it handles data of all types and it is an alternative to `summary()`. We focus only on enrolled children
 
 ```{r}
 library(skimr)
 
 dat |> 
+  filter(enr_status == "Currently Enrolled") |>
   skim()
 
 ```
 
-*complete_rate* tells us the proportion of rows that are not missing for that particular variable. For instance, `pt02b` has only $55,4\%$ of rows that have entries. In other words, this is equivalent to $39813$ missings (see also, *n_missing)* out of the $89141$ rows. It is important to see that if one does not specify correctly the variable type, then `skim()` will not pick that up. The child's gender, `ch03`, is being recognized as a continuous variable instead of a categorical variable. Therefore, one should make sure that the variables are in their correct type to ensure correct variable summaries .
+*complete_rate* tells us the proportion of rows that are not missing for that particular variable. For instance, `pt02b` has only $55\%$ of rows that have entries. *n_unique* counts the number of unique categories or values in a particular variable, i.e., there is only two categories (Urban and Rural) in `Location`. 
+
+To customise the summaries we want to see we can use `skim_with` alongside the `sfl()` helper function. For now, let us see only the numeric variables and show only the mean, sd, interquartile range, and the median of each variable. 
+
+```{r}
+# create your own skimmer
+my_skim = skim_with(numeric = sfl(p0 = NULL, p100 = NULL,
+                                  p25=NULL, p75 = NULL, 
+                                  hist = NULL,
+                                  iqr = ~IQR(., na.rm = TRUE)))
+
+# then skim
+dat |>
+  my_skim()
+```
+
+
+It is important to see that if one does not specify correctly the variable type, then `skim()` will not pick that up. The school type, `ch03`, is being recognized as a continuous variable instead of a categorical variable. Therefore, one should make sure beforehand that the variables are in their correct type to ensure correct variable summaries. Next, we define the levels of measurement of the variables in our data. This will help us know the correct data type to assign to each variable. 
+
 
 ## Levels of measurement
 
@@ -66,7 +85,7 @@ Any variable is composed of two or more categories or attributes. Thus the child
 
 A continuous variable is one in which the categories can be ranked from low to high in some meaningful way. In addition to ordering the categories from low to high it is possible to specify the amount of difference between the categories or values. The child's age, when measured in years, is an example of a continuous variable. We rank-order the categories of age (in years) from youngest (lowest) to oldest (highest). Furthermore, we can specify the amount of difference between the categories. The difference between the category "9 years old" and the category "13 years old" is 4 years. Other examples would be the number of household members, time taken to complete the numeracy assessment, and the numeracy score of the child.
 
-We use the 5 number summary (box plot can also suffice) and a histogram to describe the distribution of continuous variables. In our data, we only have the parent's age and child's age as continuous variables.
+We use the 5-number summary (box plot can also suffice) and a histogram to describe the distribution of continuous variables. In our current data, we only have the parent's age and child's age as continuous variables.
 
 ```{r}
 #| label: continuous-summaries
