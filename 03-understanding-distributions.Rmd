@@ -37,7 +37,7 @@ This is quite big. A plausible idea from here is to subset to the variables that
 
 dat = dat |>
   select(CountryName, Location, HHID,VillageID, ChildID, Tier_One_Unit,
-         ch02, ch06b, enr_status, pt02b,
+         ch02, ch06b, enr_status, pt02b, ch03,
          pt01b, ch04a, MPL_both, HH_Weight_Provided) 
 
 ```
@@ -182,8 +182,6 @@ dat = dat |>
                                           "Cannot do at all"), 
                                  ordered = TRUE)
        )
-
-
 ```
 
 Now, we are set to create a frequency table for the eyesight variable.
@@ -260,8 +258,6 @@ dat |>
 ```
 The table below summarises the graphical representation that can be used to describe variables at each of the three levels of measurement. Consider these everytime.
 ```{r echo=FALSE}
-
-
 library(knitr)
 library(kableExtra)
 table13 <- data.frame(
