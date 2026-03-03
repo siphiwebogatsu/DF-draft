@@ -1,0 +1,500 @@
+# R Basics
+
+## Scalar Arithmetic
+
+R has the usual arithmetic operators:
+
+-   \+ for addition
+
+-   \- for subtraction
+
+-    \* for multiplication
+
+-   / for division
+
+-   \^ for raising to a power
+
+-   \% / % for integer division
+
+-   %% for remainder from integer division
+
+There is also an arithmetic operator "-" for unary minus that is applicable to one operand (i.e., making a negative value; "+" can also be used as unary plus). For example, the following expression yields, based on the order of operations (i.e., \^ first, \*/ second, and + - last, from left to right if the orders are the same), the answer shown here:
+
+```{r}
+1 + 2 - 3 * 4 / 5 ^ 6
+
+```
+
+The number in the brackets (e.g., [1]) indicates the order of elements in the result. Because we are getting a scalar value, only one number is shown after such a bracketed number. This will be handy where we operate with vectors instead of scalars. The order of operations can be changed with the use of parentheses. For example:
+
+```{r}
+(1 + 2 - 3) * 4 / 5 ^ 6 
+```
+
+```{r}
+1 + 2 - (3 * 4 / 5) ^ 6
+```
+
+```{r}
+1 + (2 - 3) * 4 / 5 ^ 6
+
+```
+
+```{r}
+1 + (2 - 3) * (4 / 5) ^ 6
+```
+
+The portions of the expression beginning with the pound symbol, #, to the end of the expression before running the expression will be treated as a comment. For example,
+
+```{r}
+6 + 5 - 4 * 3 / 2 ^ 1  # the answer is [Enter]
+
+```
+
+Comments can be typed (and ignored) anywhere in the R expressions. Comments can be very informative explaining the expression to be carried by R.
+
+The default number of decimal places is 7. It can be changed with the `options()` function with the digits argument for which the valid values are $0 - 22$. It should be noted that there may exist rounding errors when a very larger number of decimal places, say $22$, is employed. For example, $1/3$ will yield $0.3333333$ in the default setting, but the following rounding error can occur when a higher precision is requested:
+
+```{r}
+options(digits = 22)
+1/3 
+```
+
+With the same `options()` function in effect, the mathematical constant $\pi$ can be obtained using R both directly with the `pi` command and indirectly with the arc tangent function:
+
+```{r}
+pi 
+```
+
+```{r}
+4 * atan(1)
+```
+
+Other mathematical constants can be obtained using R functions. In fact, nearly all of the common mathematical function are available in R with arguments in parentheses (i.e., parenthetical arguments). For example, mathematical functions include:
+
+-   `abs()` - absolute value
+
+-   `exp()` - exponential (*e* to a power)
+
+-   `gamma()`  - gamma function
+
+-   `lgamma()` - log of gamma function
+
+-   `log()` - logarithm
+
+-   `log10()`  - logarithm of base 10
+
+-   `sign()`  - signum function
+
+-   `sqrt()`  - square root
+
+-   `floor()` - largest integer, less than or equal to
+
+-   `ceiling()` - smallest integer, greater than or equal to
+
+-   `trunc()`  - truncation to the nearest integer
+
+-   `factorial()` - factorial
+
+-   `lfactorial()` - log of factorial
+
+A full range of logical operators can be used in R:
+
+-    `>`  - greater than
+
+-   `<`  - less than
+
+-   `>=` - greater than or equal to
+
+-   `<=` - less than or equal to
+
+-   `==` - equality
+
+-   `!=` - non-equality
+
+-   `&` - elementwise AND
+
+-   `|` - elementwise OR
+
+-   `&&` - control AND
+
+-   `||` - control OR
+
+-   `!`  - unary not
+
+In the trigonometric functions, the arguments are in radians instead of degrees. For example:
+
+```{r}
+sin(pi / 6)
+```
+
+```{r}
+pi / 6
+```
+
+```{r}
+sin(0.5235988)
+```
+
+```{r}
+sin((30 / 180) * pi)
+```
+
+A scalar value or the result from arithmetic operators can be saved as a variable with the assignment function `<-` or `=`. The value can be listed by typing in the variable name:
+
+```{r}
+a <- sin(pi / 6)
+
+b = cos(pi / 6)
+
+c <- sqrt(a ^ 2 + b ^ 2)
+
+c
+```
+
+Multiple expressions can be combined by separating them with semi-colons. Spaces are mostly optional in the R commands, but readability will be enhanced when proper spacing is employed. For example,
+
+```{r}
+a = sin(pi/6); b = cos(pi/6); c = sqrt(a ^ 2 + b ^ 2); c
+```
+
+R can handle operations of complex numbers that have real parts and imaginary parts albeit not really useful in applied statistical procedures:
+
+```{r}
+x = 4 + 2i
+Re(x)
+```
+
+```{r}
+Im(x)
+```
+
+```{r}
+y <- 4 - 2i
+x + y
+
+```
+
+```{r}
+x * y
+```
+
+## Vector Arithmetic 
+
+Here, a vector is an ordered collection of values of the same type stored under one variable name. In fact, even a single value is technically a vector of length one. Usually, when we say vector we mean a structure with multiple elements. One can have numeric vectors (i.e., a series of numbers), a character of vectors (i.e., a series of strings), or logical vectors (TRUE or FALSE values). The key rule is all elements in a vector must be of the same class or type.
+
+If one mixes types, R will automatically coerce them to a common type so that the whole vector is uniform. For example, combining numbers and strings in one vector will turn all values into strings behind the hood.
+
+To define the vector, we use the concatenation function `c()` and list all the values:
+
+```{r}
+x = c(1, 2, 3)
+```
+
+After defining the vector (i.e., a variable in a statistical sense), the elements of the vector can be listed by typing in the name of the vector:
+
+```{r}
+x
+```
+
+A character vector of names will be
+
+```{r}
+names = c('Alice', 'Thabo', 'Zola')
+names
+```
+
+One can perform operations on vectors easily. Functions for simple statistics for a vector are available in R:
+
+-   `min()` - smallest value
+
+-   `max()` - largest value
+
+-   `range()` - minimum and maximum
+
+-   `mean()` - arithmetic average
+
+-   `var()` - variance
+
+-   `sd()` - standard deviation
+
+-   `sum()` - arithmetic sum
+
+-   `prod()` - product of elements
+
+-   `length()` - number of elements
+
+-   `median()` - 50th percentile
+
+-   `quantile()` - quantiles
+
+-   `cumsum()` - cumulative sum
+
+-   `diff()` - first difference
+
+-   `table()` - frequency table or cross tabulation
+
+-   `summary()` - five number summary or frequencies
+
+In addition, after defining two vectors, the following statistical functions are available in R:
+
+-   `cor()` - correlation
+
+-   `cov()` - covariance
+
+For example:
+
+```{r}
+x = c(1, 2, 3, 2)
+y = c(1, 3, 2, 2) 
+
+# compute correlation between the two numeric vectors 
+cor(x, y)
+```
+
+```{r}
+# compute covariance between the two numeric vectors 
+cov(x, y)
+```
+
+Sorting or rearranging of the vector in the ascending or increasing order and in the descending or decreasing order can be performed using the `sort()` function, for example:
+
+```{r}
+x = c(1, 2, 3, 2)
+sort(x)
+```
+
+```{r}
+sort(x, decreasing = TRUE)
+```
+
+A subset of vector can be created using the order subscripts and their operations in brackets, for example:
+
+```{r}
+x = c(1, 2, 3, 2)
+
+
+x[1]
+```
+
+```{r}
+
+x[2:4]
+```
+
+```{r}
+
+x[-3]
+```
+
+```{r}
+x[x < 3]
+```
+
+```{r}
+x[x > 2]
+```
+
+Note that the vector can be replaced with the assignment function, for example:
+
+```{r}
+x = x[-3]; x
+```
+
+Vectors can be generated and converted to different types using functions in R:
+
+-   `numeric()`  - a vector of zeroes with the length of the argument
+
+-   `charactor()` - a vector of blank characters of argument length
+
+-   `logical()` - a vector of FALSE of argument length
+
+-   `seq()` - argument of 1 to argument 2 with the increment of argument 3
+
+-   `1 : 4` - numbers equivalent to `seq(1, 4, 1)`
+
+-   `rep()` - replicate argument 1 as many times as argument 2
+
+-   `as.numeric()` - conversion to numeric
+
+-   `as.character()` - conversion to string-type
+
+-   `as.logical()` - conversion to logical
+
+-   `factor()` - creating factor from vector
+
+For example, the following are very useful ways to construct a sequence of nicely patterned elements:
+
+```{r}
+x = 1 : 4; x 
+```
+
+```{r}
+x = seq(1, 4, 1); x
+```
+
+```{r}
+x = seq(1, 2, 0.2); x 
+```
+
+```{r}
+x = rep(1, 4); x
+```
+
+```{r}
+x = c(rep(1, 4), rep(2, 2)); x
+```
+
+## Matrices and Matrix Functions 
+
+An array is a collection of data which can be indexed by one or more subscripts. The vectors discussed above can be seen as one-dimensional arrays. Each element in a vector can be referred to as the name with the subscript enclosed in brackets (e.g., `x[1]`). Two-dimensional arrays are generally referred to as matrices. The `matrix()` function is used to create a matrix. For example, a matrix with ones in the first column and four observations in the second column can be defined and listed subsequently by:
+
+```{r}
+X  = matrix(c(1, 1, 1, 1, 1, 2, 3, 2), nrow = 4); X
+```
+
+The R commands as well as the names of objects and variables are case-sensitive. The objects X and x, for example, are not the same unless these are defined to be equivalent. The expression of the above matrix is equivalent to:
+
+```{r}
+X = matrix(c(1, 1, 1, 1, 1, 2, 3, 2), ncol=2)
+X = matrix(c(1, 1, 1, 1, 1, 2, 3, 2), nrow=4, ncol=2)
+X = matrix(c(1, 1, 1, 2, 1, 3, 1, 2), nrow=4, byrow=T)
+X = matrix(c(1, 1, 1, 2, 1, 3, 1, 2), ncol=2, byrow=T)
+X = matrix(c(1,1,1,2,1,3,1,2), nrow=4, ncol=2, byrow=T)
+```
+
+Elements in a matrix can be referred to as the name with the row and column subscripts enclosed in brackets. For example, with the same matrix defined earlier:
+
+```{r}
+X[2,2]
+```
+
+```{r}
+X[, 2]
+```
+
+```{r}
+X[2, ]
+```
+
+```{r}
+X[1:2, ]
+```
+
+After defining two or more vectors of the same length (i.e., the same number of elements), a matrix can be constructed by the `cbind()` function:
+
+```{r}
+u = c(1, 1, 1, 1)
+x = c(1, 2, 3, 2)
+
+X  = cbind(u, x); X 
+```
+
+It can be noticed that the default column names in the listing of the matrix are replaced with the names of the vectors. The equivalent matrix function:
+
+```{r}
+X = matrix(c(1, 1, 1, 1, 1, 2, 3, 2), ncol = 2, dimnames = list(c(), c("u", "x"))); X
+```
+
+Also the row and column names can be specified with the function of `rownames()` and `colnames()`, respectively:
+
+```{r}
+X  = matrix(c(1, 1, 1, 1, 1, 2, 3, 2), ncol = 2) 
+colnames(X) = c("u", "x")
+rownames(X) = c()
+
+X
+```
+
+After defining vectors of the same length in row wise, a matrix can be constructed by the `rbind()` function:
+
+```{r}
+r1 = c(1, 1); r2 = c(1, 2); r3 = c(1, 3); r4 = c(1, 2)
+X = rbind(r1, r2, r3, r4); X
+```
+
+Note that the row names can be replaced with the default names with the `rownames()` function:
+
+```{r}
+rownames(X) = c(); X
+```
+
+A matrix can also be constructed with the `array()` function, although the array is not limited to be two-dimensional. For example,
+
+```{r}
+X  = array(c(1, 1, 1, 1, 1, 2, 3, 2), dim = c(4,2)); X
+```
+
+Once a matrix is defined, the dimension, the number of rows, and the number of columns of the matrix can be obtained with the following functions:
+
+```{r}
+dim(X)
+```
+
+```{r}
+nrow(X)
+```
+
+```{r}
+ncol(X)
+```
+
+The following are some matrix functions:
+
+-   `chol()` - Cholesky decomposition
+
+-   `crossprod()` - matrix crossproduct
+
+-   `det()` - determinant
+
+-   `diag()` - to create or extract diagonal values
+
+-   `eigen()` - eigenvalues and eigenvectors
+
+-   `outer()` - outer product of two vectors
+
+-   `scale()` - to scale the columns of a matrix
+
+-   `solve()` - inversion or to solve system of linear equations
+
+-   `svd()` - singular value of decomposition
+
+-   `qr()` - qr orthogonalization
+
+-   `t()` - to transpose
+
+Based on the usual conforming conditions with scalars and matrices, the element wise addition, subtraction, multiplication, and division can be performed. Matrix multiplication is done with the operator:
+
+-   `%*%` matrix multiplication
+
+The following is an example to obtain the estimates of an intercept and a slope from a simple regression model using the matrix functions and operators:
+
+```{r}
+X  = array(c(1, 1, 1, 1, 1, 2, 3, 2), dim = c(4, 2))
+colnames(X) = c("u", "x")
+
+y = c(1, 3, 2, 2)
+
+solve(t(X) %*% X) %*% t(X) %*% y
+```
+
+```{r}
+betahat = solve(crossprod(X, X)) %*% t(X) %*% y
+rownames(betahat) = c("a", "b"); betahat
+```
+
+```{r}
+ypredict = X %*% betahat; ypredict
+```
+
+```{r}
+yhat = ypredict[, 1]; yhat
+```
+
+```{r}
+residual = y - yhat; residual
+```
+
+The results from regression analysis in general will be obtained not from the matrix or vector operations but from the R function for statistical modeling. Hence, the above code illustrations are only for the demonstration and instructional purpose.
+
+## Data Frame 

@@ -143,7 +143,6 @@ ggplot(dat, aes(x = pt01b)) +
   labs(x = "Age (years)", y = "Percentage (%)",
        title = "Mother's age histogram with percentage") +
   theme_bw()
-
 ```
 
 For the child's age there is no evidence clustering - the variable is spread fairly evenly across the categories. Both the mother's and father's age cluster at the lower end of their respective distributions, with tails on the high end.
