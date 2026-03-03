@@ -37,7 +37,7 @@ This is quite big. A plausible idea from here is to subset to the variables that
 
 dat = dat |>
   select(CountryName, Location, HHID,VillageID, ChildID, Tier_One_Unit,
-         ch02, ch06b, enr_status, pt02b, ch03,
+         ch02, ch06a, ch06b, enr_status, pt02b, ch03,
          pt01b, ch04a, MPL_both, HH_Weight_Provided) 
 
 ```
