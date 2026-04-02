@@ -31,7 +31,7 @@ Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
   
   
 
-<link rel="next" href="survey-design-sampling-and-weighting.html"/>
+<link rel="next" href="r-basics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,88 +144,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html"><i class="fa fa-check"></i><b>2</b> Survey Design, Sampling, and Weighting</a>
+<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R Basics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design"><i class="fa fa-check"></i><b>2.1</b> Survey sampling and design</a></li>
-<li class="chapter" data-level="2.2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference"><i class="fa fa-check"></i><b>2.2</b> Survey weights and design-based inference</a></li>
-<li class="chapter" data-level="2.3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#practice-exercises"><i class="fa fa-check"></i><b>2.3</b> Practice exercises</a></li>
+<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#scalar-arithmetic"><i class="fa fa-check"></i><b>2.1</b> Scalar Arithmetic</a></li>
+<li class="chapter" data-level="2.2" data-path="r-basics.html"><a href="r-basics.html#vector-arithmetic"><i class="fa fa-check"></i><b>2.2</b> Vector Arithmetic</a></li>
+<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#matrices-and-matrix-functions"><i class="fa fa-check"></i><b>2.3</b> Matrices and Matrix Functions</a></li>
+<li class="chapter" data-level="2.4" data-path="r-basics.html"><a href="r-basics.html#data-frame"><i class="fa fa-check"></i><b>2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#importing-data"><i class="fa fa-check"></i><b>2.5</b> Importing Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>3</b> Understanding distributions</a>
+<li class="chapter" data-level="3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html"><i class="fa fa-check"></i><b>3</b> Survey Design, Sampling, and Weighting</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>3.1</b> Getting oriented to the data</a></li>
-<li class="chapter" data-level="3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>3.2</b> Levels of measurement</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>3.2.1</b> Continuous level</a></li>
-<li class="chapter" data-level="3.2.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>3.2.2</b> Ordinal level</a></li>
-<li class="chapter" data-level="3.2.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>3.2.3</b> Categorical level</a></li>
+<li class="chapter" data-level="3.1" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design"><i class="fa fa-check"></i><b>3.1</b> Survey sampling and design</a></li>
+<li class="chapter" data-level="3.2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference"><i class="fa fa-check"></i><b>3.2</b> Survey weights and design-based inference</a></li>
+<li class="chapter" data-level="3.3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#practice-exercises"><i class="fa fa-check"></i><b>3.3</b> Practice exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>3.3</b> Weighted summaries using the survey design</a>
+<li class="chapter" data-level="4" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>4</b> Understanding distributions</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>3.3.1</b> Weighted proportions and means</a></li>
-<li class="chapter" data-level="3.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>3.3.2</b> Weighted frequency tables</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>3.4</b> Household-level variables in a child-level file</a></li>
-<li class="chapter" data-level="3.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>3.5</b> Missing data and skip patterns</a></li>
-<li class="chapter" data-level="3.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>4</b> Central Tendency and Dispersion</a>
+<li class="chapter" data-level="4.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>4.1</b> Getting oriented to the data</a></li>
+<li class="chapter" data-level="4.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>4.2</b> Levels of measurement</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#central-tendency"><i class="fa fa-check"></i><b>4.1</b> Central tendency</a></li>
-<li class="chapter" data-level="4.2" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#dispersion"><i class="fa fa-check"></i><b>4.2</b> Dispersion</a></li>
-<li class="chapter" data-level="4.3" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries"><i class="fa fa-check"></i><b>4.3</b> Weighted, design-correct summaries</a></li>
-<li class="chapter" data-level="4.4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis"><i class="fa fa-check"></i><b>4.4</b> Outliers and the unit of analysis</a></li>
-<li class="chapter" data-level="4.5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#practice-exercises-1"><i class="fa fa-check"></i><b>4.5</b> Practice exercises</a></li>
+<li class="chapter" data-level="4.2.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>4.2.1</b> Continuous level</a></li>
+<li class="chapter" data-level="4.2.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>4.2.2</b> Ordinal level</a></li>
+<li class="chapter" data-level="4.2.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>4.2.3</b> Categorical level</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html"><i class="fa fa-check"></i><b>5</b> Bivariate Analysis</a>
+<li class="chapter" data-level="4.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>4.3</b> Weighted summaries using the survey design</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#choosing-the-right-bivariate-tool"><i class="fa fa-check"></i><b>5.1</b> Choosing the right bivariate tool</a></li>
-<li class="chapter" data-level="5.2" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#categorical-categorical-cross-tabulations"><i class="fa fa-check"></i><b>5.2</b> Categorical × categorical: cross-tabulations</a></li>
-<li class="chapter" data-level="5.3" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-categorical-comparing-group-means"><i class="fa fa-check"></i><b>5.3</b> Continuous × categorical: comparing group means</a></li>
-<li class="chapter" data-level="5.4" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends"><i class="fa fa-check"></i><b>5.4</b> Continuous × continuous: scatterplots and trends</a></li>
-<li class="chapter" data-level="5.5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#testing-association-with-chi-squared-tests"><i class="fa fa-check"></i><b>5.5</b> Testing association with chi-squared tests</a></li>
-<li class="chapter" data-level="5.6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#practice-exercises-2"><i class="fa fa-check"></i><b>5.6</b> Practice exercises</a></li>
+<li class="chapter" data-level="4.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>4.3.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="4.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>4.3.2</b> Weighted frequency tables</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>6</b> Simple Linear Regression</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#preparing-variables-for-analysis"><i class="fa fa-check"></i><b>6.1</b> Preparing variables for analysis</a></li>
-<li class="chapter" data-level="6.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#correlation-and-simple-regression"><i class="fa fa-check"></i><b>6.2</b> Correlation and simple regression</a></li>
-<li class="chapter" data-level="6.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#survey-weighted-regression-for-population-inference"><i class="fa fa-check"></i><b>6.3</b> Survey-weighted regression for population inference</a></li>
-<li class="chapter" data-level="6.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#practice-exercises-3"><i class="fa fa-check"></i><b>6.4</b> Practice exercises</a></li>
+<li class="chapter" data-level="4.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>4.4</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="4.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>4.5</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="4.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Multiple Linear Regression</a>
+<li class="chapter" data-level="5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>5</b> Central Tendency and Dispersion</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-multiple-regression-model-and-its-interpretation"><i class="fa fa-check"></i><b>7.1</b> The multiple regression model and its interpretation</a></li>
-<li class="chapter" data-level="7.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#data-and-analysis-sample"><i class="fa fa-check"></i><b>7.2</b> Data and analysis sample</a></li>
-<li class="chapter" data-level="7.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#building-a-multiple-regression-model"><i class="fa fa-check"></i><b>7.3</b> Building a multiple regression model</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#comparing-coefficients-across-models"><i class="fa fa-check"></i><b>7.3.1</b> Comparing coefficients across models</a></li>
-<li class="chapter" data-level="7.3.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interpreting-categorical-predictors"><i class="fa fa-check"></i><b>7.3.2</b> Interpreting categorical predictors</a></li>
+<li class="chapter" data-level="5.1" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#central-tendency"><i class="fa fa-check"></i><b>5.1</b> Central tendency</a></li>
+<li class="chapter" data-level="5.2" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#dispersion"><i class="fa fa-check"></i><b>5.2</b> Dispersion</a></li>
+<li class="chapter" data-level="5.3" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries"><i class="fa fa-check"></i><b>5.3</b> Weighted, design-correct summaries</a></li>
+<li class="chapter" data-level="5.4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis"><i class="fa fa-check"></i><b>5.4</b> Outliers and the unit of analysis</a></li>
+<li class="chapter" data-level="5.5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#practice-exercises-1"><i class="fa fa-check"></i><b>5.5</b> Practice exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#extensions-interactions-and-non-linear-effects"><i class="fa fa-check"></i><b>7.4</b> Extensions: interactions and non-linear effects</a></li>
-<li class="chapter" data-level="7.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#reporting-results"><i class="fa fa-check"></i><b>7.5</b> Reporting results</a></li>
-<li class="chapter" data-level="7.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-exercises-4"><i class="fa fa-check"></i><b>7.6</b> Practice exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>8</b> Logistic Regression</a>
+<li class="chapter" data-level="6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html"><i class="fa fa-check"></i><b>6</b> Bivariate Analysis</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="logistic-regression.html"><a href="logistic-regression.html#what-logistic-regression-models"><i class="fa fa-check"></i><b>8.1</b> What logistic regression models</a></li>
-<li class="chapter" data-level="8.2" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-versus-multiple-logistic-regression"><i class="fa fa-check"></i><b>8.2</b> Simple versus multiple logistic regression</a></li>
-<li class="chapter" data-level="8.3" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>8.3</b> Data</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#import-subset-and-keep-only-needed-variables"><i class="fa fa-check"></i><b>8.3.1</b> Import, subset, and keep only needed variables</a></li>
-<li class="chapter" data-level="8.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#recode-variables-labels-reference-levels"><i class="fa fa-check"></i><b>8.3.2</b> Recode variables (labels + reference levels)</a></li>
-<li class="chapter" data-level="8.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#why-we-need-survey-design-information"><i class="fa fa-check"></i><b>8.3.3</b> Why we need survey design information</a></li>
+<li class="chapter" data-level="6.1" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#choosing-the-right-bivariate-tool"><i class="fa fa-check"></i><b>6.1</b> Choosing the right bivariate tool</a></li>
+<li class="chapter" data-level="6.2" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#categorical-categorical-cross-tabulations"><i class="fa fa-check"></i><b>6.2</b> Categorical × categorical: cross-tabulations</a></li>
+<li class="chapter" data-level="6.3" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-categorical-comparing-group-means"><i class="fa fa-check"></i><b>6.3</b> Continuous × categorical: comparing group means</a></li>
+<li class="chapter" data-level="6.4" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends"><i class="fa fa-check"></i><b>6.4</b> Continuous × continuous: scatterplots and trends</a></li>
+<li class="chapter" data-level="6.5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#testing-association-with-chi-squared-tests"><i class="fa fa-check"></i><b>6.5</b> Testing association with chi-squared tests</a></li>
+<li class="chapter" data-level="6.6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#practice-exercises-2"><i class="fa fa-check"></i><b>6.6</b> Practice exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>8.4</b> Simple Logistic Regression</a>
+<li class="chapter" data-level="7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#continuous-predictor-childs-age"><i class="fa fa-check"></i><b>8.4.1</b> Continuous predictor: child’s age</a></li>
-<li class="chapter" data-level="8.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#categorical-predictor-example-books"><i class="fa fa-check"></i><b>8.4.2</b> Categorical predictor example: Books</a></li>
+<li class="chapter" data-level="7.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#preparing-variables-for-analysis"><i class="fa fa-check"></i><b>7.1</b> Preparing variables for analysis</a></li>
+<li class="chapter" data-level="7.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#correlation-and-simple-regression"><i class="fa fa-check"></i><b>7.2</b> Correlation and simple regression</a></li>
+<li class="chapter" data-level="7.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#survey-weighted-regression-for-population-inference"><i class="fa fa-check"></i><b>7.3</b> Survey-weighted regression for population inference</a></li>
+<li class="chapter" data-level="7.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#practice-exercises-3"><i class="fa fa-check"></i><b>7.4</b> Practice exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-binary-logistic-regression"><i class="fa fa-check"></i><b>8.5</b> Multiple binary logistic regression</a></li>
-<li class="chapter" data-level="8.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interaction"><i class="fa fa-check"></i><b>8.6</b> Interaction</a>
+<li class="chapter" data-level="8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation-of-age-sex-and-the-agesex-interaction"><i class="fa fa-check"></i><b>8.6.1</b> Interpretation of age, sex, and the age*sex interaction</a></li>
+<li class="chapter" data-level="8.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-multiple-regression-model-and-its-interpretation"><i class="fa fa-check"></i><b>8.1</b> The multiple regression model and its interpretation</a></li>
+<li class="chapter" data-level="8.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#data-and-analysis-sample"><i class="fa fa-check"></i><b>8.2</b> Data and analysis sample</a></li>
+<li class="chapter" data-level="8.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#building-a-multiple-regression-model"><i class="fa fa-check"></i><b>8.3</b> Building a multiple regression model</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#comparing-coefficients-across-models"><i class="fa fa-check"></i><b>8.3.1</b> Comparing coefficients across models</a></li>
+<li class="chapter" data-level="8.3.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interpreting-categorical-predictors"><i class="fa fa-check"></i><b>8.3.2</b> Interpreting categorical predictors</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="logistic-regression.html"><a href="logistic-regression.html#reporting-results-1"><i class="fa fa-check"></i><b>8.7</b> Reporting Results</a></li>
+<li class="chapter" data-level="8.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#extensions-interactions-and-non-linear-effects"><i class="fa fa-check"></i><b>8.4</b> Extensions: interactions and non-linear effects</a></li>
+<li class="chapter" data-level="8.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#reporting-results"><i class="fa fa-check"></i><b>8.5</b> Reporting results</a></li>
+<li class="chapter" data-level="8.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-exercises-4"><i class="fa fa-check"></i><b>8.6</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="logistic-regression.html"><a href="logistic-regression.html#what-logistic-regression-models"><i class="fa fa-check"></i><b>9.1</b> What logistic regression models</a></li>
+<li class="chapter" data-level="9.2" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-versus-multiple-logistic-regression"><i class="fa fa-check"></i><b>9.2</b> Simple versus multiple logistic regression</a></li>
+<li class="chapter" data-level="9.3" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>9.3</b> Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#import-subset-and-keep-only-needed-variables"><i class="fa fa-check"></i><b>9.3.1</b> Import, subset, and keep only needed variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#recode-variables-labels-reference-levels"><i class="fa fa-check"></i><b>9.3.2</b> Recode variables (labels + reference levels)</a></li>
+<li class="chapter" data-level="9.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#why-we-need-survey-design-information"><i class="fa fa-check"></i><b>9.3.3</b> Why we need survey design information</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>9.4</b> Simple Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#continuous-predictor-childs-age"><i class="fa fa-check"></i><b>9.4.1</b> Continuous predictor: child’s age</a></li>
+<li class="chapter" data-level="9.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#categorical-predictor-example-books"><i class="fa fa-check"></i><b>9.4.2</b> Categorical predictor example: Books</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-binary-logistic-regression"><i class="fa fa-check"></i><b>9.5</b> Multiple binary logistic regression</a></li>
+<li class="chapter" data-level="9.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interaction"><i class="fa fa-check"></i><b>9.6</b> Interaction</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation-of-age-sex-and-the-agesex-interaction"><i class="fa fa-check"></i><b>9.6.1</b> Interpretation of age, sex, and the age*sex interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="logistic-regression.html"><a href="logistic-regression.html#reporting-results-1"><i class="fa fa-check"></i><b>9.7</b> Reporting Results</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -267,7 +275,7 @@ title.innerHTML = '<img src="files/20260205-df-header.png" alt="">' + title.inne
         </div>
       </div>
 
-<a href="survey-design-sampling-and-weighting.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

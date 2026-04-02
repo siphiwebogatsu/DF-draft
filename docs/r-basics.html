@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 R Basics | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data</title>
+  <meta name="description" content="<p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 R Basics | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 R Basics | AFLEARN Introduction to R using ICAN-ICAR 2025 Survey Data" />
+  
+  
+  
+
+<meta name="author" content="Siphiwe M. Bogatsu" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="survey-design-sampling-and-weighting.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction to R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#scalar-arithmetic"><i class="fa fa-check"></i><b>2.1</b> Scalar Arithmetic</a></li>
+<li class="chapter" data-level="2.2" data-path="r-basics.html"><a href="r-basics.html#vector-arithmetic"><i class="fa fa-check"></i><b>2.2</b> Vector Arithmetic</a></li>
+<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#matrices-and-matrix-functions"><i class="fa fa-check"></i><b>2.3</b> Matrices and Matrix Functions</a></li>
+<li class="chapter" data-level="2.4" data-path="r-basics.html"><a href="r-basics.html#data-frame"><i class="fa fa-check"></i><b>2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#importing-data"><i class="fa fa-check"></i><b>2.5</b> Importing Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html"><i class="fa fa-check"></i><b>3</b> Survey Design, Sampling, and Weighting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-sampling-and-design"><i class="fa fa-check"></i><b>3.1</b> Survey sampling and design</a></li>
+<li class="chapter" data-level="3.2" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#survey-weights-and-design-based-inference"><i class="fa fa-check"></i><b>3.2</b> Survey weights and design-based inference</a></li>
+<li class="chapter" data-level="3.3" data-path="survey-design-sampling-and-weighting.html"><a href="survey-design-sampling-and-weighting.html#practice-exercises"><i class="fa fa-check"></i><b>3.3</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="understanding-distributions.html"><a href="understanding-distributions.html"><i class="fa fa-check"></i><b>4</b> Understanding distributions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#getting-oriented-to-the-data"><i class="fa fa-check"></i><b>4.1</b> Getting oriented to the data</a></li>
+<li class="chapter" data-level="4.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#levels-of-measurement"><i class="fa fa-check"></i><b>4.2</b> Levels of measurement</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#continuous-level"><i class="fa fa-check"></i><b>4.2.1</b> Continuous level</a></li>
+<li class="chapter" data-level="4.2.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#ordinal-level"><i class="fa fa-check"></i><b>4.2.2</b> Ordinal level</a></li>
+<li class="chapter" data-level="4.2.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#categorical-level"><i class="fa fa-check"></i><b>4.2.3</b> Categorical level</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-summaries-using-the-survey-design"><i class="fa fa-check"></i><b>4.3</b> Weighted summaries using the survey design</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-proportions-and-means"><i class="fa fa-check"></i><b>4.3.1</b> Weighted proportions and means</a></li>
+<li class="chapter" data-level="4.3.2" data-path="understanding-distributions.html"><a href="understanding-distributions.html#weighted-frequency-tables"><i class="fa fa-check"></i><b>4.3.2</b> Weighted frequency tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="understanding-distributions.html"><a href="understanding-distributions.html#household-level-variables-in-a-child-level-file"><i class="fa fa-check"></i><b>4.4</b> Household-level variables in a child-level file</a></li>
+<li class="chapter" data-level="4.5" data-path="understanding-distributions.html"><a href="understanding-distributions.html#missing-data-and-skip-patterns"><i class="fa fa-check"></i><b>4.5</b> Missing data and skip patterns</a></li>
+<li class="chapter" data-level="4.6" data-path="understanding-distributions.html"><a href="understanding-distributions.html#exercises"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html"><i class="fa fa-check"></i><b>5</b> Central Tendency and Dispersion</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#central-tendency"><i class="fa fa-check"></i><b>5.1</b> Central tendency</a></li>
+<li class="chapter" data-level="5.2" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#dispersion"><i class="fa fa-check"></i><b>5.2</b> Dispersion</a></li>
+<li class="chapter" data-level="5.3" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#weighted-design-correct-summaries"><i class="fa fa-check"></i><b>5.3</b> Weighted, design-correct summaries</a></li>
+<li class="chapter" data-level="5.4" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#outliers-and-the-unit-of-analysis"><i class="fa fa-check"></i><b>5.4</b> Outliers and the unit of analysis</a></li>
+<li class="chapter" data-level="5.5" data-path="central-tendency-and-dispersion.html"><a href="central-tendency-and-dispersion.html#practice-exercises-1"><i class="fa fa-check"></i><b>5.5</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html"><i class="fa fa-check"></i><b>6</b> Bivariate Analysis</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#choosing-the-right-bivariate-tool"><i class="fa fa-check"></i><b>6.1</b> Choosing the right bivariate tool</a></li>
+<li class="chapter" data-level="6.2" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#categorical-categorical-cross-tabulations"><i class="fa fa-check"></i><b>6.2</b> Categorical × categorical: cross-tabulations</a></li>
+<li class="chapter" data-level="6.3" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-categorical-comparing-group-means"><i class="fa fa-check"></i><b>6.3</b> Continuous × categorical: comparing group means</a></li>
+<li class="chapter" data-level="6.4" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#continuous-continuous-scatterplots-and-trends"><i class="fa fa-check"></i><b>6.4</b> Continuous × continuous: scatterplots and trends</a></li>
+<li class="chapter" data-level="6.5" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#testing-association-with-chi-squared-tests"><i class="fa fa-check"></i><b>6.5</b> Testing association with chi-squared tests</a></li>
+<li class="chapter" data-level="6.6" data-path="bivariate-analysis.html"><a href="bivariate-analysis.html#practice-exercises-2"><i class="fa fa-check"></i><b>6.6</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Simple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#preparing-variables-for-analysis"><i class="fa fa-check"></i><b>7.1</b> Preparing variables for analysis</a></li>
+<li class="chapter" data-level="7.2" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#correlation-and-simple-regression"><i class="fa fa-check"></i><b>7.2</b> Correlation and simple regression</a></li>
+<li class="chapter" data-level="7.3" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#survey-weighted-regression-for-population-inference"><i class="fa fa-check"></i><b>7.3</b> Survey-weighted regression for population inference</a></li>
+<li class="chapter" data-level="7.4" data-path="simple-linear-regression.html"><a href="simple-linear-regression.html#practice-exercises-3"><i class="fa fa-check"></i><b>7.4</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Multiple Linear Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#the-multiple-regression-model-and-its-interpretation"><i class="fa fa-check"></i><b>8.1</b> The multiple regression model and its interpretation</a></li>
+<li class="chapter" data-level="8.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#data-and-analysis-sample"><i class="fa fa-check"></i><b>8.2</b> Data and analysis sample</a></li>
+<li class="chapter" data-level="8.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#building-a-multiple-regression-model"><i class="fa fa-check"></i><b>8.3</b> Building a multiple regression model</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#comparing-coefficients-across-models"><i class="fa fa-check"></i><b>8.3.1</b> Comparing coefficients across models</a></li>
+<li class="chapter" data-level="8.3.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interpreting-categorical-predictors"><i class="fa fa-check"></i><b>8.3.2</b> Interpreting categorical predictors</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#extensions-interactions-and-non-linear-effects"><i class="fa fa-check"></i><b>8.4</b> Extensions: interactions and non-linear effects</a></li>
+<li class="chapter" data-level="8.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#reporting-results"><i class="fa fa-check"></i><b>8.5</b> Reporting results</a></li>
+<li class="chapter" data-level="8.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#practice-exercises-4"><i class="fa fa-check"></i><b>8.6</b> Practice exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="logistic-regression.html"><a href="logistic-regression.html#what-logistic-regression-models"><i class="fa fa-check"></i><b>9.1</b> What logistic regression models</a></li>
+<li class="chapter" data-level="9.2" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-versus-multiple-logistic-regression"><i class="fa fa-check"></i><b>9.2</b> Simple versus multiple logistic regression</a></li>
+<li class="chapter" data-level="9.3" data-path="logistic-regression.html"><a href="logistic-regression.html#data"><i class="fa fa-check"></i><b>9.3</b> Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="logistic-regression.html"><a href="logistic-regression.html#import-subset-and-keep-only-needed-variables"><i class="fa fa-check"></i><b>9.3.1</b> Import, subset, and keep only needed variables</a></li>
+<li class="chapter" data-level="9.3.2" data-path="logistic-regression.html"><a href="logistic-regression.html#recode-variables-labels-reference-levels"><i class="fa fa-check"></i><b>9.3.2</b> Recode variables (labels + reference levels)</a></li>
+<li class="chapter" data-level="9.3.3" data-path="logistic-regression.html"><a href="logistic-regression.html#why-we-need-survey-design-information"><i class="fa fa-check"></i><b>9.3.3</b> Why we need survey design information</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>9.4</b> Simple Logistic Regression</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="logistic-regression.html"><a href="logistic-regression.html#continuous-predictor-childs-age"><i class="fa fa-check"></i><b>9.4.1</b> Continuous predictor: child’s age</a></li>
+<li class="chapter" data-level="9.4.2" data-path="logistic-regression.html"><a href="logistic-regression.html#categorical-predictor-example-books"><i class="fa fa-check"></i><b>9.4.2</b> Categorical predictor example: Books</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-binary-logistic-regression"><i class="fa fa-check"></i><b>9.5</b> Multiple binary logistic regression</a></li>
+<li class="chapter" data-level="9.6" data-path="logistic-regression.html"><a href="logistic-regression.html#interaction"><i class="fa fa-check"></i><b>9.6</b> Interaction</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation-of-age-sex-and-the-agesex-interaction"><i class="fa fa-check"></i><b>9.6.1</b> Interpretation of age, sex, and the age*sex interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="logistic-regression.html"><a href="logistic-regression.html#reporting-results-1"><i class="fa fa-check"></i><b>9.7</b> Reporting Results</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p>AFLEARN
+Introduction to R using ICAN-ICAR 2025 Survey Data</p></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-basics" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> R Basics<a href="r-basics.html#r-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="scalar-arithmetic" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Scalar Arithmetic<a href="r-basics.html#scalar-arithmetic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R has the usual arithmetic operators:</p>
+<ul>
+<li><p>+ for addition</p></li>
+<li><p>- for subtraction</p></li>
+<li><p>* for multiplication</p></li>
+<li><p>/ for division</p></li>
+<li><p>^ for raising to a power</p></li>
+<li><p>% / % for integer division</p></li>
+<li><p>%% for remainder from integer division</p></li>
+</ul>
+<p>There is also an arithmetic operator “-” for unary minus that is applicable to one operand (i.e., making a negative value; “+” can also be used as unary plus). For example, the following expression yields, based on the order of operations (i.e., ^ first, */ second, and + - last, from left to right if the orders are the same), the answer shown here:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="r-basics.html#cb1-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span> <span class="sc">/</span> <span class="dv">5</span> <span class="sc">^</span> <span class="dv">6</span></span></code></pre></div>
+<pre><code>## [1] 2.999232</code></pre>
+<p>The number in the brackets (e.g., [1]) indicates the order of elements in the result. Because we are getting a scalar value, only one number is shown after such a bracketed number. This will be handy where we operate with vectors instead of scalars. The order of operations can be changed with the use of parentheses. For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="r-basics.html#cb3-1" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">4</span> <span class="sc">/</span> <span class="dv">5</span> <span class="sc">^</span> <span class="dv">6</span> </span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="r-basics.html#cb5-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">-</span> (<span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">^</span> <span class="dv">6</span></span></code></pre></div>
+<pre><code>## [1] -188.103</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-basics.html#cb7-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">4</span> <span class="sc">/</span> <span class="dv">5</span> <span class="sc">^</span> <span class="dv">6</span></span></code></pre></div>
+<pre><code>## [1] 0.999744</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-basics.html#cb9-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">-</span> <span class="dv">3</span>) <span class="sc">*</span> (<span class="dv">4</span> <span class="sc">/</span> <span class="dv">5</span>) <span class="sc">^</span> <span class="dv">6</span></span></code></pre></div>
+<pre><code>## [1] 0.737856</code></pre>
+<p>The portions of the expression beginning with the pound symbol, #, to the end of the expression before running the expression will be treated as a comment. For example,</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-basics.html#cb11-1" tabindex="-1"></a><span class="dv">6</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> <span class="dv">3</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">^</span> <span class="dv">1</span>  <span class="co"># the answer is [Enter]</span></span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>Comments can be typed (and ignored) anywhere in the R expressions. Comments can be very informative explaining the expression to be carried by R.</p>
+<p>The default number of decimal places is 7. It can be changed with the <code>options()</code> function with the digits argument for which the valid values are <span class="math inline">\(0 - 22\)</span>. It should be noted that there may exist rounding errors when a very larger number of decimal places, say <span class="math inline">\(22\)</span>, is employed. For example, <span class="math inline">\(1/3\)</span> will yield <span class="math inline">\(0.3333333\)</span> in the default setting, but the following rounding error can occur when a higher precision is requested:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-basics.html#cb13-1" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">22</span>)</span>
+<span id="cb13-2"><a href="r-basics.html#cb13-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span> </span></code></pre></div>
+<pre><code>## [1] 0.3333333333333333148296</code></pre>
+<p>With the same <code>options()</code> function in effect, the mathematical constant <span class="math inline">\(\pi\)</span> can be obtained using R both directly with the <code>pi</code> command and indirectly with the arc tangent function:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-basics.html#cb15-1" tabindex="-1"></a>pi </span></code></pre></div>
+<pre><code>## [1] 3.141592653589793115998</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-basics.html#cb17-1" tabindex="-1"></a><span class="dv">4</span> <span class="sc">*</span> <span class="fu">atan</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] 3.141592653589793115998</code></pre>
+<p>Other mathematical constants can be obtained using R functions. In fact, nearly all of the common mathematical function are available in R with arguments in parentheses (i.e., parenthetical arguments). For example, mathematical functions include:</p>
+<ul>
+<li><p><code>abs()</code> - absolute value</p></li>
+<li><p><code>exp()</code> - exponential (<em>e</em> to a power)</p></li>
+<li><p><code>gamma()</code> - gamma function</p></li>
+<li><p><code>lgamma()</code> - log of gamma function</p></li>
+<li><p><code>log()</code> - logarithm</p></li>
+<li><p><code>log10()</code> - logarithm of base 10</p></li>
+<li><p><code>sign()</code> - signum function</p></li>
+<li><p><code>sqrt()</code> - square root</p></li>
+<li><p><code>floor()</code> - largest integer, less than or equal to</p></li>
+<li><p><code>ceiling()</code> - smallest integer, greater than or equal to</p></li>
+<li><p><code>trunc()</code> - truncation to the nearest integer</p></li>
+<li><p><code>factorial()</code> - factorial</p></li>
+<li><p><code>lfactorial()</code> - log of factorial</p></li>
+</ul>
+<p>A full range of logical operators can be used in R:</p>
+<ul>
+<li><p><code>&gt;</code> - greater than</p></li>
+<li><p><code>&lt;</code> - less than</p></li>
+<li><p><code>&gt;=</code> - greater than or equal to</p></li>
+<li><p><code>&lt;=</code> - less than or equal to</p></li>
+<li><p><code>==</code> - equality</p></li>
+<li><p><code>!=</code> - non-equality</p></li>
+<li><p><code>&amp;</code> - elementwise AND</p></li>
+<li><p><code>|</code> - elementwise OR</p></li>
+<li><p><code>&amp;&amp;</code> - control AND</p></li>
+<li><p><code>||</code> - control OR</p></li>
+<li><p><code>!</code> - unary not</p></li>
+</ul>
+<p>In the trigonometric functions, the arguments are in radians instead of degrees. For example:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-basics.html#cb19-1" tabindex="-1"></a><span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4999999999999999444888</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-basics.html#cb21-1" tabindex="-1"></a>pi <span class="sc">/</span> <span class="dv">6</span></span></code></pre></div>
+<pre><code>## [1] 0.5235987755982988156589</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-basics.html#cb23-1" tabindex="-1"></a><span class="fu">sin</span>(<span class="fl">0.5235988</span>)</span></code></pre></div>
+<pre><code>## [1] 0.500000021132492977749</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-basics.html#cb25-1" tabindex="-1"></a><span class="fu">sin</span>((<span class="dv">30</span> <span class="sc">/</span> <span class="dv">180</span>) <span class="sc">*</span> pi)</span></code></pre></div>
+<pre><code>## [1] 0.4999999999999999444888</code></pre>
+<p>A scalar value or the result from arithmetic operators can be saved as a variable with the assignment function <code>&lt;-</code> or <code>=</code>. The value can be listed by typing in the variable name:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-basics.html#cb27-1" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">6</span>)</span>
+<span id="cb27-2"><a href="r-basics.html#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="r-basics.html#cb27-3" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">cos</span>(pi <span class="sc">/</span> <span class="dv">6</span>)</span>
+<span id="cb27-4"><a href="r-basics.html#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="r-basics.html#cb27-5" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(a <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> b <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb27-6"><a href="r-basics.html#cb27-6" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="r-basics.html#cb27-7" tabindex="-1"></a>c</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Multiple expressions can be combined by separating them with semi-colons. Spaces are mostly optional in the R commands, but readability will be enhanced when proper spacing is employed. For example,</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r-basics.html#cb29-1" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">sin</span>(pi<span class="sc">/</span><span class="dv">6</span>); b <span class="ot">=</span> <span class="fu">cos</span>(pi<span class="sc">/</span><span class="dv">6</span>); c <span class="ot">=</span> <span class="fu">sqrt</span>(a <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> b <span class="sc">^</span> <span class="dv">2</span>); c</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>R can handle operations of complex numbers that have real parts and imaginary parts albeit not really useful in applied statistical procedures:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-basics.html#cb31-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">2</span><span class="dt">i</span></span>
+<span id="cb31-2"><a href="r-basics.html#cb31-2" tabindex="-1"></a><span class="fu">Re</span>(x)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-basics.html#cb33-1" tabindex="-1"></a><span class="fu">Im</span>(x)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-basics.html#cb35-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">-</span> <span class="dv">2</span><span class="dt">i</span></span>
+<span id="cb35-2"><a href="r-basics.html#cb35-2" tabindex="-1"></a>x <span class="sc">+</span> y</span></code></pre></div>
+<pre><code>## [1] 8+0i</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-basics.html#cb37-1" tabindex="-1"></a>x <span class="sc">*</span> y</span></code></pre></div>
+<pre><code>## [1] 20+0i</code></pre>
+</div>
+<div id="vector-arithmetic" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Vector Arithmetic<a href="r-basics.html#vector-arithmetic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here, a vector is an ordered collection of values of the same type stored under one variable name. In fact, even a single value is technically a vector of length one. Usually, when we say vector we mean a structure with multiple elements. One can have numeric vectors (i.e., a series of numbers), a character of vectors (i.e., a series of strings), or logical vectors (TRUE or FALSE values). The key rule is all elements in a vector must be of the same class or type.</p>
+<p>If one mixes types, R will automatically coerce them to a common type so that the whole vector is uniform. For example, combining numbers and strings in one vector will turn all values into strings behind the hood.</p>
+<p>To define the vector, we use the concatenation function <code>c()</code> and list all the values:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-basics.html#cb39-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<p>After defining the vector (i.e., a variable in a statistical sense), the elements of the vector can be listed by typing in the name of the vector:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-basics.html#cb40-1" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<p>A character vector of names will be</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-basics.html#cb42-1" tabindex="-1"></a>names <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;Alice&#39;</span>, <span class="st">&#39;Thabo&#39;</span>, <span class="st">&#39;Zola&#39;</span>)</span>
+<span id="cb42-2"><a href="r-basics.html#cb42-2" tabindex="-1"></a>names</span></code></pre></div>
+<pre><code>## [1] &quot;Alice&quot; &quot;Thabo&quot; &quot;Zola&quot;</code></pre>
+<p>One can perform operations on vectors easily. Functions for simple statistics for a vector are available in R:</p>
+<ul>
+<li><p><code>min()</code> - smallest value</p></li>
+<li><p><code>max()</code> - largest value</p></li>
+<li><p><code>range()</code> - minimum and maximum</p></li>
+<li><p><code>mean()</code> - arithmetic average</p></li>
+<li><p><code>var()</code> - variance</p></li>
+<li><p><code>sd()</code> - standard deviation</p></li>
+<li><p><code>sum()</code> - arithmetic sum</p></li>
+<li><p><code>prod()</code> - product of elements</p></li>
+<li><p><code>length()</code> - number of elements</p></li>
+<li><p><code>median()</code> - 50th percentile</p></li>
+<li><p><code>quantile()</code> - quantiles</p></li>
+<li><p><code>cumsum()</code> - cumulative sum</p></li>
+<li><p><code>diff()</code> - first difference</p></li>
+<li><p><code>table()</code> - frequency table or cross tabulation</p></li>
+<li><p><code>summary()</code> - five number summary or frequencies</p></li>
+</ul>
+<p>In addition, after defining two vectors, the following statistical functions are available in R:</p>
+<ul>
+<li><p><code>cor()</code> - correlation</p></li>
+<li><p><code>cov()</code> - covariance</p></li>
+</ul>
+<p>For example:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-basics.html#cb44-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb44-2"><a href="r-basics.html#cb44-2" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>) </span>
+<span id="cb44-3"><a href="r-basics.html#cb44-3" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="r-basics.html#cb44-4" tabindex="-1"></a><span class="co"># compute correlation between the two numeric vectors </span></span>
+<span id="cb44-5"><a href="r-basics.html#cb44-5" tabindex="-1"></a><span class="fu">cor</span>(x, y)</span></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-basics.html#cb46-1" tabindex="-1"></a><span class="co"># compute covariance between the two numeric vectors </span></span>
+<span id="cb46-2"><a href="r-basics.html#cb46-2" tabindex="-1"></a><span class="fu">cov</span>(x, y)</span></code></pre></div>
+<pre><code>## [1] 0.3333333333333333148296</code></pre>
+<p>Sorting or rearranging of the vector in the ascending or increasing order and in the descending or decreasing order can be performed using the <code>sort()</code> function, for example:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="r-basics.html#cb48-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb48-2"><a href="r-basics.html#cb48-2" tabindex="-1"></a><span class="fu">sort</span>(x)</span></code></pre></div>
+<pre><code>## [1] 1 2 2 3</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="r-basics.html#cb50-1" tabindex="-1"></a><span class="fu">sort</span>(x, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 3 2 2 1</code></pre>
+<p>A subset of vector can be created using the order subscripts and their operations in brackets, for example:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="r-basics.html#cb52-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb52-2"><a href="r-basics.html#cb52-2" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="r-basics.html#cb52-3" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="r-basics.html#cb52-4" tabindex="-1"></a>x[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="r-basics.html#cb54-1" tabindex="-1"></a>x[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div>
+<pre><code>## [1] 2 3 2</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="r-basics.html#cb56-1" tabindex="-1"></a>x[<span class="sc">-</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 1 2 2</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="r-basics.html#cb58-1" tabindex="-1"></a>x[x <span class="sc">&lt;</span> <span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 1 2 2</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="r-basics.html#cb60-1" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>Note that the vector can be replaced with the assignment function, for example:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="r-basics.html#cb62-1" tabindex="-1"></a>x <span class="ot">=</span> x[<span class="sc">-</span><span class="dv">3</span>]; x</span></code></pre></div>
+<pre><code>## [1] 1 2 2</code></pre>
+<p>Vectors can be generated and converted to different types using functions in R:</p>
+<ul>
+<li><p><code>numeric()</code> - a vector of zeroes with the length of the argument</p></li>
+<li><p><code>charactor()</code> - a vector of blank characters of argument length</p></li>
+<li><p><code>logical()</code> - a vector of FALSE of argument length</p></li>
+<li><p><code>seq()</code> - argument of 1 to argument 2 with the increment of argument 3</p></li>
+<li><p><code>1 : 4</code> - numbers equivalent to <code>seq(1, 4, 1)</code></p></li>
+<li><p><code>rep()</code> - replicate argument 1 as many times as argument 2</p></li>
+<li><p><code>as.numeric()</code> - conversion to numeric</p></li>
+<li><p><code>as.character()</code> - conversion to string-type</p></li>
+<li><p><code>as.logical()</code> - conversion to logical</p></li>
+<li><p><code>factor()</code> - creating factor from vector</p></li>
+</ul>
+<p>For example, the following are very useful ways to construct a sequence of nicely patterned elements:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="r-basics.html#cb64-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">1</span> <span class="sc">:</span> <span class="dv">4</span>; x </span></code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="r-basics.html#cb66-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">1</span>); x</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="r-basics.html#cb68-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.2</span>); x </span></code></pre></div>
+<pre><code>## [1] 1.000000000000000000000 1.199999999999999955591 1.399999999999999911182 1.600000000000000088818 1.800000000000000044409 2.000000000000000000000</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="r-basics.html#cb70-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">4</span>); x</span></code></pre></div>
+<pre><code>## [1] 1 1 1 1</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="r-basics.html#cb72-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">4</span>), <span class="fu">rep</span>(<span class="dv">2</span>, <span class="dv">2</span>)); x</span></code></pre></div>
+<pre><code>## [1] 1 1 1 1 2 2</code></pre>
+</div>
+<div id="matrices-and-matrix-functions" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Matrices and Matrix Functions<a href="r-basics.html#matrices-and-matrix-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An array is a collection of data which can be indexed by one or more subscripts. The vectors discussed above can be seen as one-dimensional arrays. Each element in a vector can be referred to as the name with the subscript enclosed in brackets (e.g., <code>x[1]</code>). Two-dimensional arrays are generally referred to as matrices. The <code>matrix()</code> function is used to create a matrix. For example, a matrix with ones in the first column and four observations in the second column can be defined and listed subsequently by:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="r-basics.html#cb74-1" tabindex="-1"></a>X  <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">4</span>); X</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    2
+## [3,]    1    3
+## [4,]    1    2</code></pre>
+<p>The R commands as well as the names of objects and variables are case-sensitive. The objects X and x, for example, are not the same unless these are defined to be equivalent. The expression of the above matrix is equivalent to:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="r-basics.html#cb76-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb76-2"><a href="r-basics.html#cb76-2" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb76-3"><a href="r-basics.html#cb76-3" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">byrow=</span>T)</span>
+<span id="cb76-4"><a href="r-basics.html#cb76-4" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>), <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
+<span id="cb76-5"><a href="r-basics.html#cb76-5" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">4</span>, <span class="at">ncol=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span></code></pre></div>
+<p>Elements in a matrix can be referred to as the name with the row and column subscripts enclosed in brackets. For example, with the same matrix defined earlier:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="r-basics.html#cb77-1" tabindex="-1"></a>X[<span class="dv">2</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="r-basics.html#cb79-1" tabindex="-1"></a>X[, <span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 1 2 3 2</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="r-basics.html#cb81-1" tabindex="-1"></a>X[<span class="dv">2</span>, ]</span></code></pre></div>
+<pre><code>## [1] 1 2</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="r-basics.html#cb83-1" tabindex="-1"></a>X[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    2</code></pre>
+<p>After defining two or more vectors of the same length (i.e., the same number of elements), a matrix can be constructed by the <code>cbind()</code> function:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="r-basics.html#cb85-1" tabindex="-1"></a>u <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb85-2"><a href="r-basics.html#cb85-2" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb85-3"><a href="r-basics.html#cb85-3" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="r-basics.html#cb85-4" tabindex="-1"></a>X  <span class="ot">=</span> <span class="fu">cbind</span>(u, x); X </span></code></pre></div>
+<pre><code>##      u x
+## [1,] 1 1
+## [2,] 1 2
+## [3,] 1 3
+## [4,] 1 2</code></pre>
+<p>It can be noticed that the default column names in the listing of the matrix are replaced with the names of the vectors. The equivalent matrix function:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="r-basics.html#cb87-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(), <span class="fu">c</span>(<span class="st">&quot;u&quot;</span>, <span class="st">&quot;x&quot;</span>))); X</span></code></pre></div>
+<pre><code>##      u x
+## [1,] 1 1
+## [2,] 1 2
+## [3,] 1 3
+## [4,] 1 2</code></pre>
+<p>Also the row and column names can be specified with the function of <code>rownames()</code> and <code>colnames()</code>, respectively:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="r-basics.html#cb89-1" tabindex="-1"></a>X  <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>) </span>
+<span id="cb89-2"><a href="r-basics.html#cb89-2" tabindex="-1"></a><span class="fu">colnames</span>(X) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;u&quot;</span>, <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb89-3"><a href="r-basics.html#cb89-3" tabindex="-1"></a><span class="fu">rownames</span>(X) <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb89-4"><a href="r-basics.html#cb89-4" tabindex="-1"></a></span>
+<span id="cb89-5"><a href="r-basics.html#cb89-5" tabindex="-1"></a>X</span></code></pre></div>
+<pre><code>##      u x
+## [1,] 1 1
+## [2,] 1 2
+## [3,] 1 3
+## [4,] 1 2</code></pre>
+<p>After defining vectors of the same length in row wise, a matrix can be constructed by the <code>rbind()</code> function:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="r-basics.html#cb91-1" tabindex="-1"></a>r1 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>); r2 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>); r3 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>); r4 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb91-2"><a href="r-basics.html#cb91-2" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">rbind</span>(r1, r2, r3, r4); X</span></code></pre></div>
+<pre><code>##    [,1] [,2]
+## r1    1    1
+## r2    1    2
+## r3    1    3
+## r4    1    2</code></pre>
+<p>Note that the row names can be replaced with the default names with the <code>rownames()</code> function:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="r-basics.html#cb93-1" tabindex="-1"></a><span class="fu">rownames</span>(X) <span class="ot">=</span> <span class="fu">c</span>(); X</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    2
+## [3,]    1    3
+## [4,]    1    2</code></pre>
+<p>A matrix can also be constructed with the <code>array()</code> function, although the array is not limited to be two-dimensional. For example,</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="r-basics.html#cb95-1" tabindex="-1"></a>X  <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">2</span>)); X</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    1
+## [2,]    1    2
+## [3,]    1    3
+## [4,]    1    2</code></pre>
+<p>Once a matrix is defined, the dimension, the number of rows, and the number of columns of the matrix can be obtained with the following functions:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="r-basics.html#cb97-1" tabindex="-1"></a><span class="fu">dim</span>(X)</span></code></pre></div>
+<pre><code>## [1] 4 2</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="r-basics.html#cb99-1" tabindex="-1"></a><span class="fu">nrow</span>(X)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="r-basics.html#cb101-1" tabindex="-1"></a><span class="fu">ncol</span>(X)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>The following are some matrix functions:</p>
+<ul>
+<li><p><code>chol()</code> - Cholesky decomposition</p></li>
+<li><p><code>crossprod()</code> - matrix crossproduct</p></li>
+<li><p><code>det()</code> - determinant</p></li>
+<li><p><code>diag()</code> - to create or extract diagonal values</p></li>
+<li><p><code>eigen()</code> - eigenvalues and eigenvectors</p></li>
+<li><p><code>outer()</code> - outer product of two vectors</p></li>
+<li><p><code>scale()</code> - to scale the columns of a matrix</p></li>
+<li><p><code>solve()</code> - inversion or to solve system of linear equations</p></li>
+<li><p><code>svd()</code> - singular value of decomposition</p></li>
+<li><p><code>qr()</code> - qr orthogonalization</p></li>
+<li><p><code>t()</code> - to transpose</p></li>
+</ul>
+<p>Based on the usual conforming conditions with scalars and matrices, the element wise addition, subtraction, multiplication, and division can be performed. Matrix multiplication is done with the operator:</p>
+<ul>
+<li><code>%*%</code> matrix multiplication</li>
+</ul>
+<p>The following is an example to obtain the estimates of an intercept and a slope from a simple regression model using the matrix functions and operators:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="r-basics.html#cb103-1" tabindex="-1"></a>X  <span class="ot">=</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>), <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>))</span>
+<span id="cb103-2"><a href="r-basics.html#cb103-2" tabindex="-1"></a><span class="fu">colnames</span>(X) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;u&quot;</span>, <span class="st">&quot;x&quot;</span>)</span>
+<span id="cb103-3"><a href="r-basics.html#cb103-3" tabindex="-1"></a></span>
+<span id="cb103-4"><a href="r-basics.html#cb103-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb103-5"><a href="r-basics.html#cb103-5" tabindex="-1"></a></span>
+<span id="cb103-6"><a href="r-basics.html#cb103-6" tabindex="-1"></a><span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span></code></pre></div>
+<pre><code>##   [,1]
+## u  1.0
+## x  0.5</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="r-basics.html#cb105-1" tabindex="-1"></a>betahat <span class="ot">=</span> <span class="fu">solve</span>(<span class="fu">crossprod</span>(X, X)) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y</span>
+<span id="cb105-2"><a href="r-basics.html#cb105-2" tabindex="-1"></a><span class="fu">rownames</span>(betahat) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>); betahat</span></code></pre></div>
+<pre><code>##   [,1]
+## a  1.0
+## b  0.5</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="r-basics.html#cb107-1" tabindex="-1"></a>ypredict <span class="ot">=</span> X <span class="sc">%*%</span> betahat; ypredict</span></code></pre></div>
+<pre><code>##      [,1]
+## [1,]  1.5
+## [2,]  2.0
+## [3,]  2.5
+## [4,]  2.0</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="r-basics.html#cb109-1" tabindex="-1"></a>yhat <span class="ot">=</span> ypredict[, <span class="dv">1</span>]; yhat</span></code></pre></div>
+<pre><code>## [1] 1.5 2.0 2.5 2.0</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="r-basics.html#cb111-1" tabindex="-1"></a>residual <span class="ot">=</span> y <span class="sc">-</span> yhat; residual</span></code></pre></div>
+<pre><code>## [1] -0.5  1.0 -0.5  0.0</code></pre>
+<p>The results from regression analysis in general will be obtained not from the matrix or vector operations but from the R function for statistical modeling. Hence, the above code illustrations are only for the demonstration and instructional purpose.</p>
+</div>
+<div id="data-frame" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Data Frame<a href="r-basics.html#data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A data frame is a two-dimensional array of observations in rows and variables in columns. Functions such as <code>dim()</code>, <code>dimnames()</code>, <code>nrow()</code>, and <code>ncol()</code> will work on data frames. The <code>attach()</code> function for data frames allow that variables contained in the data frame can be easily accessed through the variable names. Data frames can be constructed by the <code>data.frame()</code> function:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="r-basics.html#cb113-1" tabindex="-1"></a>heights <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">165</span>, <span class="dv">170</span>)</span>
+<span id="cb113-2"><a href="r-basics.html#cb113-2" tabindex="-1"></a>ids   <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Chitra&quot;</span>)</span>
+<span id="cb113-3"><a href="r-basics.html#cb113-3" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="r-basics.html#cb113-4" tabindex="-1"></a>people_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">id =</span> ids, <span class="at">height =</span> heights); people_df</span></code></pre></div>
+<pre><code>##       id height
+## 1  Alice    180
+## 2    Bob    165
+## 3 Chitra    170</code></pre>
+<p>Variables can be extracted from the data frame or directly referred by declaring the data frame name and the variable name separated with a dollar sign. For example, the <em>names</em> vector can be listed with the following commands assuming that the data frame has been declared as in the earlier expressions:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="r-basics.html#cb115-1" tabindex="-1"></a>people_df[, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Alice&quot;  &quot;Bob&quot;    &quot;Chitra&quot;</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="r-basics.html#cb117-1" tabindex="-1"></a>people_df<span class="sc">$</span>id</span></code></pre></div>
+<pre><code>## [1] &quot;Alice&quot;  &quot;Bob&quot;    &quot;Chitra&quot;</code></pre>
+<p>The <code>names()</code> function displays the variable names in the data frame:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="r-basics.html#cb119-1" tabindex="-1"></a><span class="fu">names</span>(people_df)</span></code></pre></div>
+<pre><code>## [1] &quot;id&quot;     &quot;height&quot;</code></pre>
+<p>A new variable can be appended to an existing data frame with a dollar sign and a variable name using the <code>c()</code> function:</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="r-basics.html#cb121-1" tabindex="-1"></a>people_df<span class="sc">$</span>age <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">17</span>, <span class="dv">45</span>); people_df</span></code></pre></div>
+<pre><code>##       id height age
+## 1  Alice    180  21
+## 2    Bob    165  17
+## 3 Chitra    170  45</code></pre>
+<p>A variable can be removed or portions of the variables can be selected as in the following expressions for the previous data frame <em>people_df</em> with the four variable:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="r-basics.html#cb123-1" tabindex="-1"></a>people_df <span class="ot">=</span> people_df[,<span class="sc">-</span><span class="dv">3</span>]</span>
+<span id="cb123-2"><a href="r-basics.html#cb123-2" tabindex="-1"></a></span>
+<span id="cb123-3"><a href="r-basics.html#cb123-3" tabindex="-1"></a>people_df <span class="ot">=</span> people_df[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<p>These yield the same data frame <em>people_df</em> with only id and height.</p>
+<p>The <code>edit()</code> function opens the data editor window and allows to edit the data frame with the spreadsheet-looking data editor. The values of the variables as well as the variable names can be modified. The data frame can be saved by clicking of the close window icon, that is, the exit button positioned in the top, right corner of the data editor window’s title bar.</p>
+<p>It is also possible to construct a data frame by opening up a blank data frame using the <code>edit()</code> function and then entering the necessary values and variable names:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r-basics.html#cb124-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">edit</span>(<span class="fu">data.frame</span>())</span></code></pre></div>
+<p>A data frame can be saved as a file that can be opened with other editor-type programs as:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="r-basics.html#cb125-1" tabindex="-1"></a><span class="fu">write.table</span>(X, <span class="at">file=</span> <span class="st">&quot;X.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<p>The current working directory where the data frame file is to be stored can be found with this:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="r-basics.html#cb126-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;C:/Users/cash/OneDrive - University of Cape Town/2026/DataFirst/DF-draft&quot;</code></pre>
+<p>and the directory can be changed to the usual root directory with either of the following two commands:</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-basics.html#cb128-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:</span><span class="sc">\\</span><span class="st">&quot;</span>)</span>
+<span id="cb128-2"><a href="r-basics.html#cb128-2" tabindex="-1"></a></span>
+<span id="cb128-3"><a href="r-basics.html#cb128-3" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/&quot;</span>)</span></code></pre></div>
+<p>After loading the file, the variables contained in a data frame can be directly accessed by declaring the <code>attach()</code> function:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-basics.html#cb129-1" tabindex="-1"></a><span class="fu">attach</span>(people_df)</span></code></pre></div>
+<p>A data frame can be removed from the current session with the <code>detach()</code> function, for example:</p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="r-basics.html#cb130-1" tabindex="-1"></a><span class="fu">detach</span>(people_df)</span></code></pre></div>
+<p>If there is an object defined with same variable name in the attached object, then due to a hierarchical nature of searching objects in the R workspace that <code>attach()</code> function may not bring up the variable contained in the data frame. Care should be exercised when the <code>attach()</code> function is employed.</p>
+<p>A list of currently available objects can be found by the <code>ls()</code> function:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-basics.html#cb131-1" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot;         &quot;b&quot;         &quot;betahat&quot;   &quot;c&quot;         &quot;heights&quot;   &quot;ids&quot;       &quot;names&quot;     &quot;people_df&quot; &quot;r1&quot;        &quot;r2&quot;        &quot;r3&quot;        &quot;r4&quot;        &quot;residual&quot; 
+## [14] &quot;u&quot;         &quot;x&quot;         &quot;X&quot;         &quot;y&quot;         &quot;yhat&quot;      &quot;ypredict&quot;</code></pre>
+<p>The objects can be removed by the <code>rm()</code> function, for example:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="r-basics.html#cb133-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb133-2"><a href="r-basics.html#cb133-2" tabindex="-1"></a></span>
+<span id="cb133-3"><a href="r-basics.html#cb133-3" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<p>The entire workspace will be cleared by:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="r-basics.html#cb134-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+</div>
+<div id="importing-data" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Importing Data<a href="r-basics.html#importing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usually data that we want to analyze is various file formats and comes from different sources that include: built-in data (comes from R packages); formatted texts, i.e., .csv, .txt, .xls; specialised software, i.e., Stata, SPSS, and SAS; databases; and web scraping.</p>
+<p>Let us firstly see built-in data. Authors of packages use this data to demonstrate functions in their packages</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="survey-design-sampling-and-weighting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/siphiwebogatsu/DF-draft/edit/main/01-r-basics.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.comsiphiwebogatsu/DF-draft/blob/main/01-r-basics.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

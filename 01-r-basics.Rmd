@@ -8,7 +8,7 @@ R has the usual arithmetic operators:
 
 -   \- for subtraction
 
--    \* for multiplication
+-   \* for multiplication
 
 -   / for division
 
@@ -76,23 +76,23 @@ Other mathematical constants can be obtained using R functions. In fact, nearly 
 
 -   `exp()` - exponential (*e* to a power)
 
--   `gamma()`  - gamma function
+-   `gamma()` - gamma function
 
 -   `lgamma()` - log of gamma function
 
 -   `log()` - logarithm
 
--   `log10()`  - logarithm of base 10
+-   `log10()` - logarithm of base 10
 
--   `sign()`  - signum function
+-   `sign()` - signum function
 
--   `sqrt()`  - square root
+-   `sqrt()` - square root
 
 -   `floor()` - largest integer, less than or equal to
 
 -   `ceiling()` - smallest integer, greater than or equal to
 
--   `trunc()`  - truncation to the nearest integer
+-   `trunc()` - truncation to the nearest integer
 
 -   `factorial()` - factorial
 
@@ -100,9 +100,9 @@ Other mathematical constants can be obtained using R functions. In fact, nearly 
 
 A full range of logical operators can be used in R:
 
--    `>`  - greater than
+-   `>` - greater than
 
--   `<`  - less than
+-   `<` - less than
 
 -   `>=` - greater than or equal to
 
@@ -120,7 +120,7 @@ A full range of logical operators can be used in R:
 
 -   `||` - control OR
 
--   `!`  - unary not
+-   `!` - unary not
 
 In the trigonometric functions, the arguments are in radians instead of degrees. For example:
 
@@ -179,7 +179,7 @@ x + y
 x * y
 ```
 
-## Vector Arithmetic 
+## Vector Arithmetic
 
 Here, a vector is an ordered collection of values of the same type stored under one variable name. In fact, even a single value is technically a vector of length one. Usually, when we say vector we mean a structure with multiple elements. One can have numeric vectors (i.e., a series of numbers), a character of vectors (i.e., a series of strings), or logical vectors (TRUE or FALSE values). The key rule is all elements in a vector must be of the same class or type.
 
@@ -303,7 +303,7 @@ x = x[-3]; x
 
 Vectors can be generated and converted to different types using functions in R:
 
--   `numeric()`  - a vector of zeroes with the length of the argument
+-   `numeric()` - a vector of zeroes with the length of the argument
 
 -   `charactor()` - a vector of blank characters of argument length
 
@@ -345,7 +345,7 @@ x = rep(1, 4); x
 x = c(rep(1, 4), rep(2, 2)); x
 ```
 
-## Matrices and Matrix Functions 
+## Matrices and Matrix Functions
 
 An array is a collection of data which can be indexed by one or more subscripts. The vectors discussed above can be seen as one-dimensional arrays. Each element in a vector can be referred to as the name with the subscript enclosed in brackets (e.g., `x[1]`). Two-dimensional arrays are generally referred to as matrices. The `matrix()` function is used to create a matrix. For example, a matrix with ones in the first column and four observations in the second column can be defined and listed subsequently by:
 
@@ -497,4 +497,113 @@ residual = y - yhat; residual
 
 The results from regression analysis in general will be obtained not from the matrix or vector operations but from the R function for statistical modeling. Hence, the above code illustrations are only for the demonstration and instructional purpose.
 
-## Data Frame 
+## Data Frame
+
+A data frame is a two-dimensional array of observations in rows and variables in columns. Functions such as `dim()`, `dimnames()`, `nrow()`, and `ncol()` will work on data frames. The `attach()` function for data frames allow that variables contained in the data frame can be easily accessed through the variable names. Data frames can be constructed by the `data.frame()` function:
+
+```{r}
+heights = c(180, 165, 170)
+ids   = c("Alice", "Bob", "Chitra")
+
+people_df = data.frame(id = ids, height = heights); people_df
+```
+
+Variables can be extracted from the data frame or directly referred by declaring the data frame name and the variable name separated with a dollar sign. For example, the *names* vector can be listed with the following commands assuming that the data frame has been declared as in the earlier expressions:
+
+```{r}
+people_df[, 1]
+```
+
+```{r}
+people_df$id
+```
+
+The `names()` function displays the variable names in the data frame:
+
+```{r}
+names(people_df)
+```
+
+A new variable can be appended to an existing data frame with a dollar sign and a variable name using the `c()` function:
+
+```{r}
+people_df$age = c(21, 17, 45); people_df
+```
+
+A variable can be removed or portions of the variables can be selected as in the following expressions for the previous data frame *people_df* with the four variable:
+
+```{r}
+people_df = people_df[,-3]
+
+people_df = people_df[,1:2]
+```
+
+These yield the same data frame *people_df* with only id and height.
+
+The `edit()` function opens the data editor window and allows to edit the data frame with the spreadsheet-looking data editor. The values of the variables as well as the variable names can be modified. The data frame can be saved by clicking of the close window icon, that is, the exit button positioned in the top, right corner of the data editor window's title bar.
+
+It is also possible to construct a data frame by opening up a blank data frame using the `edit()` function and then entering the necessary values and variable names:
+
+```{r}
+X = edit(data.frame())
+```
+
+A data frame can be saved as a file that can be opened with other editor-type programs as:
+
+```{r}
+write.table(X, file= "X.txt", sep = " ")
+```
+
+The current working directory where the data frame file is to be stored can be found with this:
+
+```{r}
+getwd()
+```
+
+and the directory can be changed to the usual root directory with either of the following two commands:
+
+```{r}
+setwd("C:\\")
+
+setwd("C:/")
+```
+
+After loading the file, the variables contained in a data frame can be directly accessed by declaring the `attach()` function:
+
+```{r}
+attach(people_df)
+```
+
+A data frame can be removed from the current session with the `detach()` function, for example:
+
+```{r}
+detach(people_df)
+```
+
+If there is an object defined with same variable name in the attached object, then due to a hierarchical nature of searching objects in the R workspace that `attach()` function may not bring up the variable contained in the data frame. Care should be exercised when the `attach()` function is employed.
+
+A list of currently available objects can be found by the `ls()` function:
+
+```{r}
+ls()
+```
+
+The objects can be removed by the `rm()` function, for example:
+
+```{r}
+x = c(1, 2, 3, 2)
+
+rm(x)
+```
+
+The entire workspace will be cleared by:
+
+```{r}
+rm(list = ls())
+```
+
+## Importing Data
+
+Usually data that we want to analyze is various file formats and comes from different sources that include: built-in data (comes from R packages); formatted texts, i.e., .csv, .txt, .xls; specialised software, i.e., Stata, SPSS, and SAS; databases; and web scraping.
+
+Let us firstly see built-in data. Authors of packages use this data to demonstrate functions in their packages
