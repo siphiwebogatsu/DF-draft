@@ -577,7 +577,7 @@ attach(people_df)
 A data frame can be removed from the current session with the `detach()` function, for example:
 
 ```{r}
-detach(people_df)
+
 ```
 
 If there is an object defined with same variable name in the attached object, then due to a hierarchical nature of searching objects in the R workspace that `attach()` function may not bring up the variable contained in the data frame. Care should be exercised when the `attach()` function is employed.
@@ -602,8 +602,243 @@ The entire workspace will be cleared by:
 rm(list = ls())
 ```
 
-## Importing Data
+## Missing Values
 
-Usually data that we want to analyze is various file formats and comes from different sources that include: built-in data (comes from R packages); formatted texts, i.e., .csv, .txt, .xls; specialised software, i.e., Stata, SPSS, and SAS; databases; and web scraping.
+In R, not available (i.e., NA) is used as a missing value. The following lines show how the missing values are treated in R:
 
-Let us firstly see built-in data. Authors of packages use this data to demonstrate functions in their packages
+```{r}
+x = c(1, NA, 3, 2)
+x
+```
+
+```{r}
+is.na(x)
+```
+
+```{r}
+sum(!is.na(x))
+```
+
+```{r}
+newx = x[!is.na(x)]
+newx
+```
+
+```{r}
+x[2] = sum(newx)/sum(!is.na(x)) 
+x
+```
+
+Note also that NaN (i.e., not a number) and Inf (i.e., infinity) are treated as missing cases.
+
+```{r}
+x1 = 0/0
+x2 = Inf 
+x3 = Inf - Inf 
+x = c(x1, x2, x3, 2)
+
+x
+```
+
+```{r}
+is.na(x)
+```
+
+The best way to solve the problem of missing values is prevention of the occurrence of missing in the data collection process. There is no missing strategy, none whatsoever, how sophisticate and complicate it can be, that is better than obtaining complete data. Obviously, there is no royal road for missing.
+
+## Control Flow
+
+### Logical Operators
+
+We can create logical vectors that indicate whether each element of another vector satisfies some conditions.
+
+```{r logical vector, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+df = data.frame(
+  `Logical operator` = c(
+    "equal to",
+    "not equal to",
+    "greater than",
+    "less than",
+    "greater than or equal to",
+    "less than or equal to",
+    "and",
+    "or"
+  ),
+  Example = c(
+    "x == 1",
+    "x != 1",
+    "x > 7",
+    "x < 7",
+    "x >= 8",
+    "x <= 8",
+    "x > 1 & x < 4",
+    "x > 8 | x == 2"
+  )
+)
+
+kable(df, format = "html", escape = FALSE, align = c("l", "c")) |>
+  kable_styling(
+    full_width = TRUE,
+    bootstrap_options = c("striped")
+  ) |>
+  row_spec(0, bold = TRUE)
+```
+
+Let us create an atomic vector and see some examples of logical operators. Logical operators will specify all the elements that satisfy some conditions. For instance, $x == 1$ will return a logical vector indicating whether each element of $x$ is equal to $1$.
+
+```{r}
+x = 1:10
+x
+```
+
+```{r}
+x == 10
+```
+
+```{r}
+x != 10
+```
+
+```{r}
+x >= 8
+```
+
+```{r}
+x > 1 & x < 4
+```
+
+```{r}
+x == 2 | x > 8
+```
+
+See what happens if we use logical operators between two vectors of the same length.
+
+```{r}
+a = c(-5, -3, -1, 0, 2, 4, 6)
+b = c(-5, -3, -1, 0, 1, 3, 5)
+
+a == b
+
+```
+
+```{r}
+a > b
+```
+
+Missing values are contagious in logical operators. That is, logical operators will return `NA` if one of the elements being compared is `NA`. For example,
+
+```{r}
+
+d = c(1, NA, 3)
+e = c(1, 2, 3)
+
+d == e
+```
+
+```{r}
+e > NA 
+```
+
+`which()` function returns the indices for the elements of a vector satisfying certain conditions. For example, to find which elements of `a` are greater than 3 by:
+
+```{r}
+which( a > 3)
+```
+
+We can refer to the elements of a vector satisfying some conditions by using logical operators with brackets `[]` . The following code will return the values of the vector `a` that are greater than 3.
+
+```{r}
+a[a > 3]
+```
+
+```{r}
+# or 
+
+a[which(a > 3)]
+```
+
+### `if` statement 
+
+An `if` statement allows us to conditionally execute code. Here is an example of how to use an `if` statement. The following code will print `"a has length 7"` if the length of `a` is 7.
+
+```{r}
+if(length(a) == 7){
+  print("a has length 7")
+} else{
+  print("a does not have length 7.")
+}
+```
+
+The statement to be tested goes into `()`, and the consequence for "statement is true" goes into the first braces `{}` . The consequence for "statement is false" goes into the second `{}` after `else` .
+
+In an `if` statement, we should not use `&` or `|` because these are vectorized operations that apply to multiple values. Instead, you can use `&&` or `||`.
+
+```{r}
+if(length(x) == 10 && x[1] > 0){
+  print("x has length 10, and the first element of x is greater than zero.")
+}
+
+```
+
+### `for`  loop
+
+Imagine we have $10$ x $10$ matrix that contains integers from 1 to 100:
+
+```{r}
+A = matrix(c(1:100), nrow = 10, byrow = TRUE)
+A
+```
+
+We want to compute the median of each row. We can copy and paste:
+
+```{r}
+median(A[1, ])
+```
+
+```{r}
+median(A[2, ])
+```
+
+```{r}
+median(A[3, ])
+```
+
+```{r}
+#... 
+median(A[10, ])
+```
+
+However, it is not very efficient to use copy and paste if we are dealing with a large number of columns, say $50$ columns. Instead, we could use a `for` loop:
+
+```{r}
+med = rep(NA, 10)          # 1. output
+for (i in 1:10) {             # 2. sequence
+  med[i] = median(A[i, ])      # 3. body
+}
+med
+```
+
+A `for` loop consists of three components:
+
+1.  **Output**: Before starting the loop, we created an empty atomic vector `med` of length 10 using `rep()`. At each iteration, the median of the `i`th row is assigned as the `i`th element of our output vector
+2.  **Sequence**: This part shows what to loop over. Each iteration of the `for` loop assigns `i` to a different value from `1:10`.
+3.  **Body**: he body part is the code that does the work. At each iteration, the code inside the braces `{}` is run with a different value for `i`. For example, the first iteration will run `med[1] = median(A[1,])`
+
+### `for` loop with an `if` statement
+
+Here, we will see how to use an `if` statement inside a `for` loop. We want to create a vector length of 10, such that the `i`th element is 1 if the `i`th element of `x` is even, and is 2 if the `i`th element of `x` is odd.
+
+```{r}
+v = numeric(10)    # output: create a zero vector length of 10
+for (i in 1:10) {     # sequence
+  if (x[i] %% 2 == 0) {   # if statement
+    v[i] = 1          # body
+  } else {
+    v[i] = 2
+  }
+}
+v
+```
